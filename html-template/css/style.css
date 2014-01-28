@@ -75,11 +75,28 @@ header img {
 }
 
 header h1 {
-	width: 65%;
+	width: 35%;
 	height: 60px;
 	margin: 5px;
 	line-height: 60px;
 	float: left;
+}
+header img {
+	/*width: 6.5%;*/
+	/*height: 6.5%;*/
+}
+@media (max-width: 960px) {
+	header h1 {
+		display: none;
+	}
+	header div {
+		position: relative;
+	}
+	header img {
+		position: absolute;
+		float: none;
+		left: .5%;
+	}
 }
 
 .page-head {
@@ -110,6 +127,87 @@ header h1 {
 .orange-btn:hover {
 	transition: background-position cubic-bezier(.72, 1, .36, .73) .15s;
 	background-position: 0 -50px;
+}
+
+
+
+/* Navigation Styles */
+
+nav {
+	width: 45%;
+	height: 50px;
+	float: right;
+	margin-top: 10px;
+	margin-right: 1%;
+	/*background-color: #ccc;*/
+}
+
+nav img {
+	display: none;
+}
+
+nav a.active {
+	border: 1px solid #fff;
+	height: 33px;
+}
+nav a {
+	display: block;
+	width: 100%;
+	height: 35px;
+	padding-top: 15px;
+	text-align: center;
+}
+nav li:last-child {
+	margin-left: 2%;
+	float: right;
+}
+nav li {
+	width: 24%;
+	height: 50px;
+	float: left;
+	border-right: 1px solid #000;
+}
+@media (max-width: 670px) {
+	nav li:first-child a {
+		height: 38px;
+		padding-top: 10px;
+		line-height: 15px;
+	}
+}
+@media (max-width: 570px) {
+	nav li:first-child a {
+		height: 35px;
+		padding-top: 15px;
+	}
+	nav {
+		width: 30%;
+		margin: 10px 0;
+		position: relative;
+	}
+	nav img {
+		cursor: pointer;
+		display: block;
+		position: absolute;
+		left: 55%;
+		top: -10px;
+	}
+	nav img:hover + ul {
+		right: 0;
+	}
+	nav ul:hover {
+		right: 0;
+	}
+	nav ul {
+		position: absolute;
+		width: 100%;
+		right: -100%;
+	}
+	nav li {
+		width: 100%;
+		border:0;
+		border-bottom: 1px solid #000;
+		float: none;
+	}
 }
 
 
@@ -250,7 +348,7 @@ input.search {
 
 
 
-/* Dropdown styles */
+/* Color Sort styles */
 
 .colors {
 	position: fixed;
@@ -382,6 +480,27 @@ input.search {
 	height: 20px;
 	margin: 0;
 	padding: 0;
+}
+
+@media (max-width: 960px) {
+	.deck-list li {
+		width: 47.6%;
+		margin: 20px 1%;
+	}
+}
+@media (max-width: 620px) {
+	.deck-list li {
+		width: 87.8%;
+		margin: 20px 6%;
+		float: none;
+	}
+}
+@media (max-width: 360px) {
+	.deck-list li {
+		width: 97.8%;
+		margin: 20px 1%;
+		float: none;
+	}
 }
 
 
@@ -570,6 +689,15 @@ input.search {
 }
 .reply {
 	border-left: 0;border-right: 0;border-bottom: 0;
+}
+
+@media (max-width: 500px) {
+	.top {
+		display: block;
+		width: 100%;
+		float: none;
+		border: 0;
+	}
 }
 
 @media (max-width: 700px) {
