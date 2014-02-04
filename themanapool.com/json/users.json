@@ -1,0 +1,24 @@
+{
+    "users": {
+        "1": {
+            "level": 1,
+            "exp": 0,
+            "decks": {
+                "White - Blue Humans": {
+                	"0" :{
+	                    "card-name": "Meddling Mage",
+	                    "mana-cost": "UW",
+	                    "converted-cost": 2,
+	                    "type": "Creature",
+	                    "sub-type": "Human Wizard",
+	                    "rules": "As Meddling Mage enters the battlefield, name a nonland card. <br>The named card can't be cast.",
+	                    "flavor": "This violent wasteland is an indictment of its people. These cowards lack the will to oppose disorder",
+	                    "power": 2,
+	                    "toughness": 2,
+	                    "num": 3
+                	}
+                }
+            }
+        }
+    }
+}
