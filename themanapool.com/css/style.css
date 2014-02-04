@@ -10,7 +10,7 @@ label {
 	font-weight: normal;
 }
 
-p, input[type="text"] {
+p, input[type="text"], input[type="email"] {
 	font-family: 'Calibri', sans-serif;
 	font-size: 16px;
 }
@@ -38,11 +38,19 @@ a.active {
 	color: #fff;
 }
 
-.header {
+.header,
+.header-light {
 	height: 30px;
-	background-color: rgb(0,25,45);
 	padding: 10px 5%;
 	color: #b7d5e2;
+}
+
+.header {
+	background-color: rgb(0,25,45);
+}
+
+.header-light {
+	background-color: rgb(38,99,150);
 }
 
 
@@ -238,12 +246,14 @@ nav li {
 
 /* Form Styles */
 
-.authentication {
+.authentication,
+.advanced-search,
+.search-list {
 	margin: 20px 0;
 }
 
 .authentication form {
-	height: 340px;
+	min-height: 360px;
 	position: relative;
 }
 
@@ -255,16 +265,27 @@ nav li {
 	float: left;
 }
 
+.advanced-search {
+	width: 50%;
+	float: left;
+}
+.search-list {
+	width: 49%;
+	margin-left: 1%;
+	float: left;
+}
+
 @media (max-width: 750px) {
 	.registry,
 	.login {
 		width: 99.9%;
+		border: 0;
 		margin: 0;
 		float: none;
 	}
 
 	.login {
-		margin-top: 20px;
+		margin-top: 40px;
 	}
 }
 
@@ -283,9 +304,13 @@ nav li {
 label,
 input {
 	display: block;
-	margin: 5px 5% 0 5%;
+	margin: 6px 0 0 5%;
 	width: 82%;
 	outline: none;
+}
+
+input:disabled {
+	opacity: .4;
 }
 
 label {
@@ -297,6 +322,18 @@ input {
 	height: 35px;
 	padding: 0;
 	border: 1px solid #000;
+}
+
+input.advanced {
+	width: 68%;
+	padding-left: 2%;
+}
+
+.advanced-inputs li:nth-child(even) label {
+	color: rgb(0,25,45);
+}
+.advanced-inputs li:nth-child(odd) label {
+	color: rgb(38,99,150);
 }
 
 input.icn-person,
@@ -340,6 +377,10 @@ input.submit:hover {
 	background-position: 0 -50px;
 	color: #b7d5e2;
 }
+input.submit:disabled:hover {
+	background-position: 0 -10px;
+	color: rgba(0,25,45,1);
+}
 
 input.search {
 	background: url('../img/search.png');
@@ -379,6 +420,32 @@ input.find {
 		padding-left: 10%;
 		width: 69.6%;
 	}
+	input.icn-person, input.icn-pass, input.icn-pass2 {
+		padding-left: 11%;
+		width: 79%;
+	}
+}
+
+.input-group {
+	position: relative;
+}
+
+.form-error {
+	display: block;
+	width: 50%;
+	height: 20px;
+	border: 1px solid #000;
+	border-top: 0;
+	border-radius: 0 0 5px 5px;
+	padding: 5px;
+	position: absolute;
+	background-color: rgb(232,102,46);
+	bottom: -30px;
+	right: 5%;
+	z-index: 100;
+
+	text-align: right;
+	overflow: hidden;
 }
 
 
@@ -544,6 +611,7 @@ input.find {
 .card-list li,
 .card-list-icon li {
 	border: 1px solid #000;
+	background-color: #fff;
 }
 
 .card-image,
@@ -608,11 +676,12 @@ input.find {
 }
 
 .card-list-icon li > img {
-	width: 95%;
-	margin: 2.5% 2.5%;
+	width: 85%;
+	margin: 7.5% 7.5%;
 }
 
 .panel {
+	width: 95%;
 	height: 41%;
 	padding: 2.5%;
 	background-color: rgba(255,255,255,.8);
@@ -794,6 +863,49 @@ input.find {
 	}
 }
 
+.list-sets,
+.card-list-icon {
+	min-height: 60px;
+	background-image: url('../img/loading.gif');
+	background-repeat: no-repeat;
+	background-position: 10px 10px;
+}
+
+.list-sets li {
+	background: url('../img/btn-bg-blue.gif');
+	background-position: 0 -20px;
+	width: 99.8%;
+	height: 40px;
+	border: 1px solid #000;
+	border-top-width: 0px;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.list-sets li h3,
+.set-image {
+	display: block;
+	float: left;
+}
+
+.set-image {
+	width: 5%;
+}
+
+.list-sets li img {
+	display: block;
+	margin: 8px auto;
+}
+.list-sets li h3 {
+	height: 40px;
+	line-height: 40px;
+}
+
+@media (max-width: 600px) {
+	.set-image {
+		width: 9%;
+	}
+}
 
 
 
