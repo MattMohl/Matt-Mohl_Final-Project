@@ -7,43 +7,41 @@
 <html ng-app="themanapool">
 <body>
 
-	<header>
-
-		<div>
-
-			<img src="img/logo.png">
-
-			<h1><a href="index.html">The Mana Pool</a></h1>
-
-		</div>
-
-	</header>
-
-	<section ng-view class="main-content">
+	<section ng-view>
 
 	</section>
 
 	<!-- Firebase -->
-	<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+	<script src="//cdn.firebase.com/js/client/1.0.2/firebase.js"></script>
 
 	<!-- AngularJS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.js"></script>
+	<script src="http://code.angularjs.org/1.2.4/angular.js"></script>
 
 	<!-- AngularFire Plugin -->
-	<script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
 
 	<!-- Angular Route -->
 	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular-route.js"></script>
 
 	<!-- Simple Login -->
-	<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.2.1/firebase-simple-login.js'></script>
+	<script src="//cdn.firebase.com/js/simple-login/1.2.3/firebase-simple-login.js"></script>
 
 
 	<!-- My Stuff -->
+
+	<!-- Controllers -->
 	<!-- Configuration -->
 	<script type="text/javascript" src="js/controllers/config.js"></script>
-	<!-- User controller -->
+	<!-- User -->
 	<script type="text/javascript" src="js/controllers/user.js"></script>
+	<!-- Browser -->
+	<script type="text/javascript" src="js/controllers/browser.js"></script>
+
+	<!-- Services -->
+	<!-- User -->
+	<script type="text/javascript" src="js/factories/user-service.js"></script>
+	<!-- Browse -->
+	<script type="text/javascript" src="js/factories/browse-service.js"></script>
 
 </body>
 </html>
