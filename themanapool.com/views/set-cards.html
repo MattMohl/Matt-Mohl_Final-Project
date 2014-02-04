@@ -1,0 +1,61 @@
+<header>
+
+	<div>
+
+		<img src="img/logo.png">
+
+		<h1><a href="index.html">The Mana Pool</a></h1>
+
+		<nav>
+			<img src="img/menu.png">
+			<ul>
+				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn" href="community.html">Community</a></li>
+				<li><a class="blue-btn active" href="browse.html">Browse</a></li>
+				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+</header>
+
+<section class="main-content">
+
+<h2 class="page-head"><a ng-href="./#/browse">Browse</a> > <a ng-href="./#/browse/sets">Sets</a> > {{set.name}}</h2>
+
+	<section class="browse-section sets">
+
+		<div class="header"><h2>{{set.name}} - {{set.releaseDate}}</h2></div>
+
+		<ul class="card-list-icon">
+
+			<li ng-repeat="card in setCards">
+
+				<img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
+
+				<div class="panel">
+					<div>
+						<button class="blue-btn"><img src="img/arrow-left.png"></button>
+						<span>1</span>
+						<button class="blue-btn"><img src="img/arrow-right.png"></button>
+
+						<button class="orange-btn">Delete</button>
+					</div>
+					<div>
+						<h3>{{card.name}}</h3>
+						<h3>({{card.cmc}}) {{card.manaCost}}</h3>
+						<h4>{{card.type}}</h4>
+
+						<p>{{card.text}}</p>
+						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
+						<h4 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h4>
+					</div>
+				</div>
+				
+			</li>
+		</ul>
+
+	</section>
+
+</section>
