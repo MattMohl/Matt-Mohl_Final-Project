@@ -1,0 +1,148 @@
+<header>
+
+	<div>
+
+		<img src="img/logo.png">
+
+		<h1><a href="index.html">The Mana Pool</a></h1>
+
+		<nav>
+			<img src="img/menu.png">
+			<ul>
+				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn" href="community.html">Community</a></li>
+				<li><a class="blue-btn active" href="browse.html">Browse</a></li>
+				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+</header>
+
+<!--<section class="colors">
+
+	<ul>
+		<li>
+			<button id="white" type="checkbox" checked></button>
+		</li>
+		<li>
+			<input id="blue" type="checkbox" checked>
+		</li>
+		<li>
+			<input id="black" type="checkbox" checked>
+		</li>
+		<li>
+			<input id="red" type="checkbox" checked>
+		</li>
+		<li>
+			<input id="green" type="checkbox" checked>
+		</li>
+	</ul>
+	
+</section>-->
+
+<section class="main-content">
+
+<h2 class="page-head">Browse</h2>
+
+<form>
+	<input class="search" id="search" type="text" placeholder="Search Cards">
+	<input class="submit find" id="find" type="submit" value="Find">
+	<div style="clear:both;"></div>
+</form>
+
+	<section class="browse-section advanced">
+
+		<div class="header"><h2>Advanced Search <a ng-href="./#/browse/advanced">(Try it Out)</a></h2></div>
+		
+	</section>
+
+	<section class="browse-section sets">
+
+		<div class="header"><h2>MTG Cards by Set <a ng-href="./#/browse/sets">(Show All)</a></h2></div>
+
+		<ul class="list-sets">
+			<li ng-repeat="set in setList" ng-href="./browse/sets/{{set.code}}" class="blue-btn">
+				<a href="">
+				<div class="set-image">
+					<img src="./img/sets/{{set.code}}.jpeg">
+				</div>
+				<h3>{{set.name}}</h3>
+				</a>
+			</li>
+		</ul>
+
+	</section>
+
+	<!-- <section class="browse-section presets">
+
+		<div class="header"><h2>Preset Searches <a href="">(Show All)</a></h2></div>
+
+		<ul class="list">
+			<li class="blue-btn-big">
+				<img src="img/enchant.jpg">
+				<div class="search-info">
+					<h3>Humans</h3>
+					<p>Resilient, small, and great in numbers. Humans are capable of short-term swarming as well as long-term defending. It's usually hard to count them out of any fight before it's completely over.</p>
+					<br>
+					<p>Approximately 1332 results</p>
+				</div>
+				<div style="clear:both;"></div>
+			</li>
+			<li class="blue-btn-big">
+				<img src="img/enchant.jpg">
+				<div class="search-info">
+					<h3>Humans</h3>
+					<p>Resilient, small, and great in numbers. Humans are capable of short-term swarming as well as long-term defending. It's usually hard to count them out of any fight before it's completely over.</p>
+					<br>
+					<p>Approximately 1332 results</p>
+				</div>
+				<div style="clear:both;"></div>
+			</li>
+			<li class="blue-btn-big">
+				<img src="img/enchant.jpg">
+				<div class="search-info">
+					<h3>Humans</h3>
+					<p>Resilient, small, and great in numbers. Humans are capable of short-term swarming as well as long-term defending. It's usually hard to count them out of any fight before it's completely over.</p>
+					<br>
+					<p>Approximately 1332 results</p>
+				</div>
+				<div style="clear:both;"></div>
+			</li>
+		</ul>
+
+	</section> -->
+
+	<!-- <section class="browse-section">
+		<div class="header"><h2>Top Used Cards <a href="">(Show More)</a></h2></div>
+
+		<ul class="list">
+			<li class="blue-btn-big">
+				<img src="img/enchant.jpg">
+				<div class="card-info-spotlight">
+					<h3>Jace, the Mind Sculpter</h3>
+					<p>Plainswalker - Jace</p>
+				</div>
+				<div style="clear:both;"></div>
+			</li>
+			<li class="blue-btn-big">
+				<img src="img/enchant.jpg">
+				<div class="card-info-spotlight">
+					<h3>Stoneforge Mystic</h3>
+					<p>Creature - Kor Artificer</p>
+				</div>
+				<div style="clear:both;"></div>
+			</li>
+			<li class="blue-btn-big">
+				<img src="img/enchant.jpg">
+				<div class="card-info-spotlight">
+					<h3>Ancestral Recall</h3>
+					<p>Instant</p>
+				</div>
+				<div style="clear:both;"></div>
+			</li>
+		</ul>
+	</section> -->
+
+</section>
