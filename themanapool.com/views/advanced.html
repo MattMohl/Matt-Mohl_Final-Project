@@ -1,0 +1,134 @@
+<header>
+
+	<div>
+
+		<img src="img/logo.png">
+
+		<h1><a href="index.html">The Mana Pool</a></h1>
+
+		<nav>
+			<img src="img/menu.png">
+			<ul>
+				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn" href="community.html">Community</a></li>
+				<li><a class="blue-btn active" href="browse.html">Browse</a></li>
+				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+</header>
+
+<section class="main-content">
+
+	<section class="cta">
+
+	</section>
+
+	<section class="advanced-search">
+
+		<div class="header">
+			<h2>Add Parameters</h2>
+		</div>
+
+		<ul class="advanced-inputs">
+			<li>
+				<form name="nameForm">
+					<label for="name">Name</label>
+					<input ng-model="name" id="name" name="name" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="rulesForm">
+					<label for="rules">Rules Text</label>
+					<input ng-model="rules" id="rules" name="rules" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="setForm">
+					<label for="set">Set Name</label>
+					<input id="set" name="set" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="blockForm">
+					<label for="block">Block Name</label>
+					<input ng-model="block" id="block" name="block" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="colorForm">
+					<label for="color">Color</label>
+					<input ng-model="color" id="color" name="color" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="typeForm">
+					<label for="type">Type</label>
+					<input ng-model="type" id="type" name="type" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="subtypeForm">
+					<label for="subtype">Sub Type</label>
+					<input ng-model="subtype" id="subtype" name="subtype" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="cmcForm">
+					<label for="cmc">Converted Mana Cost</label>
+					<input ng-model="cmc" id="cmc" name="cmc" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="manaForm">
+					<label for="mana">Mana Cost</label>
+					<input ng-model="mana" id="mana" name="mana" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="powerForm">
+					<label for="power">Power</label>
+					<input ng-model="power" id="power" name="power" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="toughnessForm">
+					<label for="toughness">Toughness</label>
+					<input ng-model="toughness" id="toughness" name="toughness" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="flavorForm">
+					<label for="flavor">Flavor Text</label>
+					<input ng-model="flavor" id="flavor" name="flavor" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="artistForm">
+					<label for="artist">Artist</label>
+					<input ng-model="artist" id="artist" name="artist" class="advanced" type="text">
+				</form>
+			</li>
+			<li>
+				<form name="artistForm">
+					<label for="artist">Artist</label>
+					<input ng-model="artist" id="artist" name="artist" class="advanced" type="text">
+				</form>
+			</li>
+		</ul>
+
+	</section>
+
+	<section class="search-list">
+
+		<div class="header-light">
+			<h2>Current Parameters</h2>
+		</div>
+
+	</section>
+
+	<div style="clear: both;"></div>
+
+</section>
