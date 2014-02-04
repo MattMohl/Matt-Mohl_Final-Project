@@ -1,0 +1,44 @@
+<header>
+
+	<div>
+
+		<img src="img/logo.png">
+
+		<h1><a href="index.html">The Mana Pool</a></h1>
+
+		<nav>
+			<img src="img/menu.png">
+			<ul>
+				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn" href="community.html">Community</a></li>
+				<li><a class="blue-btn active" href="browse.html">Browse</a></li>
+				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+</header>
+
+<section class="main-content">
+
+<h2 class="page-head"><a ng-href="./#/browse">Browse</a> > Sets</h2>
+
+	<section class="browse-section sets">
+
+		<div class="header"><h2>All MTG Sets</h2></div>
+
+		<ul class="list-sets">
+			<li ng-repeat="set in allSets" class="blue-btn">
+				<a ng-href="./#/browse/sets/{{set.code}}">
+				<div class="set-image">
+					<img src="./img/sets/{{set.code}}.jpeg">
+				</div>
+				<h3>{{set.name}}</h3>
+				</a>
+			</li>
+		</ul>
+
+	</section>
+
+</section>
