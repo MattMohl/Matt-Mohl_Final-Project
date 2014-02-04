@@ -1,0 +1,90 @@
+<header>
+
+	<div>
+
+		<img src="img/logo.png">
+
+		<h1><a href="index.html">The Mana Pool</a></h1>
+
+		<nav>
+			<img src="img/menu.png">
+			<ul>
+				<li><a class="blue-btn active" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn" href="community.html">Community</a></li>
+				<li><a class="blue-btn" href="browse.html">Browse</a></li>
+				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+</header>
+
+<!--<section class="colors">
+
+	<ul>
+		<li>
+			<button id="white" type="checkbox" checked></button>
+		</li>
+		<li>
+			<input id="blue" type="checkbox" checked>
+		</li>
+		<li>
+			<input id="black" type="checkbox" checked>
+		</li>
+		<li>
+			<input id="red" type="checkbox" checked>
+		</li>
+		<li>
+			<input id="green" type="checkbox" checked>
+		</li>
+	</ul>
+	
+</section>-->
+
+<section class="main-content">
+
+<h2 class="page-head">My Decks</h2>
+
+<form>
+	<input class="search" id="search" type="text" placeholder="Search Decks">
+	<input class="submit find" id="find" type="submit" value="Find">
+	<div style="clear:both;"></div>
+</form>
+
+	<section class="decks">
+
+		<ul class="deck-list">
+
+			<li>
+
+				<h2><a ng-href="#">Another Deck</a></h2>
+
+				<canvas class="color-balance"></canvas>
+
+				<div class="deck-image">
+					<img src="img/enchant.jpg">
+				</div>
+
+				<div class="meta-data">
+					<img src="img/tuning.png">
+
+					<h3>Fine-Tuning</h3>
+
+					<a href="deckcomment.html" class="notification-cont">
+						<span class="comment-badge">2</span>
+
+						<span class="comment-label">New Comments</span>
+					</a>
+				</div>
+
+				<div class="deck-info">
+					<p>In this EDH deck, I will show how doing Regen-itus works using Regenerate and a few other key protection cards. The main goal of this deck is to seek out as much mana as possible so you can get Progenitus out as fast as possible. Let me know if you have any suggestions for me in the comments!</p>
+				</div>
+			</li>
+
+		</ul>
+
+	</section>
+
+</section>
