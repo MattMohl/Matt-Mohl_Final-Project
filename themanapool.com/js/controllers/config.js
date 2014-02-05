@@ -26,6 +26,10 @@ themanapool.config(function($routeProvider) {
 			controller: 'browser',
 			templateUrl: 'views/advanced.html'
 		})
+		.when('/browse/advanced/results', {
+			controller: 'browser',
+			templateUrl: 'views/results.html'
+		})
 		.otherwise({redirectTo: '/'});
 });
 
@@ -33,6 +37,12 @@ themanapool.run(['$rootScope', '$firebase', '$firebaseSimpleLogin', '$location',
 	console.log('RUN');
 
 	var manapool = new Firebase('https://manapool.firebaseio.com');
+
+	// If they are on the results page
+	// send them back
+	if($location.path() === '/browse/advanced/results') {
+		$location.path('/browse/advanced');
+	}
 
 	// Instantiate an auth reference
 	$rootScope.auth = new FirebaseSimpleLogin(manapool, 
@@ -49,5 +59,11 @@ themanapool.run(['$rootScope', '$firebase', '$firebaseSimpleLogin', '$location',
 				$location.path('/');
 			}
 	});
+
+	$rootScope.logout = function() {
+		console.log('out');
+		$rootScope.auth.logout();
+		$location.path('/');
+	}
 
 }]);

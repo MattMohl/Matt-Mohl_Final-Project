@@ -28,7 +28,7 @@
 
 	<section class="advanced-search">
 
-		<div class="header">
+		<div class="header-light">
 			<h2>Add Parameters</h2>
 		</div>
 
@@ -36,96 +36,103 @@
 			<li>
 				<form name="nameForm">
 					<label for="name">Name</label>
-					<input ng-model="name" id="name" name="name" class="advanced" type="text">
+					<input ng-model="search.name" id="name" name="name" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="rulesForm">
-					<label for="rules">Rules Text</label>
-					<input ng-model="rules" id="rules" name="rules" class="advanced" type="text">
-				</form>
-			</li>
-			<li>
-				<form name="setForm">
-					<label for="set">Set Name</label>
-					<input id="set" name="set" class="advanced" type="text">
-				</form>
-			</li>
-			<li>
-				<form name="blockForm">
-					<label for="block">Block Name</label>
-					<input ng-model="block" id="block" name="block" class="advanced" type="text">
+					<label for="text">Rules Text</label>
+					<input ng-model="search.text" id="text" name="text" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="colorForm">
-					<label for="color">Color</label>
-					<input ng-model="color" id="color" name="color" class="advanced" type="text">
+					<label for="colors">Color</label>
+					<input ng-model="search.colors" id="colors" name="colors" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="typeForm">
 					<label for="type">Type</label>
-					<input ng-model="type" id="type" name="type" class="advanced" type="text">
-				</form>
-			</li>
-			<li>
-				<form name="subtypeForm">
-					<label for="subtype">Sub Type</label>
-					<input ng-model="subtype" id="subtype" name="subtype" class="advanced" type="text">
+					<input ng-model="search.type" id="type" name="type" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="cmcForm">
 					<label for="cmc">Converted Mana Cost</label>
-					<input ng-model="cmc" id="cmc" name="cmc" class="advanced" type="text">
+					<input ng-model="search.cmc" id="cmc" name="cmc" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="manaForm">
-					<label for="mana">Mana Cost</label>
-					<input ng-model="mana" id="mana" name="mana" class="advanced" type="text">
+					<label for="manaCost">Mana Cost</label>
+					<input ng-model="search.manaCost" id="manaCost" name="manaCost" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="powerForm">
 					<label for="power">Power</label>
-					<input ng-model="power" id="power" name="power" class="advanced" type="text">
+					<input ng-model="search.power" id="power" name="power" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="toughnessForm">
 					<label for="toughness">Toughness</label>
-					<input ng-model="toughness" id="toughness" name="toughness" class="advanced" type="text">
+					<input ng-model="search.toughness" id="toughness" name="toughness" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="flavorForm">
 					<label for="flavor">Flavor Text</label>
-					<input ng-model="flavor" id="flavor" name="flavor" class="advanced" type="text">
+					<input ng-model="search.flavor" id="flavor" name="flavor" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="artistForm">
 					<label for="artist">Artist</label>
-					<input ng-model="artist" id="artist" name="artist" class="advanced" type="text">
+					<input ng-model="search.artist" id="artist" name="artist" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
-				<form name="artistForm">
-					<label for="artist">Artist</label>
-					<input ng-model="artist" id="artist" name="artist" class="advanced" type="text">
+				<form name="rarityForm">
+					<label for="rarity">Rarity</label>
+					<input ng-model="search.rarity" id="rarity" name="rarity" class="advanced" type="text" required>
+					<div style="clear:both;"></div>
 				</form>
 			</li>
+			<div style="clear:both;"></div>
 		</ul>
 
 	</section>
 
-	<section class="search-list">
+	<section class="results">
 
-		<div class="header-light">
-			<h2>Current Parameters</h2>
+		<div class="header">
+			<h2>Search Results <a href="">(View All)</a></h2>
 		</div>
+
+		<ul class="result-list">
+			<li ng-repeat="set in allSetsResults" id="{{set.code}}-item">
+				<ul id="{{set.code}}-list">
+					<li ng-repeat="card in set.cards | filter:search | limitTo:10">
+						<h3>{{card.name}}</h3>
+						<h4>{{card.type}}</h4>
+						<p>{{card.text}}</p>
+						<p ng-show="card.power || card.toughness">{{card.power}} / {{card.toughness}}</p>
+					</li>
+				</ul>
+			</li>
+		</ul>
 
 	</section>
 

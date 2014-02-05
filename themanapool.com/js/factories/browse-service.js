@@ -9,8 +9,11 @@ themanapool.factory('BrowseService', ['$firebase',
 				var set = new Firebase('https://manapool-sets.firebaseio.com/'+set);
 				return $firebase(set);
 			},
+			getSetsLarge: function(num) {
+				var sets = new Firebase('https://manapool-cards.firebaseio.com/');
+				return $firebase(sets.limit(num));
+			},
 			getSetCards: function(set, num) {
-				console.log(set);
 				var sets = new Firebase('https://manapool-cards.firebaseio.com/'+set+'/cards');
 				return $firebase(sets.limit(num));
 			}

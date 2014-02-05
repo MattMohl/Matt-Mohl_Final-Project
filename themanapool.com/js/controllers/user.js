@@ -54,10 +54,4 @@ themanapool.controller('user', ['$rootScope', '$scope', '$firebase', '$location'
 		});
 		$location.path('/browse');
 	}
-
-	$scope.logout = function() {
-		console.log('out');
-		$rootScope.auth.logout();
-		$location.path('/');
-	}
 }]);

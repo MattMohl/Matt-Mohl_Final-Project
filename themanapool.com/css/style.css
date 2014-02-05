@@ -24,7 +24,9 @@ li {
 	list-style: none;
 }
 
-p, label, input {
+p, label, input[type="text"], 
+input[type="password"], 
+input[type="email"] {
 	color: rgb(0,25,45);
 }
 
@@ -265,16 +267,6 @@ nav li {
 	float: left;
 }
 
-.advanced-search {
-	width: 50%;
-	float: left;
-}
-.search-list {
-	width: 49%;
-	margin-left: 1%;
-	float: left;
-}
-
 @media (max-width: 750px) {
 	.registry,
 	.login {
@@ -301,6 +293,10 @@ nav li {
 	color: #b7d5e2;
 }
 
+.advanced-search input {
+	width: 45%;
+}
+
 label,
 input {
 	display: block;
@@ -324,9 +320,32 @@ input {
 	border: 1px solid #000;
 }
 
+.advanced-inputs li {
+	width: 24%;
+	margin: 5px 0 0 1%;
+	float: left;
+}
+
+.advanced-inputs label {
+	margin-top: 0;
+	margin-left: 0;
+	font-size: 15px;
+}
+
 input.advanced {
-	width: 68%;
-	padding-left: 2%;
+	margin: 0;
+	width: 93%;
+	padding-left: 3%;
+}
+
+input.advanced-submit {
+	width: 19.6%;
+	height: 37px;
+	margin-left: 0;
+	background-position: 0 -20px;
+	border-left-width: 0px;
+	font-size: 14px;
+	float: left;
 }
 
 .advanced-inputs li:nth-child(even) label {
@@ -356,6 +375,10 @@ input.icn-pass2 {
 	background-repeat: no-repeat;
 }
 
+input[type="submit"] {
+	cursor: pointer;
+}
+
 input.submit {
 	width: 100%;
 	height: 50px;
@@ -370,6 +393,7 @@ input.submit {
 	color: rgb(0,25,45);
 
 	font-size: 25px;
+	cursor: pointer;
 }
 
 input.submit:hover {
@@ -379,6 +403,10 @@ input.submit:hover {
 }
 input.submit:disabled:hover {
 	background-position: 0 -10px;
+	color: rgba(0,25,45,1);
+}
+input.advanced-submit:disabled:hover {
+	background-position: 0 -20px;
 	color: rgba(0,25,45,1);
 }
 
@@ -864,7 +892,8 @@ input.find {
 }
 
 .list-sets,
-.card-list-icon {
+.card-list-icon,
+.result-list {
 	min-height: 60px;
 	background-image: url('../img/loading.gif');
 	background-repeat: no-repeat;
@@ -880,6 +909,11 @@ input.find {
 	border-top-width: 0px;
 	cursor: pointer;
 	overflow: hidden;
+}
+
+.result-list li {
+	color: rgb(0,25,45);
+	margin-bottom: 5px;
 }
 
 .list-sets li h3,
