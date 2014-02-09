@@ -1,10 +1,5 @@
-Matt-Mohl_Final-Project
-=======================
-
 The Mana Pool
 A deck building community
-
-
 
 All content, cards, set symbols and names are property of Wizards of the Coast and I am not affiliated with Wizards in any way. 
 

@@ -11,7 +11,7 @@
 			<ul>
 				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
 				<li><a class="blue-btn" href="community.html">Community</a></li>
-				<li><a class="blue-btn active" href="browse.html">Browse</a></li>
+				<li><a class="blue-btn active" ng-href="./#/browse">Browse</a></li>
 				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
 			</ul>
 		</nav>
@@ -21,10 +21,6 @@
 </header>
 
 <section class="main-content">
-
-	<section class="cta">
-
-	</section>
 
 	<section class="advanced-search">
 
@@ -121,14 +117,20 @@
 			<h2>Search Results <a href="">(View All)</a></h2>
 		</div>
 
-		<ul class="result-list">
-			<li ng-repeat="set in allSetsResults" id="{{set.code}}-item">
-				<ul id="{{set.code}}-list">
-					<li ng-repeat="card in set.cards | filter:search | limitTo:10">
-						<h3>{{card.name}}</h3>
-						<h4>{{card.type}}</h4>
-						<p>{{card.text}}</p>
-						<p ng-show="card.power || card.toughness">{{card.power}} / {{card.toughness}}</p>
+		<ul class="results-list-advanced">
+			<li ng-repeat="set in allSetsResults">
+				<ul class="card-list-advanced">
+					<li ng-repeat="card in set.cards | filter:search | limitTo:6">
+						<div class="info">
+							<h3>{{card.name}}</h3>
+							<h3>({{card.cmc}}) {{card.manaCost}}</h3>
+							<h4>{{card.type}}</h4>
+							<h4>{{set.name}}</h4>
+
+							<p>{{card.text}}</p>
+							<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
+							<h4 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h4>
+						</div>
 					</li>
 				</ul>
 			</li>

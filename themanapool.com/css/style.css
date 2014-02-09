@@ -42,6 +42,7 @@ a.active {
 
 .header,
 .header-light {
+	width: 90%;
 	height: 30px;
 	padding: 10px 5%;
 	color: #b7d5e2;
@@ -250,7 +251,8 @@ nav li {
 
 .authentication,
 .advanced-search,
-.search-list {
+.search-list,
+.results {
 	margin: 20px 0;
 }
 
@@ -326,15 +328,27 @@ input {
 	float: left;
 }
 
+@media (min-width: 960px) {
+	.advanced-inputs li {
+		width: 100%;
+		margin: 5px 0;
+		float: none;
+	}
+}
+
 .advanced-inputs label {
 	margin-top: 0;
 	margin-left: 0;
 	font-size: 15px;
 }
 
+.advanced-inputs input {
+	height: 25px;
+}
+
 input.advanced {
 	margin: 0;
-	width: 93%;
+	width: 97%;
 	padding-left: 3%;
 }
 
@@ -636,10 +650,34 @@ input.find {
 
 /* Card List Styles */
 
+.results {
+	width: 73%;
+	margin-left: 27%;
+	float: left;
+}
+.advanced-search {
+	width: 220px;
+	padding: 10px;
+	background-color: rgba(183,213,226, .7);
+	position: fixed;
+}
+
+.card-list-advanced li {
+	width: 100%;
+}
+
 .card-list li,
 .card-list-icon li {
+	border-collapse: collapse;
 	border: 1px solid #000;
 	background-color: #fff;
+}
+
+@media (max-width: 960px) {
+	.card-list-icon li {
+		width: 50%;
+		border: 0;
+	}
 }
 
 .card-image,
@@ -705,15 +743,16 @@ input.find {
 
 .card-list-icon li > img {
 	width: 85%;
+	max-height: 556px;
 	margin: 7.5% 7.5%;
 }
 
 .panel {
-	width: 95%;
-	height: 41%;
-	padding: 2.5%;
-	background-color: rgba(255,255,255,.8);
 	position: absolute;
+	width: 96%;
+	height: 41%;
+	padding: 5px 2%;
+	background-color: rgba(255,255,255,.8);
 	transition: bottom cubic-bezier(.72,1,.36,.73) .15s;
 	bottom: -34%;
 	/*bottom: 0;*/
@@ -856,7 +895,7 @@ input.find {
 	width: auto;
 }
 
-.browse-section div a {
+.header a {
 	text-align: left;
 	font-size: 18px;
 }
@@ -900,6 +939,11 @@ input.find {
 	background-position: 10px 10px;
 }
 
+.results ul.result-list {
+	min-height: 0;
+	min-width: 0;
+}
+
 .list-sets li {
 	background: url('../img/btn-bg-blue.gif');
 	background-position: 0 -20px;
@@ -913,7 +957,6 @@ input.find {
 
 .result-list li {
 	color: rgb(0,25,45);
-	margin-bottom: 5px;
 }
 
 .list-sets li h3,
