@@ -9,7 +9,7 @@
 		<nav>
 			<img src="img/menu.png">
 			<ul>
-				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn" href="community.html">Community</a></li>
 				<li><a class="blue-btn active" ng-href="./#/browse">Browse</a></li>
 				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
@@ -22,17 +22,16 @@
 
 <section class="main-content">
 
-	<section class="advanced-search">
+<h2 class="page-head"><a ng-href="./#/browse">Browse</a> > Advanced</h2>
 
-		<div class="header-light">
-			<h2>Add Parameters</h2>
-		</div>
+	<section class="advanced-search">
 
 		<ul class="advanced-inputs">
 			<li>
 				<form name="nameForm">
 					<label for="name">Name</label>
 					<input ng-model="search.name" id="name" name="name" class="advanced" type="text" required>
+					<span ng-click="search.name=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -40,13 +39,15 @@
 				<form name="rulesForm">
 					<label for="text">Rules Text</label>
 					<input ng-model="search.text" id="text" name="text" class="advanced" type="text" required>
+					<span ng-click="search.text=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="colorForm">
-					<label for="colors">Color</label>
-					<input ng-model="search.colors" id="colors" name="colors" class="advanced" type="text" required>
+					<label for="colors">Colors (separate with ,)</label>
+					<input ng-model="search.colors" ng-list id="colors" name="colors" class="advanced" type="text" required>
+					<span ng-click="search.colors=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -54,6 +55,7 @@
 				<form name="typeForm">
 					<label for="type">Type</label>
 					<input ng-model="search.type" id="type" name="type" class="advanced" type="text" required>
+					<span ng-click="search.type=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -61,13 +63,15 @@
 				<form name="cmcForm">
 					<label for="cmc">Converted Mana Cost</label>
 					<input ng-model="search.cmc" id="cmc" name="cmc" class="advanced" type="text" required>
+					<span ng-click="search.cmc=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="manaForm">
-					<label for="manaCost">Mana Cost</label>
+					<label for="manaCost">Mana Cost (separate with {})</label>
 					<input ng-model="search.manaCost" id="manaCost" name="manaCost" class="advanced" type="text" required>
+					<span ng-click="search.manaCost=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -75,6 +79,7 @@
 				<form name="powerForm">
 					<label for="power">Power</label>
 					<input ng-model="search.power" id="power" name="power" class="advanced" type="text" required>
+					<span ng-click="search.power=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -82,6 +87,7 @@
 				<form name="toughnessForm">
 					<label for="toughness">Toughness</label>
 					<input ng-model="search.toughness" id="toughness" name="toughness" class="advanced" type="text" required>
+					<span ng-click="search.toughness=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -89,6 +95,7 @@
 				<form name="flavorForm">
 					<label for="flavor">Flavor Text</label>
 					<input ng-model="search.flavor" id="flavor" name="flavor" class="advanced" type="text" required>
+					<span ng-click="search.flavor=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -96,6 +103,7 @@
 				<form name="artistForm">
 					<label for="artist">Artist</label>
 					<input ng-model="search.artist" id="artist" name="artist" class="advanced" type="text" required>
+					<span ng-click="search.artist=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -103,6 +111,7 @@
 				<form name="rarityForm">
 					<label for="rarity">Rarity</label>
 					<input ng-model="search.rarity" id="rarity" name="rarity" class="advanced" type="text" required>
+					<span ng-click="search.rarity=''">Clear</span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -117,19 +126,35 @@
 			<h2>Search Results <a href="">(View All)</a></h2>
 		</div>
 
-		<ul class="results-list-advanced">
+		<ul>
+			<li ng-repeat="color in search.colors">
+				{{color}}
+			</li>
+		</ul>
+
+		<ul class="results-list-advanced result-list" style="min-height:60px;">
 			<li ng-repeat="set in allSetsResults">
 				<ul class="card-list-advanced">
-					<li ng-repeat="card in set.cards | filter:search | limitTo:6">
+					<li ng-repeat="card in set.cards | filter:search">
+						<div class="c-head">
+							<h2 class="c-name">{{card.name}}</h2>
+							<h3 class="mana"><span ng-show="card.cmc">[{{card.cmc}}]</span> <span>{{card.manaCost}}</span></h3>
+							<div style="clear:both;"></div>
+						</div>
+
+						<ul>
+							<li ng-repeat="color in card.colors | toArray"></li>
+						</ul>
+
 						<div class="info">
-							<h3>{{card.name}}</h3>
-							<h3>({{card.cmc}}) {{card.manaCost}}</h3>
-							<h4>{{card.type}}</h4>
+							<h3>{{card.type}}</h3>
+							<div class="set-image">
+							<img ng-src="./img/sets/{{set.code}}.jpeg"></div>
 							<h4>{{set.name}}</h4>
+							<div style="clear: both;"></div>
 
 							<p>{{card.text}}</p>
-							<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
-							<h4 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h4>
+							<h3 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h3>
 						</div>
 					</li>
 				</ul>
