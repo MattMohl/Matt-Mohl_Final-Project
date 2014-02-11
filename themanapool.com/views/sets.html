@@ -9,9 +9,9 @@
 		<nav>
 			<img src="img/menu.png">
 			<ul>
-				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn" href="community.html">Community</a></li>
-				<li><a class="blue-btn active" href="browse.html">Browse</a></li>
+				<li><a class="blue-btn active" href="./#/browse">Browse</a></li>
 				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
 			</ul>
 		</nav>
@@ -24,15 +24,20 @@
 
 <h2 class="page-head"><a ng-href="./#/browse">Browse</a> > Sets</h2>
 
+<form>
+	<input ng-model="search.name" class="search" id="search" type="text" placeholder="Filter Sets">
+	<div style="clear:both;"></div>
+</form>
+
 	<section class="browse-section sets">
 
 		<div class="header"><h2>All MTG Sets</h2></div>
 
 		<ul class="list-sets">
-			<li ng-repeat="set in allSets" class="blue-btn">
+			<li ng-repeat="set in allSets | toArray | filter:search | orderBy:'releaseDate':true" class="blue-btn">
 				<a ng-href="./#/browse/sets/{{set.code}}">
 				<div class="set-image">
-					<img src="./img/sets/{{set.code}}.jpeg">
+					<img ng-src="./img/sets/{{set.code}}.jpeg">
 				</div>
 				<h3>{{set.name}}</h3>
 				</a>

@@ -9,9 +9,9 @@
 		<nav>
 			<img src="img/menu.png">
 			<ul>
-				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn" href="community.html">Community</a></li>
-				<li><a class="blue-btn active" href="browse.html">Browse</a></li>
+				<li><a class="blue-btn active" href="./#/browse">Browse</a></li>
 				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
 			</ul>
 		</nav>
@@ -32,7 +32,7 @@
 
 			<li ng-repeat="card in setCards">
 
-				<img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
+				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
 
 				<div class="panel">
 					<div>
