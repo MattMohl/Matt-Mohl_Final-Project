@@ -3,7 +3,7 @@ themanapool.factory('BrowseService', ['$firebase',
 		return {
 			getSets: function(num) {
 				var sets = new Firebase('https://manapool-sets.firebaseio.com/');
-    			return $firebase(sets.startAt().limit(num));
+    			return $firebase(sets.limit(num));
 			},
 			getSet: function(set) {
 				var set = new Firebase('https://manapool-sets.firebaseio.com/'+set);
