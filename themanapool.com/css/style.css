@@ -256,6 +256,10 @@ nav li {
 	margin: 20px 0;
 }
 
+.advanced-search {
+	margin-bottom: 0;
+}
+
 .authentication form {
 	min-height: 360px;
 	position: relative;
@@ -324,15 +328,33 @@ input {
 
 .advanced-inputs li {
 	width: 24%;
-	margin: 5px 0 0 1%;
+	margin: 3px 0 0 1%;
 	float: left;
 }
 
 @media (min-width: 960px) {
 	.advanced-inputs li {
 		width: 100%;
-		margin: 5px 0;
+		margin: 3px 0;
 		float: none;
+	}
+
+	.advanced-inputs li label {
+		width: 100%;
+		margin: 0;
+	}
+
+	.advanced-inputs li input {
+		width: 80%;
+		float: left;
+	}
+
+	.advanced-inputs li span {
+		display: block;
+		width: 16%;
+		float: left;
+		cursor: pointer;
+
 	}
 }
 
@@ -430,7 +452,7 @@ input.search {
 	border-top: 0;border-right: 0;border-left: 1px solid #000;
 	margin: 0;
 	padding: 0;
-	width: 75.8%;
+	width: 96%;
 	padding-left: 4%;
 	float: left;
 }
@@ -657,13 +679,10 @@ input.find {
 }
 .advanced-search {
 	width: 220px;
-	padding: 10px;
+	padding: 0 10px 10px 10px;
 	background-color: rgba(183,213,226, .7);
 	position: fixed;
-}
-
-.card-list-advanced li {
-	width: 100%;
+	bottom: 0px;
 }
 
 .card-list li,
@@ -944,6 +963,34 @@ input.find {
 	min-width: 0;
 }
 
+.card-list-advanced li {
+	background-color: #fff;
+	width: 100%;
+	padding:  0 0 8px 0;
+	border-bottom: 1px solid #000;
+}
+
+.c-head {
+	width: 95%;
+	padding: 3px 2.5%;
+	background-color: rgba(183,213,226, .7);
+}
+
+.info {
+	width: 95%;
+	padding: 0 2.5%;
+}
+
+.info h4 {
+	margin-top: 5px;
+	line-height: 18px;
+}
+
+.info img {
+	width: 24px;
+	height: 24px;
+}
+
 .list-sets li {
 	background: url('../img/btn-bg-blue.gif');
 	background-position: 0 -20px;
@@ -960,7 +1007,8 @@ input.find {
 }
 
 .list-sets li h3,
-.set-image {
+.set-image,
+.card-list-advanced li h4 {
 	display: block;
 	float: left;
 }
