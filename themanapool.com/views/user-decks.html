@@ -9,9 +9,9 @@
 		<nav>
 			<img src="img/menu.png">
 			<ul>
-				<li><a class="blue-btn active" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn active" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn" href="community.html">Community</a></li>
-				<li><a class="blue-btn" href="browse.html">Browse</a></li>
+				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
 				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
 			</ul>
 		</nav>
@@ -47,16 +47,14 @@
 <h2 class="page-head">My Decks</h2>
 
 <form>
-	<input class="search" id="search" type="text" placeholder="Search Decks">
-	<input class="submit find" id="find" type="submit" value="Find">
-	<div style="clear:both;"></div>
+	<input ng-model="search" class="search" id="search" type="text" placeholder="Filter Decks">
 </form>
 
 	<section class="decks">
 
 		<ul class="deck-list">
 
-			<li>
+			<li ng-repeat="deck in userDecks">
 
 				<h2><a ng-href="#">Another Deck</a></h2>
 
