@@ -9,9 +9,9 @@
 		<nav>
 			<img src="img/menu.png">
 			<ul>
-				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
+				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn" href="community.html">Community</a></li>
-				<li><a class="blue-btn active" href="browse.html">Browse</a></li>
+				<li><a class="blue-btn active" href="./#/browse">Browse</a></li>
 				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
 			</ul>
 		</nav>
@@ -46,12 +46,6 @@
 
 <h2 class="page-head">Browse</h2>
 
-<form>
-	<input class="search" id="search" type="text" placeholder="Search Cards">
-	<input class="submit find" id="find" type="submit" value="Find">
-	<div style="clear:both;"></div>
-</form>
-
 	<section class="browse-section advanced">
 
 		<div class="header"><h2>Advanced Search <a ng-href="./#/browse/advanced">(Try it Out)</a></h2></div>
@@ -63,12 +57,12 @@
 		<div class="header"><h2>MTG Cards by Set <a ng-href="./#/browse/sets">(Show All)</a></h2></div>
 
 		<ul class="list-sets">
-			<li ng-repeat="set in setList" ng-href="./browse/sets/{{set.code}}" class="blue-btn">
+			<li ng-repeat="set in allSets | toArray | orderBy:'releaseDate':true | limitTo:5" ng-href="./browse/sets/{{set.code}}" class="blue-btn">
 				<a href="">
-				<div class="set-image">
-					<img src="./img/sets/{{set.code}}.jpeg">
-				</div>
-				<h3>{{set.name}}</h3>
+					<div class="set-image">
+						<img ng-src="./img/sets/{{set.code}}.jpeg">
+					</div>
+					<h3>{{set.name}}</h3>
 				</a>
 			</li>
 		</ul>
