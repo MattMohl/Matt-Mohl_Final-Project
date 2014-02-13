@@ -1,0 +1,89 @@
+<header>
+
+	<div>
+
+		<img src="img/logo.png">
+
+		<h1><a href="index.html">The Mana Pool</a></h1>
+
+		<nav>
+			<img src="img/menu.png">
+			<ul>
+				<li><a class="blue-btn active" href="./#/mydecks">My Decks</a></li>
+				<li><a class="blue-btn" href="community.html">Community</a></li>
+				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
+				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+</header>
+
+<!--<section class="colors">
+
+	<ul>
+		<li>
+			<button id="white" type="checkbox" checked></button>
+		</li>
+		<li>
+			<input id="blue" type="checkbox" checked>
+		</li>
+		<li>
+			<input id="black" type="checkbox" checked>
+		</li>
+		<li>
+			<input id="red" type="checkbox" checked>
+		</li>
+		<li>
+			<input id="green" type="checkbox" checked>
+		</li>
+	</ul>
+	
+</section>-->
+
+<section class="main-content">
+
+<h2 class="page-head">My Decks</h2>
+
+<form>
+	<input ng-model="search" class="search" id="search" type="text" placeholder="Filter Decks">
+</form>
+
+	<section class="decks">
+
+		<ul class="deck-list">
+
+			<li ng-repeat="deck in decks | toArray | filter:search | filter:currentUser.id">
+
+				<h2><a ng-href="./#/mydecks/{{deck.$key}}">{{deck.name}}</a></h2>
+
+				<canvas class="color-balance"></canvas>
+
+				<div class="deck-image">
+					<img ng-src="img/{{deck.img}}">
+				</div>
+
+				<div class="meta-data">
+					<img ng-src="img/{{deck.statusid}}.png">
+
+					<h3>{{deck.status}}</h3>
+
+					<a href="./#/mydecks/{{deck.$key}}/comments" class="notification-cont">
+						<span class="comment-badge">0</span>
+
+						<span class="comment-label">Comments</span>
+					</a>
+				</div>
+
+				<div class="deck-info">
+					<p>{{deck.description}}</p>
+				</div>
+			</li>
+			<li ng-show="userDecks.length">No decks</li>
+
+		</ul>
+
+	</section>
+
+</section>
