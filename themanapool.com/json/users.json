@@ -2,21 +2,29 @@
     "users": {
         "1": {
             "level": 1,
-            "exp": 0,
-            "decks": {
-                "White - Blue Humans": {
-                	"0" :{
-	                    "card-name": "Meddling Mage",
-	                    "mana-cost": "UW",
-	                    "converted-cost": 2,
-	                    "type": "Creature",
-	                    "sub-type": "Human Wizard",
-	                    "rules": "As Meddling Mage enters the battlefield, name a nonland card. <br>The named card can't be cast.",
-	                    "flavor": "This violent wasteland is an indictment of its people. These cowards lack the will to oppose disorder",
-	                    "power": 2,
-	                    "toughness": 2,
-	                    "num": 3
-                	}
+            "exp": 0
+        }
+    },
+    "decks": {
+        "100": {
+            "id": 1,
+            "name": "White/Blue Humans",
+            "img": "enchant.jpg",
+            "status": "Need Help",
+            "statusid": "help",
+            "description": "In this EDH deck, I will show how doing Regen-itus works using Regenerate and a few other key protection cards. The main goal of this deck is to seek out as much mana as possible so you can get Progenitus out as fast as possible. Let me know if you have any suggestions for me in the comments!",
+            "cards" :{
+                "0": {
+                    "name": "Meddling Mage",
+                    "manaCost": "{U}{W}",
+                    "cmc": 2,
+                    "multiverseid": 179547,
+                    "type": "Creature - Human Wizard",
+                    "text": "As Meddling Mage enters the battlefield, name a nonland card. <br>The named card can't be cast.",
+                    "flavor": "This violent wasteland is an indictment of its people. These cowards lack the will to oppose disorder",
+                    "power": 2,
+                    "toughness": 2,
+                    "amount": 3
                 }
             }
         }
