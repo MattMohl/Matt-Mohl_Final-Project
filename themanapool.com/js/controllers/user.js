@@ -1,5 +1,5 @@
-themanapool.controller('user', ['$rootScope', '$scope', '$firebase', '$location', 'UserService',
-	function($rootScope, $scope, $firebase, $location, userService){
+themanapool.controller('user', ['$route', '$rootScope', '$scope', '$firebase', '$location', 'UserService',
+	function($route, $rootScope, $scope, $firebase, $location, userService){
 
 	console.log('CONTROLLER::user');
 
@@ -54,4 +54,5 @@ themanapool.controller('user', ['$rootScope', '$scope', '$firebase', '$location'
 		});
 		$location.path('/browse');
 	}
+
 }]);
