@@ -7,8 +7,12 @@ themanapool.config(function($routeProvider) {
 			templateUrl: 'views/home.html'
 		})
 		.when('/mydecks', {
-			controller: 'user',
-			templateUrl: 'views/user-decks.html'
+			controller: 'deck',
+			templateUrl: 'views/mydecks.html'
+		})
+		.when('/mydecks/:key', {
+			controller: 'deck',
+			templateUrl: 'views/editdeck.html'
 		})
 		.when('/browse', {
 			controller: 'browser',
@@ -31,6 +35,7 @@ themanapool.config(function($routeProvider) {
 			templateUrl: 'views/results.html'
 		})
 		.otherwise({redirectTo: '/'});
+
 }).filter('toArray', function() {
 	'use strict';
 	return function(obj) {
@@ -44,23 +49,20 @@ themanapool.config(function($routeProvider) {
 	};
 });
 
-themanapool.run(['$rootScope', '$firebase', '$firebaseSimpleLogin', '$location', function($rootScope, $firebase, $firebaseSimpleLogin, $location) {
+themanapool.run(['$route', '$routeParams', '$rootScope', '$firebase', '$firebaseSimpleLogin', '$location', 'UserService', function($route, $routeParams, $rootScope, $firebase, $firebaseSimpleLogin, $location, userService) {
 	console.log('RUN');
 
-	var manapool = new Firebase('https://manapool.firebaseio.com');
-
-	// If they are on the results page
-	// send them back
-	if($location.path() === '/browse/advanced/results') {
-		$location.path('/browse/advanced');
-	}
+	$rootScope.manapool = new Firebase('https://manapool.firebaseio.com');
 
 	// Instantiate an auth reference
-	$rootScope.auth = new FirebaseSimpleLogin(manapool, 
+	$rootScope.auth = new FirebaseSimpleLogin($rootScope.manapool, 
 		function(error, user) {
 			console.log(error, user);
 			if(angular.isObject(user)) {
 				console.log('is user '+user.id);
+
+				$rootScope.currentUser = user;
+				$rootScope.decks = userService.getDecks(user.id);
 				if($location.path() == '/') {
 					console.log('redir');
 					$location.path('/browse');
