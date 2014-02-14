@@ -59,7 +59,7 @@
 						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
 					</div>
 
-					<button class="orange-btn">Remove Completely</button>
+					<button ng-click="removeCard(card.$key)" class="orange-btn">Remove Completely</button>
 				</div>
 				
 			</li>
