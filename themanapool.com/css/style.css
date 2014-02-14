@@ -798,7 +798,8 @@ textarea.deck {
 	overflow: hidden;
 }
 
-.card-list-icon li {
+.card-list-icon li,
+.deck-opts-list li {
 	width: 49.6%;
 	float: left;
 	position: relative;

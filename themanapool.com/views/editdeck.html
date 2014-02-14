@@ -24,6 +24,25 @@
 
 <h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> >  {{currentDeck.name}}</h2>
 
+	<section class="deck-opts">
+
+		<div class="header"><h2>Deck Options</h2></div>
+
+		<ul class="deck-opts-list">
+			<li>
+				<form name="quickForm">
+					<h3>Quick List</h3>
+					<div ng-repeat="card in currentCards | toArray" class="input-group">
+						<label for="quick[$index]">{{card.name}} [{{card.amount}}]</label>
+						<input class="deck" name="quick[$index]" id="quick[$index]" type="text">
+					</div>
+				</form>
+			</li>
+			<div style="clear:both;"></div>
+		</ul>
+
+	</section>
+
 	<section class="browse-section sets">
 
 		<div class="header"><h2>{{currentDeck.name}} - {{currentDeck.status}}</h2></div>

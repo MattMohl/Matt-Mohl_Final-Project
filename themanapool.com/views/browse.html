@@ -54,11 +54,11 @@
 
 	<section class="browse-section sets">
 
-		<div class="header"><h2>MTG Cards by Set <a ng-href="./#/browse/sets">(Show All)</a></h2></div>
+		<div class="header"><h2>Recently Released Sets <a ng-href="./#/browse/sets">(Show All)</a></h2></div>
 
 		<ul class="list-sets">
-			<li ng-repeat="set in allSets | toArray | orderBy:'releaseDate':true | limitTo:5" ng-href="./browse/sets/{{set.code}}" class="blue-btn">
-				<a href="">
+			<li ng-repeat="set in allSets | toArray | orderBy:'releaseDate':true | limitTo:5" class="blue-btn">
+				<a ng-href="./#/browse/sets/{{set.code}}">
 					<div class="set-image">
 						<img ng-src="./img/sets/{{set.code}}.jpeg">
 					</div>
