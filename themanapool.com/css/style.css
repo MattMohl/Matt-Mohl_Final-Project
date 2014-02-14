@@ -10,7 +10,10 @@ label {
 	font-weight: normal;
 }
 
-p, input[type="text"], input[type="email"] {
+p, input[type="text"], 
+input[type="email"], 
+input[type="number"],
+textarea {
 	font-family: 'Calibri', sans-serif;
 	font-size: 16px;
 }
@@ -30,7 +33,7 @@ input[type="email"] {
 	color: rgb(0,25,45);
 }
 
-button, input {
+button, input, textarea {
 	outline: none;
 }
 
@@ -461,17 +464,23 @@ input.search {
 	padding-left: 4%;
 	float: left;
 }
-input.find {
-	width: 20%;
-	float: left;
-	font-size: 18px;
-	position: relative;
-	border: 0;
-	border-bottom: 1px solid #000;
-	border-right: 1px solid #000;
-	height: 36px;
-	background-position: 0 -20px;
+
+input.deck,
+textarea.deck {
+	max-height: 200px;
+	max-width: 90%;
+	width: 90%;
+	padding-left: 2.5%;
+	padding-right: 2%;
+	margin: 0 2.5%;
 }
+
+textarea.deck {
+	height: 200px;
+	padding-top: 5px;
+	font-size: 16px;
+}
+
 @media (max-width: 900px) {
 	input.search {
 		padding-left: 5%;
@@ -558,12 +567,45 @@ input.find {
 /* Decklist Styles */
 
 .deck-list li {
+	border-radius: 10px;
 	width: 31.1%;
 	margin: 20px 1%;
 	float: left;
 	/*background-color: rgba(0,0,0,.3);*/
 	border: 1px solid rgb(0,25,45);
 }
+
+.deck-list > li:first-child {
+	transition: background-color cubic-bezier(.72,1,.36,.73) .15s;
+	background-color: rgb(255,255,255);
+	text-align: center;
+	min-height: 447px;
+	cursor: pointer;
+}
+
+.deck-list > li:first-child:hover {
+	transition: background-color cubic-bezier(.72,1,.36,.73) .15s;
+	background-color: rgb(183,213,226);
+}
+
+.deck-list > li:first-child h1:first-child {
+	margin-top: 60%;
+}
+
+.deck-list > li:nth-child(2) {
+	min-height: 447px;
+}
+
+.deck-list > li:nth-child(2) form {
+	height: 440px;
+	position: relative;
+}
+
+.deck-list > li:nth-child(2) form input.submit {
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
 .deck-list h2 {
 	width: 96%;
 	margin: 7px 0 5px 4%;
@@ -863,6 +905,7 @@ input.find {
 .panel button {
 	position: absolute;
 	bottom: 10px;
+	left: 5%;
 	display: block;
 	width: 90%;
 	text-align: center;
