@@ -26,6 +26,14 @@ themanapool.factory('UserService', ['$firebase',
 			addAmount: function(cardObj, deckKey) {
 				var cardsRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/cards');
 				cardsRef.push(cardObj);
+			},
+			removeFromDeck: function(cardKey, deckKey) {
+				var cardRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/cards/'+cardKey);
+				cardRef.remove();
+			},
+			addDeck: function(deck) {
+				var decksRef = new Firebase('https://manapool.firebaseio.com/decks/');
+				decksRef.push(deck);
 			}
 		}
 }]);
