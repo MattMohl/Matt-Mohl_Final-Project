@@ -126,14 +126,14 @@
 			<h2>Search Results <a href="">(View All)</a></h2>
 		</div>
 
-		<ul>
+		<!-- <ul>
 			<li ng-repeat="color in search.colors">
 				{{color}}
 			</li>
-		</ul>
+		</ul> -->
 
 		<ul class="results-list-advanced result-list" style="min-height:60px;">
-			<li ng-repeat="set in allSetsResults">
+			<li ng-repeat="set in allSetsResults | toArray | orderBy:'releaseDate':true">
 				<ul class="card-list-advanced">
 					<li ng-repeat="card in set.cards | filter:search">
 						<div class="c-head">
