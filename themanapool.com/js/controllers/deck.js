@@ -3,13 +3,19 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 
 		console.log('CONTROLLER::deck');
 
+		// Instantiate dynamic models :/
+		$scope.amount = {};
+
 		// Get deck key
 		$scope.deckKey = $route.current.params.key;
 		$scope.currentDeck = userService.getDeck($scope.deckKey);
 		$scope.currentCards = userService.getDeckCards($scope.deckKey)
 		console.log($scope.deckKey);
 
-
+		$scope.changeAmount = function(index, cardKey) {
+			userService.editAmount($scope.amount[index], cardKey, $scope.deckKey);
+			$scope.amount[index] = '';
+		}
 
 		$scope.editCard = function(num, index) {
 			var deck = new Firebase('https://manapool.firebaseIO.com/decks/'+$scope.deckKey+'/');

@@ -35,14 +35,23 @@
 				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
 
 
-				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">Card Info</label>
+				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
 				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
 				<div class="panel">
 					<div>
-						<label style="color: #b7d5e2;">Amount</label>
-						<input ng-change="changeAmount()" ng-value="card.amount" type="text" class="icn-card">
+						<form>
+							<label style="color: #b7d5e2;">Amount</label>
+							<input ng-model="amount[$index]" type="text" class="icn-card">
+							<input ng-click="changeAmount($index, card.$key)" class="blue-btn" type="submit" value="Change">
+
+							<div style="clear:both;"></div>
+						</form>
 					</div>
 					<div>
+						<h1 class="amount">{{card.amount}}</h1>
+					</div>
+					<div style="clear: both;"></div>
+					<div class="card-info">
 						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
 						<h4>{{card.type}}</h4>
 
