@@ -34,26 +34,28 @@
 
 				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
 
+
+				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">Card Info</label>
+				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
 				<div class="panel">
 					<div>
-						<button class="blue-btn"><img src="img/arrow-left.png"></button>
-						<input ng-value="card.amount" type="text">
-						<button ng-click="editCard(1, card.$key)" class="blue-btn"><img src="img/arrow-right.png"></button>
-
-						<button class="orange-btn">Delete</button>
+						<label style="color: #b7d5e2;">Amount</label>
+						<input ng-change="changeAmount()" ng-value="card.amount" type="text" class="icn-card">
 					</div>
 					<div>
-						<h3>{{card.name}}</h3>
-						<h3>({{card.cmc}}) {{card.manaCost}}</h3>
+						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
 						<h4>{{card.type}}</h4>
 
-						<p>{{card.text}}</p>
+						<p class="rules">{{card.text}}</p>
 						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
-						<h4 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h4>
+						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
 					</div>
+
+					<button class="orange-btn">Remove Completely</button>
 				</div>
 				
 			</li>
+			<div style="clear:both;"></div>
 		</ul>
 
 	</section>
