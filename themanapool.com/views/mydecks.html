@@ -54,6 +54,35 @@
 
 		<ul class="deck-list">
 
+			<li ng-hide="clicked" ng-click="clicked=true">
+				<h1>Add a Deck</h1>
+				<h1>[ + ]</h1>
+			</li>
+			<li ng-show="clicked">
+				<form name="deckForm">
+
+					<div>
+						<h2>Create New Deck</h2>
+					</div>
+
+					<div class="input-group">
+						<label for="name">Name</label>
+						<input ng-model="name" id="name" name="name" type="text" class="deck" required>
+						<span ng-show="deckForm.name.$error.required && deckForm.$dirty" class="form-error">* Required</span>
+					</div>
+
+					<div class="input-group">
+						<label for="description">Description</label>
+						<textarea ng-model="description" id="description" name="description" maxlength="300" class="deck" required></textarea>
+						<span ng-show="deckForm.description.$error.required && deckForm.$dirty" class="form-error">* Required</span>
+					</div>
+
+					<div style="clear: both;"></div>
+
+					<input ng-disabled="deckForm.$invalid" ng-click="addDeck(); clicked = false; deckForm.$setPristine();" class="submit blue-btn" type="submit" value="Create">
+				</form>
+			</li>
+
 			<li ng-repeat="deck in decks | toArray | filter:search | filter:currentUser.id">
 
 				<h2><a ng-href="./#/mydecks/{{deck.$key}}">{{deck.name}}</a></h2>
@@ -80,7 +109,6 @@
 					<p>{{deck.description}}</p>
 				</div>
 			</li>
-			<li ng-show="userDecks.length">No decks</li>
 
 		</ul>
 
