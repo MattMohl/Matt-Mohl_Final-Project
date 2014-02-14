@@ -24,32 +24,57 @@
 
 <h2 class="page-head"><a ng-href="./#/browse">Browse</a> > <a ng-href="./#/browse/sets">Sets</a> > {{currentSet.name}}</h2>
 
+<form>
+	<input ng-model="search" class="search" id="search" type="text" placeholder="Filter Decks">
+	<div style="clear:both;"></div>
+</form>
+
+<section class="decks">
+
+	<div class="header"><h2>Current Deck - <a ng-href="./#/mydecks/{{currentDeckKey}}">{{currentDeck.name}}</a></h2></div>
+
+	<ul class="list-decks">
+		<li ng-repeat="deck in decks | toArray | filter:search | filter:currentUser.id | limitTo:5" class="blue-btn">
+			<a ng-click="setCurrentDeck(deck.$key)">
+			<div class="set-image">
+				<img ng-src="./img/{{deck.statusid}}.png">
+			</div>
+			<h3>{{deck.name}} - {{deck.status}}</h3>
+			</a>
+		</li>
+	</ul>
+</section>
+
 	<section class="browse-section sets">
 
 		<div class="header"><h2>{{currentSet.name}} - {{currentSet.releaseDate}}</h2></div>
 
 		<ul class="card-list-icon">
 
-			<li ng-repeat="card in setCards">
+			<li ng-repeat="card in setCards | toArray">
 
 				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
 
+				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
+				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
 				<div class="panel">
 					<div>
-						<button class="blue-btn"><img src="img/arrow-left.png"></button>
-						<span>1</span>
-						<button class="blue-btn"><img src="img/arrow-right.png"></button>
+						<form name="amountForm[$index]">
+							<label style="color: #b7d5e2;">Add to {{currentDeck.name}}</label>
+							<input ng-model="amount[$index]" type="number" class="icn-card" required>
+							<input ng-click="addToCurrentDeck($index, card)" class="blue-btn" type="submit" value="Add">
 
-						<button class="orange-btn">Delete</button>
+							<div style="clear:both;"></div>
+						</form>
 					</div>
-					<div>
-						<h3>{{card.name}}</h3>
-						<h3>({{card.cmc}}) {{card.manaCost}}</h3>
+					<div style="clear:both;"></div>
+					<div class="card-info">
+						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
 						<h4>{{card.type}}</h4>
 
-						<p>{{card.text}}</p>
+						<p class="rules">{{card.text}}</p>
 						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
-						<h4 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h4>
+						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
 					</div>
 				</div>
 				

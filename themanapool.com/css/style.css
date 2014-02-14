@@ -693,6 +693,7 @@ input.find {
 .card-list li,
 .card-list-icon li {
 	border-collapse: collapse;
+	margin-bottom: 20px;
 	border: 1px solid #000;
 	background-color: #fff;
 }
@@ -799,11 +800,11 @@ input.find {
 	bottom: 0;
 }
 
-.panel div:nth-child(1) {
+.panel > div:nth-child(1) {
 	width: 80%;
 	float: left;
 }
-.panel div:nth-child(2) {
+.card-amount {
 	width: 12%;
 	height: 10%;
 	padding: 0 2.5%;
@@ -882,11 +883,6 @@ input.find {
 	color: #fff;
 }
 
-.panel h3 {
-	width: 50%;
-	float: left;
-	margin-top: 10px;
-}
 .panel h3:nth-child(2) {
 	text-align: right;
 }
@@ -1014,11 +1010,12 @@ input.find {
 
 .list-sets,
 .card-list-icon,
-.result-list {
-	min-height: 60px;
+.result-list,
+.list-decks {
+	min-height: 40px;
 	background-image: url('../img/loading.gif');
 	background-repeat: no-repeat;
-	background-position: 10px 10px;
+	background-position: 10px 0;
 }
 
 .card-list-icon {
@@ -1058,7 +1055,8 @@ input.find {
 	height: 24px;
 }
 
-.list-sets li {
+.list-sets li,
+.list-decks li {
 	background: url('../img/btn-bg-blue.gif');
 	background-position: 0 -20px;
 	width: 99.8%;
@@ -1069,13 +1067,26 @@ input.find {
 	overflow: hidden;
 }
 
+.list-sets li a,
+.list-decks li a {
+	transition: color cubic-bezier(.72, 1, .36, .73) .15s;
+	color: rgb(38,99,150);
+}
+
+.list-sets li a:hover,
+.list-decks li a:hover {
+	transition: color cubic-bezier(.72, 1, .36, .73) .15s;
+	color: #b7d5e2;
+}
+
 .result-list li {
 	color: rgb(0,25,45);
 }
 
 .list-sets li h3,
 .set-image,
-.card-list-advanced li h4 {
+.card-list-advanced li h4,
+.list-decks li h3 {
 	display: block;
 	float: left;
 }
@@ -1088,7 +1099,12 @@ input.find {
 	display: block;
 	margin: 8px auto;
 }
-.list-sets li h3 {
+.list-decks li img {
+	display: block;
+	margin: 2px auto;
+}
+.list-sets li h3,
+.list-decks li h3 {
 	height: 40px;
 	line-height: 40px;
 }

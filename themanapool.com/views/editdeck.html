@@ -9,9 +9,9 @@
 		<nav>
 			<img src="img/menu.png">
 			<ul>
-				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
+				<li><a class="blue-btn active" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn" href="community.html">Community</a></li>
-				<li><a class="blue-btn active" href="./#/browse">Browse</a></li>
+				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
 				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
 			</ul>
 		</nav>
@@ -34,7 +34,6 @@
 
 				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
 
-
 				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
 				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
 				<div class="panel">
@@ -47,7 +46,7 @@
 							<div style="clear:both;"></div>
 						</form>
 					</div>
-					<div>
+					<div class="card-amount">
 						<h1 class="amount">{{card.amount}}</h1>
 					</div>
 					<div style="clear: both;"></div>

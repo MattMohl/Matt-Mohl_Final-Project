@@ -62,7 +62,7 @@ themanapool.run(['$route', '$routeParams', '$rootScope', '$firebase', '$firebase
 				console.log('is user '+user.id);
 
 				$rootScope.currentUser = user;
-				$rootScope.decks = userService.getDecks(user.id);
+				$rootScope.decks = userService.getDecks();
 				if($location.path() == '/') {
 					console.log('redir');
 					$location.path('/browse');
