@@ -58,6 +58,7 @@ themanapool.controller('browser', ['$route', '$rootScope', '$scope', '$firebase'
 				}
 				console.log(newcard);
 				userService.addAmount(newcard, $rootScope.currentDeckKey);
+				$scope.amount[index] = '';
 			}else {
 				console.log('bad');
 			}
