@@ -17,19 +17,19 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 			$scope.amount[index] = '';
 		}
 
-		$scope.editCard = function(num, index) {
-			var deck = new Firebase('https://manapool.firebaseIO.com/decks/'+$scope.deckKey+'/');
-			
-			julieRef.on('value', function(snapshot) {
-				if(snapshot.val() === null) {
-					alert('User julie does not exist.');
-				} else {
-					var firstName = snapshot.val().name.first;
-					var lastName = snapshot.val().name.last;
-					alert('User julie’s full name is: ' + firstName + ' ' + lastName);
-			  }
-			});
-			// console.log('deckid: '+$route.current.params.key+' || index: '+index+' || increment: '+num);
-			// userService.editCard($rootScope.currentUser.id, $route.current.params.key, num, index);
+		$scope.removeCard = function(cardKey) {
+			userService.removeFromDeck(cardKey, $scope.deckKey);
+		}
+
+		$scope.addDeck = function() {
+			var newdeck = {
+				name: $scope.name,
+				description: $scope.description,
+				id: $rootScope.currentUser.id,
+				status: 'Fine-Tuning',
+				statusid: 'tuning'
+			}
+			userService.addDeck(newdeck);
+			$scope.name = $scope.description = '';
 		}
 }]);
