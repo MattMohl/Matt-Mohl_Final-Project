@@ -12,8 +12,8 @@ themanapool.controller('browser', ['$route', '$rootScope', '$scope', '$firebase'
 
 		// Browse Set Cards
 		$scope.currentSet = browseService.getSet($route.current.params.set);
-		$scope.setCards = browseService.getSetCards($route.current.params.set, 20);
-		console.log($scope.setCards);
+		$scope.setCards = browseService.getSetCards($route.current.params.set);
+		$scope.cardLimit = 20;
 
 		// Advanced inits
 		if($location.path() === '/browse/advanced') {

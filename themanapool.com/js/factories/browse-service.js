@@ -13,9 +13,9 @@ themanapool.factory('BrowseService', ['$firebase',
 				var sets = new Firebase('https://manapool-cards.firebaseio.com/');
 				return $firebase(sets.limit(num));
 			},
-			getSetCards: function(set, num) {
+			getSetCards: function(set) {
 				var sets = new Firebase('https://manapool-cards.firebaseio.com/'+set+'/cards');
-				return $firebase(sets.limit(num));
+				return $firebase(sets);
 			}
 		}
 }]);

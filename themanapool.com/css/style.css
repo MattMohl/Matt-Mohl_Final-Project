@@ -804,6 +804,16 @@ textarea.deck {
 	position: relative;
 }
 
+.card-list-icon li:last-child {
+	width: 100%;
+	float: none;
+	height: 40px;
+	padding-top: 10px;
+	cursor: pointer;
+	font-size: 25px;
+	text-align: center;
+}
+
 .card-list-icon li > img {
 	width: 75%;
 	max-height: 556px;

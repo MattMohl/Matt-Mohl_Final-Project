@@ -51,7 +51,7 @@
 
 		<ul class="card-list-icon">
 
-			<li ng-repeat="card in setCards | toArray">
+			<li ng-repeat="card in setCards | toArray | limitTo:cardLimit">
 
 				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
 
@@ -79,6 +79,7 @@
 				</div>
 				
 			</li>
+			<li ng-click="cardLimit = cardLimit + 20;" class="blue-btn">See More</li>
 		</ul>
 
 	</section>

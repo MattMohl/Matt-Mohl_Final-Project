@@ -30,6 +30,6 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 				statusid: 'tuning'
 			}
 			userService.addDeck(newdeck);
-			$scope.name = $scope.description = '';
+			// $scope.name = $scope.description = '';
 		}
 }]);
