@@ -178,7 +178,7 @@
 				</div>
 				
 			</li>
-			<li ng-show="cardLimit > setCards.length" ng-click="cardLimit = cardLimit + 20;" class="blue-btn">See More</li>
+			<li ng-show="cardLimit < (setCards|toArray).length" ng-click="cardLimit = cardLimit + 20;" class="blue-btn">See 1 - {{cardLimit+20}} of {{(setCards|toArray).length}}</li>
 		</ul>
 
 	</section>

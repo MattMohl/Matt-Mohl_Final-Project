@@ -38,9 +38,17 @@ themanapool.factory('UserService', ['$firebase',
 				var cardRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/cards/'+cardKey);
 				cardRef.remove();
 			},
+			updateStatus: function(newid, newstat, deckKey) {
+				var deckRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey);
+				deckRef.update({status: newstat, statusid: newid})
+			},
 			addDeck: function(deck) {
 				var decksRef = new Firebase('https://manapool.firebaseio.com/decks/');
 				decksRef.push(deck);
+			},
+			removeDeck: function(deckKey) {
+				var deckRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey);
+				deckRef.remove();
 			}
 		}
 }]);

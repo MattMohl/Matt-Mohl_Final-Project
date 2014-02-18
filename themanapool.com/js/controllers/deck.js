@@ -31,6 +31,10 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 			userService.removeFromDeck(cardKey, $scope.deckKey);
 		}
 
+		$scope.setStatus = function(statusid, status) {
+			userService.updateStatus(statusid, status, $scope.deckKey);
+		}
+
 		$scope.addDeck = function() {
 			var newdeck = {
 				name: $scope.name,
@@ -41,5 +45,10 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 			}
 			userService.addDeck(newdeck);
 			// $scope.name = $scope.description = '';
+		}
+
+		$scope.deleteDeck = function() {
+			userService.removeDeck($scope.deckKey);
+			$location.path('/mydecks');
 		}
 }]);
