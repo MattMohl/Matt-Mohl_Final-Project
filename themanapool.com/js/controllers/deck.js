@@ -17,6 +17,16 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 			$scope.amount[index] = '';
 		}
 
+		$scope.upAmount = function(index, cardKey) {
+			console.log('shit');
+			userService.incrementAmount(1, cardKey, $scope.deckKey);
+		}
+
+		$scope.downAmount = function(index, cardKey) {
+			console.log('cunt');
+			userService.incrementAmount(-1, cardKey, $scope.deckKey);
+		}
+
 		$scope.removeCard = function(cardKey) {
 			userService.removeFromDeck(cardKey, $scope.deckKey);
 		}

@@ -133,7 +133,7 @@
 		</ul> -->
 
 		<ul class="results-list-advanced result-list" style="min-height:60px;">
-			<li ng-repeat="set in allSetsResults | toArray | orderBy:'releaseDate':true">
+			<li ng-repeat="set in allSetsResults | toArray">
 				<ul class="card-list-advanced">
 					<li ng-repeat="card in set.cards | filter:search">
 						<div class="c-head">

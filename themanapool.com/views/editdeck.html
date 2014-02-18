@@ -24,7 +24,7 @@
 
 <h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> >  {{currentDeck.name}}</h2>
 
-	<section class="deck-opts">
+	<!-- <section class="deck-opts">
 
 		<div class="header"><h2>Deck Options</h2></div>
 
@@ -41,7 +41,7 @@
 			<div style="clear:both;"></div>
 		</ul>
 
-	</section>
+	</section> -->
 
 	<section class="browse-section sets">
 
@@ -57,17 +57,17 @@
 				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
 				<div class="panel">
 					<div>
-						<form>
+						<!-- <form name="amount-input">
 							<label style="color: #b7d5e2;">Amount</label>
 							<input ng-model="amount[$index]" type="text" class="icn-card">
 							<input ng-click="changeAmount($index, card.$key)" class="blue-btn" type="submit" value="Change">
 
 							<div style="clear:both;"></div>
-						</form>
+						</form> -->
 					</div>
-					<div class="card-amount">
+					<!-- <div class="card-amount">
 						<h1 class="amount">{{card.amount}}</h1>
-					</div>
+					</div> -->
 					<div style="clear: both;"></div>
 					<div class="card-info">
 						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
@@ -77,8 +77,18 @@
 						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
 						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
 					</div>
+				</div>
 
-					<button ng-click="removeCard(card.$key)" class="orange-btn">Remove Completely</button>
+				<div class="edit-panel">
+					<form>
+						<input ng-click="downAmount($index, card.$key)" class="stepper left" value="<" type="submit">
+						<span>{{card.amount}}</span>
+						<input ng-click="upAmount($index, card.$key)" class="stepper right" value=">" type="submit">
+
+						<button ng-click="removeCard(card.$key)" class="delete">
+							<img src="img/cross.png">
+						</button>
+					</form>
 				</div>
 				
 			</li>

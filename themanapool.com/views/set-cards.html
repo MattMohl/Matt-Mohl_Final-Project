@@ -24,17 +24,116 @@
 
 <h2 class="page-head"><a ng-href="./#/browse">Browse</a> > <a ng-href="./#/browse/sets">Sets</a> > {{currentSet.name}}</h2>
 
-<section class="decks">
+<section class="advanced-search">
 
-	<form>
-		<input ng-model="search" class="search" id="search" type="text" placeholder="Filter Decks">
+<label class="blue-btn header" for="criteria">Advanced Search</label>
+<input id="criteria" type="checkbox" class="toggle">
+
+	<ul class="advanced-inputs">
+		<li>
+			<form name="nameForm">
+				<label for="name">Name</label>
+				<input ng-model="search.name" id="name" name="name" class="advanced" type="text" required>
+				<span ng-click="search.name=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="rulesForm">
+				<label for="text">Rules Text</label>
+				<input ng-model="search.text" id="text" name="text" class="advanced" type="text" required>
+				<span ng-click="search.text=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="colorForm">
+				<label for="colors">Colors (separate with ,)</label>
+				<input ng-model="search.colors" ng-list id="colors" name="colors" class="advanced" type="text" required>
+				<span ng-click="search.colors=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="typeForm">
+				<label for="type">Type</label>
+				<input ng-model="search.type" id="type" name="type" class="advanced" type="text" required>
+				<span ng-click="search.type=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="cmcForm">
+				<label for="cmc">Converted Mana Cost</label>
+				<input ng-model="search.cmc" id="cmc" name="cmc" class="advanced" type="text" required>
+				<span ng-click="search.cmc=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="manaForm">
+				<label for="manaCost">Mana Cost (separate with {})</label>
+				<input ng-model="search.manaCost" id="manaCost" name="manaCost" class="advanced" type="text" required>
+				<span ng-click="search.manaCost=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="powerForm">
+				<label for="power">Power</label>
+				<input ng-model="search.power" id="power" name="power" class="advanced" type="text" required>
+				<span ng-click="search.power=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="toughnessForm">
+				<label for="toughness">Toughness</label>
+				<input ng-model="search.toughness" id="toughness" name="toughness" class="advanced" type="text" required>
+				<span ng-click="search.toughness=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="flavorForm">
+				<label for="flavor">Flavor Text</label>
+				<input ng-model="search.flavor" id="flavor" name="flavor" class="advanced" type="text" required>
+				<span ng-click="search.flavor=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="artistForm">
+				<label for="artist">Artist</label>
+				<input ng-model="search.artist" id="artist" name="artist" class="advanced" type="text" required>
+				<span ng-click="search.artist=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
+		<li>
+			<form name="rarityForm">
+				<label for="rarity">Rarity</label>
+				<input ng-model="search.rarity" id="rarity" name="rarity" class="advanced" type="text" required>
+				<span ng-click="search.rarity=''"><img src="./img/no.png"</span>
+				<div style="clear:both;"></div>
+			</form>
+		</li>
 		<div style="clear:both;"></div>
-	</form>
+	</ul>
+
+</section>
+
+<section class="decks">
 
 	<div class="header"><h2>Choose Deck - <a ng-href="./#/mydecks/{{currentDeckKey}}">{{currentDeck.name}}</a></h2></div>
 
+	<form>
+		<input ng-model="deckSearch" class="search" id="search" type="text" placeholder="Filter Decks">
+		<div style="clear:both;"></div>
+	</form>
+
 	<ul class="list-decks">
-		<li ng-repeat="deck in decks | toArray | filter:search | filter:currentUser.id | limitTo:5" class="blue-btn">
+		<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:currentUser.id | limitTo:5" class="blue-btn">
 			<a ng-click="setCurrentDeck(deck.$key)">
 			<div class="set-image">
 				<img ng-src="./img/{{deck.statusid}}.png">
@@ -51,7 +150,7 @@
 
 		<ul class="card-list-icon">
 
-			<li ng-repeat="card in setCards | toArray | limitTo:cardLimit">
+			<li ng-repeat="card in setCards | toArray | filter:search | limitTo:cardLimit">
 
 				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
 
@@ -79,7 +178,7 @@
 				</div>
 				
 			</li>
-			<li ng-click="cardLimit = cardLimit + 20;" class="blue-btn">See More</li>
+			<li ng-show="cardLimit > setCards.length" ng-click="cardLimit = cardLimit + 20;" class="blue-btn">See More</li>
 		</ul>
 
 	</section>

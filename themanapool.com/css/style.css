@@ -263,6 +263,12 @@ nav li {
 	margin-bottom: 0;
 }
 
+
+.advanced-search2 .advanced-inputs li {
+	width: 50%;
+	float: left;
+}
+
 .authentication form {
 	min-height: 360px;
 	position: relative;
@@ -330,35 +336,33 @@ input {
 }
 
 .advanced-inputs li {
-	width: 24%;
-	margin: 3px 0 0 1%;
+	width: 100%;
+	margin: 3px 0;
+	float: none;
+}
+
+.advanced-inputs li label {
+	width: 100%;
+	margin: 0;
+}
+
+.advanced-inputs li input {
+	width: 80%;
 	float: left;
 }
 
-@media (min-width: 960px) {
-	.advanced-inputs li {
-		width: 100%;
-		margin: 3px 0;
-		float: none;
-	}
+.advanced-inputs li span {
+	display: block;
+	width: 15%;
+	height: 28px;
+	float: left;
+	cursor: pointer;
+	/*background-color: #ccc;*/
+}
 
-	.advanced-inputs li label {
-		width: 100%;
-		margin: 0;
-	}
-
-	.advanced-inputs li input {
-		width: 80%;
-		float: left;
-	}
-
-	.advanced-inputs li span {
-		display: block;
-		width: 16%;
-		float: left;
-		cursor: pointer;
-
-	}
+.advanced-inputs li span img {
+	width: 28px;
+	height: 28px;
 }
 
 .advanced-inputs label {
@@ -388,7 +392,7 @@ input.advanced-submit {
 }
 
 .advanced-inputs li:nth-child(even) label {
-	color: rgb(0,25,45);
+	color: #b7d5e2;
 }
 .advanced-inputs li:nth-child(odd) label {
 	color: rgb(38,99,150);
@@ -457,10 +461,10 @@ input.advanced-submit:disabled:hover {
 input.search {
 	background: url('../img/search.png');
 	background-repeat: no-repeat;
-	border-top: 0;border-right: 0;border-left: 1px solid #000;
+	border-left: 1px solid #000;
 	margin: 0;
 	padding: 0;
-	width: 96%;
+	width: 95.7%;
 	padding-left: 4%;
 	float: left;
 }
@@ -725,11 +729,19 @@ textarea.deck {
 	float: left;
 }
 .advanced-search {
-	width: 220px;
-	padding: 0 10px 10px 10px;
-	background-color: rgba(183,213,226, .7);
+	width: 280px;
+	padding: 10px 10px 10px 10px;
+	background-color: rgb(0,25,45);
 	position: fixed;
 	bottom: 0px;
+}
+
+.advanced-search2 {
+	width: 98%;
+	padding: 0 1% 1% 1%;
+	margin: 0 0 20px 0;
+	background-color: rgba(183,213,226, .7);
+	position: relative;
 }
 
 .card-list li,
@@ -837,20 +849,28 @@ textarea.deck {
 	display: none;
 }
 
+.edit-panel {
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	bottom: 0;
+	background-color: rgba(0,25,45, .9);
+}
+
 .panel {
 	position: absolute;
 	width: 100%;
-	height: 92%;
+	height: 92.5%;
 	padding: 0;
 	color: #b7d5e2;
 	background-color: rgba(0,25,45,.9);
-	transition: bottom cubic-bezier(.72,1,.36,.73) .15s;
-	bottom: -78%;
+	transition: top cubic-bezier(.72,1,.36,.73) .15s;
+	top: 1000px;
 	/*bottom: 0;*/
 }
 .toggle:checked + .panel {
-	transition: bottom cubic-bezier(.72,1,.36,.73) .15s;
-	bottom: 0;
+	transition: top cubic-bezier(.72,1,.36,.73) .15s;
+	top: 50px;
 }
 
 .panel > div:nth-child(1) {
@@ -909,28 +929,60 @@ textarea.deck {
 	margin-left: 1%;
 }
 
-.panel button img {
+.edit-panel button img {
 	width: 25px;
 	height: 25px;
 }
-.panel button {
+.edit-panel button,
+.edit-panel span,
+.edit-panel input {
+	display: block;
+	border: 0;
+	text-align: center;
+	font-size: 35px;
+	width: 30%;
+	height: 50px;
+	padding: 0;
+	float: left;
+}
+.edit-panel input.stepper {
+	background-color: #b7d5e2;
+	margin: 0;
+	cursor: pointer;
+}
+.edit-panel input.stepper.right:active > img {
+	trasition: margin cubic-bezier(.72, 1, .36, .73) .15s;
+	margin-left: 20px;
+}
+.edit-panel input.stepper.left:active > img {
+	trasition: margin cubic-bezier(.72, 1, .36, .73) .15s;
+	margin-right: 20px;
+}
+
+.edit-panel button.delete {
+	cursor: pointer;
+	background-color: rgb(232,103,46);
+}
+.edit-panel span {
+	color: #fff;
+	background-color: rgb(38,100,152);
+}
+
+.edit-panel button.delete {
+	width: 10%;
+}
+
+/*.panel button.delete {
 	position: absolute;
 	bottom: 10px;
 	left: 5%;
 	display: block;
 	width: 90%;
-	text-align: center;
-	font-size: 20px;
-	height: 50px;
-	padding: 0;
 	border: 1px solid #000;
-}
-.panel span {
-	height: 37px;
-	border-left: 0;border-right: 0;
-	background-color: rgb(0,25,45);
-	color: #fff;
-	padding-top: 11px;
+}*/
+
+.panel button.stepper {
+
 }
 
 .panel h2 {
@@ -1167,6 +1219,29 @@ textarea.deck {
 	.set-image {
 		width: 9%;
 	}
+}
+
+.advanced-search {
+	z-index: 9999;
+}
+
+.advanced-inputs {
+	overflow: hidden;
+}
+
+label.header {
+	margin: 0;
+}
+
+.toggle:not(:checked) + .advanced-inputs {
+	transition: height cubic-bezier(.72,1,.36,.73) .15s;
+	height: 0px;
+	padding: 0;
+}
+
+.toggle:checked + .advanced-inputs {
+	transition: height cubic-bezier(.72,1,.36,.73) .15s;
+	height: auto;
 }
 
 
