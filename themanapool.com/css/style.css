@@ -471,7 +471,7 @@ input.search {
 
 input.deck,
 textarea.deck {
-	max-height: 200px;
+	max-height: 150px;
 	max-width: 90%;
 	width: 90%;
 	padding-left: 2.5%;
@@ -720,6 +720,14 @@ textarea.deck {
 	}
 }
 
+button.delete {
+	display: block;
+	width: 100%;
+	height: 50px;
+	border: 1px solid #000;
+	font-size: 20px;
+}
+
 
 /* Card List Styles */
 
@@ -815,6 +823,10 @@ textarea.deck {
 	width: 49.6%;
 	float: left;
 	position: relative;
+}
+
+.deck-opts-list li {
+	width: 50%;
 }
 
 .card-list-icon li:last-child {
@@ -971,15 +983,6 @@ textarea.deck {
 .edit-panel button.delete {
 	width: 10%;
 }
-
-/*.panel button.delete {
-	position: absolute;
-	bottom: 10px;
-	left: 5%;
-	display: block;
-	width: 90%;
-	border: 1px solid #000;
-}*/
 
 .panel button.stepper {
 
@@ -1198,7 +1201,7 @@ textarea.deck {
 }
 
 .set-image {
-	width: 5%;
+	width: 8%;
 }
 
 .list-sets li img {
