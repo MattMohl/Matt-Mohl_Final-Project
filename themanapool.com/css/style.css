@@ -480,7 +480,7 @@ textarea.deck {
 }
 
 textarea.deck {
-	height: 200px;
+	height: 130px;
 	padding-top: 5px;
 	font-size: 16px;
 }
@@ -720,9 +720,11 @@ textarea.deck {
 	}
 }
 
-button.delete {
+
+.deck-edit {
+	margin: 0 auto;
 	display: block;
-	width: 100%;
+	width: 95%;
 	height: 50px;
 	border: 1px solid #000;
 	font-size: 20px;
@@ -732,8 +734,7 @@ button.delete {
 /* Card List Styles */
 
 .results {
-	width: 73%;
-	margin-left: 27%;
+	width: 100%;
 	float: left;
 }
 .advanced-search {

@@ -26,6 +26,9 @@
 
 	<section class="advanced-search">
 
+	<label class="blue-btn header" for="criteria">Advanced Search</label>
+	<input id="criteria" type="checkbox" class="toggle">
+
 		<ul class="advanced-inputs">
 			<li>
 				<form name="nameForm">
@@ -135,16 +138,14 @@
 		<ul class="results-list-advanced result-list" style="min-height:60px;">
 			<li ng-repeat="set in allSetsResults | toArray">
 				<ul class="card-list-advanced">
-					<li ng-repeat="card in set.cards | filter:search">
+					<li ng-repeat="card in set.cards | toArray | filter:search | limitTo:4">
 						<div class="c-head">
-							<h2 class="c-name">{{card.name}}</h2>
-							<h3 class="mana"><span ng-show="card.cmc">[{{card.cmc}}]</span> <span>{{card.manaCost}}</span></h3>
+							<h2 class="c-name">{{card.name}} ({{card.cmc}}) {{card.manaCost}}</h2>
+							<!-- <h3 class="mana">
+								<span ng-show="card.cmc">[{{card.cmc}}]</span> <span>{{card.manaCost}}</span>
+							</h3> -->
 							<div style="clear:both;"></div>
 						</div>
-
-						<ul>
-							<li ng-repeat="color in card.colors | toArray"></li>
-						</ul>
 
 						<div class="info">
 							<h3>{{card.type}}</h3>

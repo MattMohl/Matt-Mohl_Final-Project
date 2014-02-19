@@ -41,8 +41,10 @@
 						<label for="description">Description</label>
 						<textarea ng-model="currentDeck.description" id="description" name="description" maxlength="300" class="deck" required></textarea>
 					</div>
+
+					<input ng-click="editDeck(currentDeck)" class="blue-btn deck-edit" type="submit" value="Save Info">
 				</form>
-				<div class="deck-meta-data">
+				<!-- <div class="deck-meta-data">
 					<h3>Deck Info</h3>
 					<h4>Mana Balance: </h4>
 					<h4>Land: </h4>
@@ -51,9 +53,9 @@
 					<h4>Creatures: </h4>
 					<h4>Artifacts: </h4>
 					<h4>Enchantments: </h4>
-				</div>
+				</div> -->
 			</li>
-			<li>
+			<li style="margin-top: 20px;">
 				<div class="header"><h2>Status - ({{currentDeck.status}})</h2></div>
 				<ul class="list-decks">
 					<li ng-click="setStatus('tuning', 'Fine-Tuning')" class="blue-btn">
@@ -77,9 +79,9 @@
 				</ul>
 			</li>
 			<li>
-				<button ng-hide="clicked" ng-click="clicked=true" class="orange-btn delete">Delete Deck</button>
-				<button ng-show="clicked" ng-click="clicked=false" class="blue-btn delete">No</button>
-				<button ng-show="clicked" ng-click="deleteDeck()" class="orange-btn delete">Are you sure?</button>
+				<button ng-hide="clicked" ng-click="clicked=true" class="orange-btn deck-edit">Delete Deck</button>
+				<button ng-show="clicked" ng-click="clicked=false" class="blue-btn deck-edit">No</button>
+				<button ng-show="clicked" ng-click="deleteDeck()" class="orange-btn deck-edit">Are you sure?</button>
 			</li>
 			<div style="clear:both;"></div>
 		</ul>
@@ -88,7 +90,7 @@
 
 	<section class="browse-section sets">
 
-		<div class="header"><h2>{{currentDeck.name}} - {{currentDeck.status}}</h2></div>
+		<div class="header"><h2>Cards</h2></div>
 
 		<ul class="card-list-icon">
 

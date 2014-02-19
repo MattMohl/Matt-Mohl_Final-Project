@@ -49,6 +49,10 @@ themanapool.factory('UserService', ['$firebase',
 			removeDeck: function(deckKey) {
 				var deckRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey);
 				deckRef.remove();
+			},
+			editDeck: function(deckKey, info) {
+				var deckRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey);
+				deckRef.update({description: info.description, name: info.name});
 			}
 		}
 }]);
