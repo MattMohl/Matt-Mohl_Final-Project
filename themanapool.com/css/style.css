@@ -822,11 +822,11 @@ textarea.deck {
 
 /* Edit Deck Cards */
 
-.card-list-icon li {
+.card-list-icon > li {
 	overflow: hidden;
 }
 
-.card-list-icon li,
+.card-list-icon > li,
 .deck-opts-list li {
 	width: 49.6%;
 	float: left;
@@ -837,7 +837,7 @@ textarea.deck {
 	width: 50%;
 }
 
-.card-list-icon li:last-child {
+.card-list-icon > li:last-child {
 	width: 100%;
 	float: none;
 	height: 40px;
@@ -1025,7 +1025,7 @@ textarea.deck {
 	min-height: 300px;
 }
 
-.comments li {
+.comments > li {
 	width: 49.6%;
 	margin-bottom: 20px;
 	border: 1px solid #000;
@@ -1056,7 +1056,7 @@ textarea.deck {
 	margin-left: 6%;
 	margin-right: 6%;
 }
-.comments p {
+.comments > li > p {
 	margin-bottom: 10px;
 }
 
@@ -1067,6 +1067,20 @@ textarea.deck {
 }
 .reply {
 	border-left: 0;border-right: 0;border-bottom: 0;
+}
+
+.reply-list li {
+	margin: 10px 0;
+	border: 0;
+	list-style-position: inside;
+	background-image: url('../img/reply.png');
+	background-repeat: no-repeat;
+	background-position: 8% 0;
+	padding-left: 8%;
+}
+
+.reply-list li p {
+	line-height: 20px;
 }
 
 @media (max-width: 500px) {

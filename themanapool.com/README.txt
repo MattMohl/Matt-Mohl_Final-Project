@@ -29,6 +29,10 @@ Any iconography (not to be confused with set symbols) are created by various The
 	Designed by Alex S. Lakas
 	San Francisco, California, US 2013
 
+	-Arrow 2798
+	Designed by P.J. Onori
+	San Francisco, US 2009
+
 	-Check Mark 15426
 	Designed by Alex S. Lakas
 	San Francisco, California, US 2013

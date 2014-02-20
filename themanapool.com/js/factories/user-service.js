@@ -31,6 +31,10 @@ themanapool.factory('UserService', ['$firebase',
 				var comments = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/comments');
 				comments.push(comment);
 			},
+			addReply: function(reply, deckKey, commentKey) {
+				var replies = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/comments/'+commentKey+'/replies');
+				replies.push(reply);
+			},
 			editAmount: function(value, cardKey, deckKey) {
 				var cardRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/cards/'+cardKey);
 				cardRef.update({amount: value});

@@ -21,6 +21,8 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 
 		// Instantiate dynamic models :/
 		$scope.amount = {};
+		$scope.replying = {};
+		$scope.replyValue = {};
 
 		// Get deck key
 		$scope.deckKey = $route.current.params.key;
@@ -82,5 +84,17 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 				exp: $rootScope.currentUser.currentExp
 			}
 			userService.addComment(newcomment, $scope.deckKey);
+		}
+
+		$scope.addReply = function(commentKey) {
+			var newreply = {
+				username: $scope.currentUser.username,
+				text: $scope.replyValue[commentKey]
+			}
+			console.log(newreply);
+			if(newreply.text) {
+				userService.addReply(newreply, $scope.deckKey, commentKey);
+				$scope.replyValue[commentKey] = '';
+			}
 		}
 }]);

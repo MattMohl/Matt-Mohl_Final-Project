@@ -113,11 +113,21 @@
 			<li ng-repeat="comment in currentComments | toArray">
 				
 				<h3>{{comment.title}}</h3>
-				<h4>By: <a href="account.html">[Lvl{{comment.level}}:{{comment.exp}}/5exp] {{comment.username}}</a></h4>
+				<h4>By: <a href="account.html">[ Lvl{{comment.level}}:{{comment.exp}}/5exp ] {{comment.username}}</a></h4>
 				<p>{{comment.text}}</p>
 
-				<button class="blue-btn exp-btn">+1 Unknown</button>
-				<button class="blue-btn reply">Reply</button>
+				<ul class="reply-list">
+					<li ng-repeat="reply in comment.replies">
+						<p><a href="">{{reply.username}}</a>: {{reply.text}}</p>
+					</li>
+				</ul>
+
+				<form name="replyForm[comment.$key]">
+					<input ng-model="replyValue[comment.$key]" class="deck" type="text" placeholder="Reply" required>
+					<input ng-click="addReply(comment.$key)" ng-disabled="replyForm[comment.$key].$invalid" type="submit" value="Add Reply" class="blue-btn">
+				</form>
+
+				<input class="blue-btn exp-btn" type="submit" value="+1 {{comment.username}}">
 				<div style="clear:both;"></div>
 				
 			</li>
