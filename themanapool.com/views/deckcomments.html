@@ -26,7 +26,7 @@
 
 	<section class="deck-opts">
 
-		<div class="header"><h2>Deck Options {{deckKey}}</h2></div>
+		<div class="header"><h2>Deck Options</h2></div>
 
 		<ul class="deck-opts-list">
 			<li>
@@ -94,29 +94,29 @@
 
 		<ul class="card-list-icon">
 
-			<li ng-show="adding">
-				<form>
+			<li class="commentForm" ng-show="adding">
+				<form name="commentForm">
 					<div class="input-group">
 						<label for="title">Title</label>
-						<input class="deck" id="title" name="title" type="text">
+						<input ng-model="title" class="deck" id="title" name="title" type="text" required>
 					</div>
 
 					<div class="input-group">
 						<label for="text">Text</label>
-						<textarea class="deck" id="text" name="text"></textarea>
+						<textarea ng-model="text" class="deck" id="text" name="text" required></textarea>
 					</div>
 
-					<input class="blue-btn" type="submit" value="Add Comment">
+					<input ng-click="addComment(); adding=false;" ng-disabled="commentForm.$invalid" class="submit" type="submit" value="Add Comment">
 				</form>
 			</li>
 
 			<li ng-repeat="comment in currentComments | toArray">
 				
-				<h3>Mana Balance Issue</h3>
-				<h4>From: <a href="account.html">[2] MageRage</a></h4>
-				<p>Your deck is looking very solid, but I can guess you are having some mana issues. Try putting some mana ramp like <a href="">Rampant Growth</a> would really help you out. If you are looking for more versitile ramp, look at <a href="">Expedition Map</a>. That will allow you to get any land with no colored mana! Reply to this if you have any other problems.</p>
+				<h3>{{comment.title}}</h3>
+				<h4>By: <a href="account.html">[Lvl{{comment.level}}:{{comment.exp}}/5exp] {{comment.username}}</a></h4>
+				<p>{{comment.text}}</p>
 
-				<button class="blue-btn exp-btn">+1 MageRage</button>
+				<button class="blue-btn exp-btn">+1 Unknown</button>
 				<button class="blue-btn reply">Reply</button>
 				<div style="clear:both;"></div>
 				

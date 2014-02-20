@@ -261,7 +261,9 @@ nav li {
 .advanced-search,
 .search-list,
 .results,
-.user-info {
+.user-info,
+.deck-opts
+ {
 	margin: 20px 0;
 }
 
@@ -1018,6 +1020,10 @@ textarea.deck {
 }
 
 /* Comment Styles */
+
+.commentForm {
+	min-height: 300px;
+}
 
 .comments li {
 	width: 49.6%;

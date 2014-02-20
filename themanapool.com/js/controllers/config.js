@@ -69,6 +69,12 @@ themanapool.run(['$route', '$routeParams', '$rootScope', '$firebase', '$firebase
 				console.log('is user '+user.id);
 
 				$rootScope.currentUser = user;
+				$rootScope.tempUser = userService.getUserInfo($rootScope.currentUser.id);
+				$rootScope.tempUser.once('value', function(dataSnapshot) {
+					$rootScope.currentUser.username = dataSnapshot.val().username;
+					$rootScope.currentUser.currentExp = dataSnapshot.val().exp;
+					$rootScope.currentUser.currentLevel = dataSnapshot.val().level;
+				});
 				$rootScope.decks = userService.getDecks();
 				if($location.path() == '/') {
 					console.log('already logged in - redirecting');

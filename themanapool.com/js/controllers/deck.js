@@ -71,4 +71,16 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 			console.log(info.name, info.description);
 			userService.editDeck($scope.deckKey, info);
 		}
+
+		$scope.addComment = function() {
+			var newcomment = {
+				title: $scope.title,
+				text: $scope.text,
+				id: $rootScope.currentUser.id,
+				username: $rootScope.currentUser.username,
+				level: $rootScope.currentUser.currentLevel,
+				exp: $rootScope.currentUser.currentExp
+			}
+			userService.addComment(newcomment, $scope.deckKey);
+		}
 }]);
