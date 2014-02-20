@@ -3,14 +3,31 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 
 		console.log('CONTROLLER::deck');
 
+		$rootScope.auth = new FirebaseSimpleLogin($rootScope.manapool, 
+			function(error, user) {
+			if(angular.isObject(user)) {
+
+			}else {
+				console.log('not user '+user);
+				// prevent non users from editing other decks
+				console.log($route.current.params.key);
+				if($route.current.params.key) {
+					console.log('not logged in ***');
+					console.log($location.url(), $location.path());
+					$location.path('/community');
+				}
+			}
+		});
+
 		// Instantiate dynamic models :/
 		$scope.amount = {};
 
 		// Get deck key
 		$scope.deckKey = $route.current.params.key;
-		$scope.currentDeck = userService.getDeck($scope.deckKey);
-		$scope.currentCards = userService.getDeckCards($scope.deckKey)
 		console.log($scope.deckKey);
+		$scope.currentDeck = userService.getDeck($scope.deckKey);
+		$scope.currentCards = userService.getDeckCards($scope.deckKey);
+		$scope.currentComments = userService.getDeckComments($scope.deckKey);
 
 		$scope.changeAmount = function(index, cardKey) {
 			userService.editAmount($scope.amount[index], cardKey, $scope.deckKey);

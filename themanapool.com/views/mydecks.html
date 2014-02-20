@@ -10,7 +10,7 @@
 			<img src="img/menu.png">
 			<ul>
 				<li><a class="blue-btn active" href="./#/mydecks">My Decks</a></li>
-				<li><a class="blue-btn" href="community.html">Community</a></li>
+				<li><a class="blue-btn" href="./#/community">Community</a></li>
 				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
 				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
 			</ul>
@@ -46,15 +46,23 @@
 
 <h2 class="page-head">My Decks</h2>
 
-<form>
+<form ng-show="currentUser">
 	<input ng-model="search" class="search" id="search" type="text" placeholder="Filter Decks">
 </form>
 
-	<section class="decks">
+	<section ng-hide="currentUser" class="user-info">
+
+		<div class="header"><h2>Not Signed in <a ng-href="./#/">(Sign In)</a></h2></div>
+
+		<p class="body-text">To create your own decks, you must first have an account created. <a ng-href="./#/">Create one</a>, it takes almost no time at all!</p>
+
+	</section>
+
+	<section ng-show="currentUser" class="decks">
 
 		<ul class="deck-list">
 
-			<li ng-hide="clicked" ng-click="clicked=true">
+			<li class="add-btn" ng-hide="clicked" ng-click="clicked=true">
 				<h1>Add a Deck</h1>
 				<h1>[ + ]</h1>
 			</li>

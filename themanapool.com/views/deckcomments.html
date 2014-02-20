@@ -22,11 +22,11 @@
 
 <section class="main-content">
 
-<h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> >  {{currentDeck.name}}</h2>
+<h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> > <a ng-href="./#/mydecks/{{deckKey}}">{{currentDeck.name}}</a> > Comments</h2>
 
 	<section class="deck-opts">
 
-		<div class="header"><h2>Deck Options</h2></div>
+		<div class="header"><h2>Deck Options {{deckKey}}</h2></div>
 
 		<ul class="deck-opts-list">
 			<li>
@@ -88,54 +88,41 @@
 
 	</section>
 
-	<section class="browse-section sets">
+	<section class="browse-section comments">
 
-		<div class="header"><h2>Cards <a ng-href="./#/mydecks/{{deckKey}}/comments">(View Comments)</a></h2></div>
+		<div class="header"><h2>Comments <a ng-click="adding=true" ng-href="">(Add Comment)</a></h2></div>
 
 		<ul class="card-list-icon">
 
-			<li ng-repeat="card in currentCards | toArray">
-
-				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
-
-				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
-				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
-				<div class="panel">
-					<div>
-						<!-- <form name="amount-input">
-							<label style="color: #b7d5e2;">Amount</label>
-							<input ng-model="amount[$index]" type="text" class="icn-card">
-							<input ng-click="changeAmount($index, card.$key)" class="blue-btn" type="submit" value="Change">
-
-							<div style="clear:both;"></div>
-						</form> -->
+			<li ng-show="adding">
+				<form>
+					<div class="input-group">
+						<label for="title">Title</label>
+						<input class="deck" id="title" name="title" type="text">
 					</div>
-					<!-- <div class="card-amount">
-						<h1 class="amount">{{card.amount}}</h1>
-					</div> -->
-					<div style="clear: both;"></div>
-					<div class="card-info">
-						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
-						<h4>{{card.type}}</h4>
 
-						<p class="rules">{{card.text}}</p>
-						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
-						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
+					<div class="input-group">
+						<label for="text">Text</label>
+						<textarea class="deck" id="text" name="text"></textarea>
 					</div>
-				</div>
 
-				<div class="edit-panel">
-					<form>
-						<input ng-click="downAmount($index, card.$key)" class="stepper left" ng-disabled="card.amount==1" value="<" type="submit">
-						<span>{{card.amount}}</span>
-						<input ng-click="upAmount($index, card.$key)" class="stepper right" ng-disabled="card.amount==4" value=">" type="submit">
+					<input class="blue-btn" type="submit" value="Add Comment">
+				</form>
+			</li>
 
-						<button ng-click="removeCard(card.$key)" class="delete">
-							<img src="img/cross.png">
-						</button>
-					</form>
-				</div>
+			<li ng-repeat="comment in currentComments | toArray">
 				
+				<h3>Mana Balance Issue</h3>
+				<h4>From: <a href="account.html">[2] MageRage</a></h4>
+				<p>Your deck is looking very solid, but I can guess you are having some mana issues. Try putting some mana ramp like <a href="">Rampant Growth</a> would really help you out. If you are looking for more versitile ramp, look at <a href="">Expedition Map</a>. That will allow you to get any land with no colored mana! Reply to this if you have any other problems.</p>
+
+				<button class="blue-btn exp-btn">+1 MageRage</button>
+				<button class="blue-btn reply">Reply</button>
+				<div style="clear:both;"></div>
+				
+			</li>
+			<li ng-show="(currentComments|toArray).length==0">
+				<h3>No comments</h3>
 			</li>
 			<div style="clear:both;"></div>
 		</ul>

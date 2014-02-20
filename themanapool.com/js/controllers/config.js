@@ -14,6 +14,14 @@ themanapool.config(function($routeProvider) {
 			controller: 'deck',
 			templateUrl: 'views/editdeck.html'
 		})
+		.when('/mydecks/:key/comments', {
+			controller: 'deck',
+			templateUrl: 'views/deckcomments.html'
+		})
+		.when('/community', {
+			controller: 'deck',
+			templateUrl: 'views/community.html'
+		})
 		.when('/browse', {
 			controller: 'browser',
 			templateUrl: 'views/browse.html'
@@ -57,19 +65,26 @@ themanapool.run(['$route', '$routeParams', '$rootScope', '$firebase', '$firebase
 	// Instantiate an auth reference
 	$rootScope.auth = new FirebaseSimpleLogin($rootScope.manapool, 
 		function(error, user) {
-			console.log(error, user);
 			if(angular.isObject(user)) {
 				console.log('is user '+user.id);
 
 				$rootScope.currentUser = user;
 				$rootScope.decks = userService.getDecks();
 				if($location.path() == '/') {
-					console.log('redir');
+					console.log('already logged in - redirecting');
 					$location.path('/browse');
 				}
 			}else {
+				$rootScope.decks = userService.getDecks();
 				console.log('not user '+user);
-				$location.path('/');
+				// prevent non users from editing other decks
+				console.log($route.current.params.key);
+				if($route.current.params.key) {
+					console.log('not logged in ***');
+					console.log($location.url(), $location.path());
+					$location.url('/mydecks');
+					$location.path('/mydecks');
+				}
 			}
 	});
 
