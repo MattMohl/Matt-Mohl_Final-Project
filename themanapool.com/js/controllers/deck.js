@@ -84,6 +84,8 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 				exp: $rootScope.currentUser.currentExp
 			}
 			userService.addComment(newcomment, $scope.deckKey);
+			$scope.title = '';
+			$scope.text = '';
 		}
 
 		$scope.addReply = function(commentKey) {
@@ -96,5 +98,10 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 				userService.addReply(newreply, $scope.deckKey, commentKey);
 				$scope.replyValue[commentKey] = '';
 			}
+		}
+
+		$scope.deleteComment = function(commentKey) {
+			console.log(commentKey);
+			userService.deleteComment($scope.deckKey, commentKey);
 		}
 }]);

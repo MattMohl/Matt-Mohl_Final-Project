@@ -91,7 +91,7 @@
 				</form>
 			</li>
 
-			<li ng-repeat="deck in decks | toArray | filter:search | filter:currentUser.id">
+			<li ng-repeat="deck in decks | toArray | filter:search | filter:userFilter:strict">
 
 				<h2><a ng-href="./#/mydecks/{{deck.$key}}">{{deck.name}}</a></h2>
 
@@ -106,8 +106,8 @@
 
 					<h3>{{deck.status}}</h3>
 
-					<a href="./#/mydecks/{{deck.$key}}/comments" class="notification-cont">
-						<span class="comment-badge">0</span>
+					<a ng-show="(deck.comments|toArray).length" href="./#/mydecks/{{deck.$key}}/comments" class="notification-cont">
+						<span class="comment-badge">{{(deck.comments|toArray).length}}</span>
 
 						<span class="comment-label">Comments</span>
 					</a>

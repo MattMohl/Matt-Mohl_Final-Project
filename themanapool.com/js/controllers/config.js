@@ -16,11 +16,19 @@ themanapool.config(function($routeProvider) {
 		})
 		.when('/mydecks/:key/comments', {
 			controller: 'deck',
-			templateUrl: 'views/deckcomments.html'
+			templateUrl: 'views/mycomments.html'
 		})
 		.when('/community', {
 			controller: 'deck',
 			templateUrl: 'views/community.html'
+		})
+		.when('/community/:key', {
+			controller: 'deck',
+			templateUrl: 'views/viewdeck.html'
+		})
+		.when('/community/:key/comments', {
+			controller: 'deck',
+			templateUrl: 'views/deckcomments.html'
 		})
 		.when('/browse', {
 			controller: 'browser',
@@ -69,6 +77,9 @@ themanapool.run(['$route', '$routeParams', '$rootScope', '$firebase', '$firebase
 				console.log('is user '+user.id);
 
 				$rootScope.currentUser = user;
+				$rootScope.userFilter = {};
+				$rootScope.userFilter.id = user.id;
+				console.log("userid = "+$rootScope.currentUser.id);
 				$rootScope.tempUser = userService.getUserInfo($rootScope.currentUser.id);
 				$rootScope.tempUser.once('value', function(dataSnapshot) {
 					$rootScope.currentUser.username = dataSnapshot.val().username;

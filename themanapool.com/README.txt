@@ -1,5 +1,5 @@
 The Mana Pool
-A deck building community
+A deck building community that is made to be easy to use for both new and seasoned MTG players.
 
 All content, cards, set symbols and names are property of Wizards of the Coast and I am not affiliated with Wizards in any way. 
 

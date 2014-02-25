@@ -330,6 +330,7 @@ input {
 
 input:disabled {
 	opacity: .4;
+	cursor: default;
 }
 
 label {
@@ -837,6 +838,10 @@ textarea.deck {
 	width: 50%;
 }
 
+.deck-opts-list p {
+	padding: 20px 0 0 10%;
+}
+
 .card-list-icon > li:last-child {
 	width: 100%;
 	float: none;
@@ -979,7 +984,8 @@ textarea.deck {
 	margin-right: 20px;
 }
 
-.edit-panel button.delete {
+.edit-panel button.delete,
+button.delete {
 	cursor: pointer;
 	background-color: rgb(232,103,46);
 }
@@ -988,8 +994,20 @@ textarea.deck {
 	background-color: rgb(38,100,152);
 }
 
-.edit-panel button.delete {
+.edit-panel button.delete,
+button.delete {
 	width: 10%;
+	border: 0;
+}
+
+.comment {
+	position: relative;
+}
+
+.comment button.delete {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .panel button.stepper {
@@ -1031,7 +1049,6 @@ textarea.deck {
 	border: 1px solid #000;
 }
 
-.comments li button,
 .comments li input[type="submit"] {
 	width: 49.999%;
 	height: 50px;

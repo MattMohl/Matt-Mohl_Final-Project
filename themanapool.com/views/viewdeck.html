@@ -1,0 +1,84 @@
+<header>
+
+	<div>
+
+		<img src="img/logo.png">
+
+		<h1><a href="index.html">The Mana Pool</a></h1>
+
+		<nav>
+			<img src="img/menu.png">
+			<ul>
+				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
+				<li><a class="blue-btn active" href="./#/community">Community</a></li>
+				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
+				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+</header>
+
+<section class="main-content">
+
+<h2 class="page-head"><a ng-href="./#/community">Community</a> >  {{currentDeck.name}} ({{currentDeck.status}})</h2>
+
+	<section class="deck-opts">
+
+		<div class="header"><h2>Deck Info</h2></div>
+
+		<ul class="deck-opts-list">
+			<li>
+				<p>{{currentDeck.description}}</p>
+			</li>
+			<li style="margin-top: 20px;">
+				<div class="header"><h2>Status - ({{currentDeck.status}})</h2></div>
+			</li>
+			<div style="clear:both;"></div>
+		</ul>
+
+	</section>
+
+	<section class="browse-section sets">
+
+		<div class="header"><h2>Cards <a ng-href="./#/community/{{deckKey}}/comments">(View Comments)</a></h2></div>
+
+		<ul class="card-list-icon">
+
+			<li ng-repeat="card in currentCards | toArray">
+
+				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
+
+				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
+				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
+				<div class="panel">
+					<div class="card-info">
+						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
+						<h4>{{card.type}}</h4>
+
+						<p class="rules">{{card.text}}</p>
+						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
+						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
+					</div>
+				</div>
+
+				<div class="edit-panel">
+					<form>
+						<input class="stepper left" disabled value="<" type="submit">
+						<span>{{card.amount}}</span>
+						<input class="stepper right" disabled value=">" type="submit">
+
+						<button class="delete">
+							<img src="img/cross.png">
+						</button>
+					</form>
+				</div>
+				
+			</li>
+			<div style="clear:both;"></div>
+		</ul>
+
+	</section>
+
+</section>
