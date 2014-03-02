@@ -50,6 +50,10 @@ themanapool.config(function($routeProvider) {
 			controller: 'browser',
 			templateUrl: 'views/results.html'
 		})
+		.when('/account', {
+			controller: 'user',
+			templateUrl: 'views/account.html'
+		})
 		.otherwise({redirectTo: '/'});
 
 }).filter('toArray', function() {

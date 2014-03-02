@@ -1300,6 +1300,28 @@ label.header {
 
 
 
+/* Account Styles */
+
+.user-info h1 {
+	padding: 30px 5%;
+}
+
+.user-info h1 span {
+	padding: 6px 10px;
+	/*background-color: rgb(38,99,150);*/
+	/*background-color: #70CE29;*/
+	background: -moz-linear-gradient(top, #70ce29 5%, #70b221 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#70ce29), color-stop(100%,#70b221)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #70ce29 5%,#70b221 100%); /* Chrome10+,Safari5.1+ */
+	/*border: 4px solid rgb(232, 102, 46);*/
+	/*border: 4px solid rgb(38,99,150);*/
+	border: 4px solid #42860D;
+
+	border-radius: 10px;
+}
+
+
+
 
 
 
