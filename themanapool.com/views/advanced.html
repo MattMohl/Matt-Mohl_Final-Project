@@ -12,7 +12,7 @@
 				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn" href="./#/community">Community</a></li>
 				<li><a class="blue-btn active" ng-href="./#/browse">Browse</a></li>
-				<li><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
+				<li ng-show="currentUser.username"><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
 
@@ -123,10 +123,31 @@
 
 	</section>
 
+	<section class="decks">
+
+		<div class="header"><h2>Choose Deck - <a ng-href="./#/mydecks/{{currentDeckKey}}">{{currentDeck.name}}</a></h2></div>
+
+		<form>
+			<input ng-model="deckSearch" class="search" id="search" type="text" placeholder="Filter Decks">
+			<div style="clear:both;"></div>
+		</form>
+
+		<ul class="list-decks">
+			<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict | limitTo:5" class="blue-btn">
+				<a ng-click="setCurrentDeck(deck.$key)">
+				<div class="set-image">
+					<img ng-src="./img/{{deck.statusid}}.png">
+				</div>
+				<h3>{{deck.name}} - {{deck.status}}</h3>
+				</a>
+			</li>
+		</ul>
+	</section>
+
 	<section class="results">
 
 		<div class="header">
-			<h2>Search Results <a href="">(View All)</a></h2>
+			<h2>Search Results - Notice: there will be some lag</h2>
 		</div>
 
 		<!-- <ul>
@@ -137,25 +158,32 @@
 
 		<ul class="results-list-advanced result-list" style="min-height:60px;">
 			<li ng-repeat="set in allSetsResults | toArray">
-				<ul class="card-list-advanced">
+				<ul style="background: none" class="card-list-icon">
 					<li ng-repeat="card in set.cards | toArray | filter:search | limitTo:4">
-						<div class="c-head">
-							<h2 class="c-name">{{card.name}} ({{card.cmc}}) {{card.manaCost}}</h2>
-							<!-- <h3 class="mana">
-								<span ng-show="card.cmc">[{{card.cmc}}]</span> <span>{{card.manaCost}}</span>
-							</h3> -->
+
+						<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
+
+						<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
+						<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
+						<div class="panel">
+							<div>
+								<form name="amountForm[$index]">
+									<label style="color: #b7d5e2;">Add to {{currentDeck.name}}</label>
+									<input ng-model="amount[$index]" type="number" class="icn-card" required>
+									<input ng-click="addToCurrentDeck($index, card)" class="blue-btn" type="submit" value="Add">
+
+									<div style="clear:both;"></div>
+								</form>
+							</div>
 							<div style="clear:both;"></div>
-						</div>
+							<div class="card-info">
+								<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
+								<h4>{{card.type}}</h4>
 
-						<div class="info">
-							<h3>{{card.type}}</h3>
-							<div class="set-image">
-							<img ng-src="./img/sets/{{set.code}}.jpeg"></div>
-							<h4>{{set.name}}</h4>
-							<div style="clear: both;"></div>
-
-							<p>{{card.text}}</p>
-							<h3 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h3>
+								<p class="rules">{{card.text}}</p>
+								<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
+								<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
+							</div>
 						</div>
 					</li>
 				</ul>
