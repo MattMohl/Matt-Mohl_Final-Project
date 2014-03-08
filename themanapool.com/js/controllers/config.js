@@ -83,7 +83,7 @@ themanapool.run(['$route', '$routeParams', '$rootScope', '$firebase', '$firebase
 				$rootScope.currentUser = user;
 				$rootScope.userFilter = {};
 				$rootScope.userFilter.id = user.id;
-				console.log("userid = "+$rootScope.currentUser.id);
+
 				$rootScope.tempUser = userService.getUserInfo($rootScope.currentUser.id);
 				$rootScope.tempUser.once('value', function(dataSnapshot) {
 					$rootScope.currentUser.username = dataSnapshot.val().username;
@@ -112,6 +112,7 @@ themanapool.run(['$route', '$routeParams', '$rootScope', '$firebase', '$firebase
 	$rootScope.logout = function() {
 		console.log('out');
 		$rootScope.auth.logout();
+		delete $rootScope.currentUser;
 		$location.path('/');
 	}
 
