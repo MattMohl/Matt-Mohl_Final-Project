@@ -20,9 +20,21 @@
 
 </header>
 
-<section class="main-content">
+<section ng-hide="currentDeck.id == currentUser.id" class="main-content">
 
-<h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> >  {{currentDeck.name}}</h2>
+	<h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> > {{currentDeck.name}} ({{currentDeck.status}})</h2>
+
+	<section>
+
+		<div class="header"><h2>You do not own this deck <a ng-href="./#/community/{{deckKey}}">(View in Community)</a></h2></div>
+
+	</section>
+
+</section>
+
+<section ng-show="currentDeck.id == currentUser.id" class="main-content">
+
+<h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> >  {{currentDeck.name}} ({{currentDeck.status}})</h2>
 
 	<section class="deck-opts">
 
