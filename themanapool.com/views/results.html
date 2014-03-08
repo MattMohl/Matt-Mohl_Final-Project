@@ -12,7 +12,7 @@
 				<li><a class="blue-btn" href="mydecks.html">My Decks</a></li>
 				<li><a class="blue-btn" href="community.html">Community</a></li>
 				<li><a class="blue-btn active" href="browse.html">Browse</a></li>
-				<li><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
+				<li ng-show="currentUser.username"><a ng-click="logout()" class="orange-btn" href="">Account</a></li>
 			</ul>
 		</nav>
 

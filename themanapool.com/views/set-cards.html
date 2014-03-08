@@ -12,7 +12,7 @@
 				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn" href="./#/community">Community</a></li>
 				<li><a class="blue-btn active" href="./#/browse">Browse</a></li>
-				<li><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
+				<li ng-show="currentUser.username"><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
 
@@ -133,7 +133,7 @@
 	</form>
 
 	<ul class="list-decks">
-		<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:currentUser.id | limitTo:5" class="blue-btn">
+		<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict | limitTo:5" class="blue-btn">
 			<a ng-click="setCurrentDeck(deck.$key)">
 			<div class="set-image">
 				<img ng-src="./img/{{deck.statusid}}.png">
@@ -178,7 +178,8 @@
 				</div>
 				
 			</li>
-			<li ng-show="cardLimit < (setCards|toArray|filter:search).length" ng-click="cardLimit = cardLimit + 20;" class="blue-btn">See 20 more of {{(setCards|toArray|filter:search).length}}</li>
+			<li ng-show="cardLimit < (setCards|toArray|filter:search).length" ng-click="cardLimit = cardLimit + 20;" class="blue-btn pagination">See 20 more of {{(setCards|toArray|filter:search).length}}</li>
+			<div style="clear:both"></div>
 		</ul>
 
 	</section>
