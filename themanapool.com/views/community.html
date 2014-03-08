@@ -12,7 +12,7 @@
 				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn active" href="./#/community">Community</a></li>
 				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
-				<li><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
+				<li ng-show="currentUser.username"><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
 
@@ -44,10 +44,10 @@
 
 <section class="main-content">
 
-<h2 class="page-head">Community Decks</h2>
+<h2 class="page-head">Community</h2>
 
 <form>
-	<input ng-model="search" class="search" id="search" type="text" placeholder="Filter Decks">
+	<input ng-model="search" class="search" id="search" type="text" placeholder="Filter decks by Name, Card, or Username">
 </form>
 
 	<section class="decks">
@@ -78,6 +78,10 @@
 
 				<div class="deck-info">
 					<p>{{deck.description}}</p>
+				</div>
+				<div class="author">
+					<hr>
+					<p>Created By: <a ng-href="./#/account">{{deck.username}}</a></p>
 				</div>
 			</li>
 

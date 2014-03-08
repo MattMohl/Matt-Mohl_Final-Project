@@ -12,7 +12,7 @@
 				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
 				<li><a class="blue-btn active" href="./#/community">Community</a></li>
 				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
-				<li><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
+				<li ng-show="currentUser.username"><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
 
@@ -30,6 +30,7 @@
 
 		<ul class="deck-opts-list">
 			<li>
+				<h3>Author: <a ng-href="./#/account">{{currentDeck.username}}</a></h3>
 				<p>{{currentDeck.description}}</p>
 			</li>
 			<div style="clear:both;"></div>
@@ -39,7 +40,7 @@
 
 	<section class="browse-section comments">
 
-		<div class="header"><h2>Comments <a ng-click="adding=true" ng-href="">(Add Comment)</a></h2></div>
+		<div class="header"><h2>Comments <a ng-hide="currentUser.id == currentDeck.id" ng-click="adding=true" ng-href="">(Add Comment)</a></h2></div>
 
 		<ul class="card-list-icon">
 
@@ -62,7 +63,7 @@
 			<li class="comment" ng-repeat="comment in currentComments | toArray">
 				
 				<h3>{{comment.title}}</h3>
-				<h4>By: <a href="account.html">[ Lvl{{comment.level}}:{{comment.exp}}/5exp ] {{comment.username}}</a></h4>
+				<h4>By: <a href="./#/account">{{comment.username}}</a></h4>
 				<p>{{comment.text}}</p>
 
 				<button ng-show="comment.id==currentUser.id" ng-click="deleteComment(comment.$key)" class="delete">
@@ -79,8 +80,6 @@
 					<input ng-model="replyValue[comment.$key]" class="deck" type="text" placeholder="Reply" required>
 					<input ng-click="addReply(comment.$key)" ng-disabled="replyForm[comment.$key].$invalid" type="submit" value="Add Reply" class="blue-btn">
 				</form>
-
-				<input class="blue-btn exp-btn" type="submit" value="+1 {{comment.username}}">
 				<div style="clear:both;"></div>
 				
 			</li>
