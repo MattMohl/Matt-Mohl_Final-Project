@@ -58,7 +58,8 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 				description: $scope.description,
 				id: $rootScope.currentUser.id,
 				status: 'Fine-Tuning',
-				statusid: 'tuning'
+				statusid: 'tuning',
+				username: $scope.currentUser.username
 			}
 			userService.addDeck(newdeck);
 			// $scope.name = $scope.description = '';
@@ -80,8 +81,7 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 				text: $scope.text,
 				id: $rootScope.currentUser.id,
 				username: $rootScope.currentUser.username,
-				level: $rootScope.currentUser.currentLevel,
-				exp: $rootScope.currentUser.currentExp
+				upped: 0
 			}
 			userService.addComment(newcomment, $scope.deckKey);
 			$scope.title = '';
@@ -103,5 +103,10 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 		$scope.deleteComment = function(commentKey) {
 			console.log(commentKey);
 			userService.deleteComment($scope.deckKey, commentKey);
+		}
+
+		$scope.upComment = function(commentKey, userid) {
+			console.log(commentKey, userid);
+			userService.giveExp($scope.deckKey, commentKey, userid);
 		}
 }]);

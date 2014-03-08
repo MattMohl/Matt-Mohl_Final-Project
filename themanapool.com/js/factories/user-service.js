@@ -73,6 +73,23 @@ themanapool.factory('UserService', ['$firebase',
 			editDeck: function(deckKey, info) {
 				var deckRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey);
 				deckRef.update({description: info.description, name: info.name});
+			},
+			giveExp: function(deckKey, commentKey, userid) {
+				var userRef = new Firebase('https://manapool.firebaseio.com/users/'+userid);
+				userRef.once('value', function(dataSnapshot) {
+					var curExp = dataSnapshot.val().exp;
+					var curLev = dataSnapshot.val().level;
+					console.log(curExp);
+					if(curExp == 4) {
+						console.log('level up');
+						userRef.update({exp: 0, level: curLev+1});
+					}else {
+						userRef.update({exp: curExp+1});
+					}
+				});
+
+				var comRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/comments/'+commentKey);
+				comRef.update({upped: 1});
 			}
 		}
 }]);
