@@ -34,7 +34,7 @@
 				<form name="nameForm">
 					<label for="name">Name</label>
 					<input ng-model="search.name" id="name" name="name" class="advanced" type="text" required>
-					<span ng-click="search.name=''">Clear</span>
+					<span ng-click="search.name=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -42,7 +42,7 @@
 				<form name="rulesForm">
 					<label for="text">Rules Text</label>
 					<input ng-model="search.text" id="text" name="text" class="advanced" type="text" required>
-					<span ng-click="search.text=''">Clear</span>
+					<span ng-click="search.text=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -50,15 +50,15 @@
 				<form name="colorForm">
 					<label for="colors">Colors (separate with ,)</label>
 					<input ng-model="search.colors" ng-list id="colors" name="colors" class="advanced" type="text" required>
-					<span ng-click="search.colors=''">Clear</span>
+					<span ng-click="search.colors=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="typeForm">
-					<label for="type">Type</label>
+					<label for="type">Type (Alt+Shift+'-')or(Alt+0151)</label>
 					<input ng-model="search.type" id="type" name="type" class="advanced" type="text" required>
-					<span ng-click="search.type=''">Clear</span>
+					<span ng-click="search.type=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -66,7 +66,7 @@
 				<form name="cmcForm">
 					<label for="cmc">Converted Mana Cost</label>
 					<input ng-model="search.cmc" id="cmc" name="cmc" class="advanced" type="text" required>
-					<span ng-click="search.cmc=''">Clear</span>
+					<span ng-click="search.cmc=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -74,7 +74,7 @@
 				<form name="manaForm">
 					<label for="manaCost">Mana Cost (separate with {})</label>
 					<input ng-model="search.manaCost" id="manaCost" name="manaCost" class="advanced" type="text" required>
-					<span ng-click="search.manaCost=''">Clear</span>
+					<span ng-click="search.manaCost=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -82,7 +82,7 @@
 				<form name="powerForm">
 					<label for="power">Power</label>
 					<input ng-model="search.power" id="power" name="power" class="advanced" type="text" required>
-					<span ng-click="search.power=''">Clear</span>
+					<span ng-click="search.power=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -90,7 +90,7 @@
 				<form name="toughnessForm">
 					<label for="toughness">Toughness</label>
 					<input ng-model="search.toughness" id="toughness" name="toughness" class="advanced" type="text" required>
-					<span ng-click="search.toughness=''">Clear</span>
+					<span ng-click="search.toughness=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -98,7 +98,7 @@
 				<form name="flavorForm">
 					<label for="flavor">Flavor Text</label>
 					<input ng-model="search.flavor" id="flavor" name="flavor" class="advanced" type="text" required>
-					<span ng-click="search.flavor=''">Clear</span>
+					<span ng-click="search.flavor=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -106,7 +106,7 @@
 				<form name="artistForm">
 					<label for="artist">Artist</label>
 					<input ng-model="search.artist" id="artist" name="artist" class="advanced" type="text" required>
-					<span ng-click="search.artist=''">Clear</span>
+					<span ng-click="search.artist=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -114,7 +114,7 @@
 				<form name="rarityForm">
 					<label for="rarity">Rarity</label>
 					<input ng-model="search.rarity" id="rarity" name="rarity" class="advanced" type="text" required>
-					<span ng-click="search.rarity=''">Clear</span>
+					<span ng-click="search.rarity=''"><img src="./img/no.png"></span>
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -125,7 +125,7 @@
 
 	<section class="decks">
 
-		<div class="header"><h2>Choose Deck - <a ng-href="./#/mydecks/{{currentDeckKey}}">{{currentDeck.name}}</a></h2></div>
+		<div class="header"><h2>Choose Deck - <a ng-href="./#/mydecks/{{deckKey}}">{{currentDeck.name}}</a></h2></div>
 
 		<form>
 			<input ng-model="deckSearch" class="search" id="search" type="text" placeholder="Filter Decks">
@@ -133,13 +133,11 @@
 		</form>
 
 		<ul class="list-decks">
-			<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict | limitTo:5" class="blue-btn">
-				<a ng-click="setCurrentDeck(deck.$key)">
+			<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict | limitTo:5" ng-click="setCurrentDeck(deck.$key)" class="blue-btn">
 				<div class="set-image">
 					<img ng-src="./img/{{deck.statusid}}.png">
 				</div>
 				<h3>{{deck.name}} - {{deck.status}}</h3>
-				</a>
 			</li>
 		</ul>
 	</section>
@@ -147,7 +145,7 @@
 	<section class="results">
 
 		<div class="header">
-			<h2>Search Results - Notice: there will be some lag</h2>
+			<h2>Search Results - Notice: cards may take a while to render</h2>
 		</div>
 
 		<!-- <ul>
@@ -157,25 +155,16 @@
 		</ul> -->
 
 		<ul class="results-list-advanced result-list" style="min-height:60px;">
-			<li ng-repeat="set in allSetsResults | toArray">
+			<li ng-show="(set.cards|toArray|filter:search).length" ng-repeat="set in allSetsResults | toArray | limitTo:setLimit">
+				<div class="header"><h2>Results in {{set.name}} ({{(set.cards|toArray|filter:search).length}}) <a ng-href="./#/browse/sets/{{set.code}}">(View Set)</a></h2></div>
 				<ul style="background: none" class="card-list-icon">
 					<li ng-repeat="card in set.cards | toArray | filter:search | limitTo:4">
 
 						<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
 
-						<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
-						<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
+						<label class="toggler-label blue-btn" for="toggle-{{set.$key}}-{{card.$key}}">{{card.name}} Info</label>
+						<input id="toggle-{{set.$key}}-{{card.$key}}" class="toggle" type="checkbox">
 						<div class="panel">
-							<div>
-								<form name="amountForm[$index]">
-									<label style="color: #b7d5e2;">Add to {{currentDeck.name}}</label>
-									<input ng-model="amount[$index]" type="number" class="icn-card" required>
-									<input ng-click="addToCurrentDeck($index, card)" class="blue-btn" type="submit" value="Add">
-
-									<div style="clear:both;"></div>
-								</form>
-							</div>
-							<div style="clear:both;"></div>
 							<div class="card-info">
 								<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
 								<h4>{{card.type}}</h4>
@@ -186,8 +175,10 @@
 							</div>
 						</div>
 					</li>
+					<div style="clear:both;"></div>
 				</ul>
 			</li>
+			<li ng-show="setLimit < (allSetsResults|toArray).length" ng-click="setLimit = setLimit + 10;" class="blue-btn pagination">See 10 more of {{(allSetsResults|toArray).length}}</li>
 		</ul>
 
 	</section>
