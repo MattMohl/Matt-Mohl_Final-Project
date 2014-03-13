@@ -860,6 +860,7 @@ textarea.deck {
 	width: 100%;
 	float: right;
 	height: 40px;
+	margin: 40px 0;
 	padding-top: 10px;
 	cursor: pointer;
 	font-size: 25px;
