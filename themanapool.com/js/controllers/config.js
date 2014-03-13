@@ -18,6 +18,10 @@ themanapool.config(function($routeProvider) {
 			controller: 'deck',
 			templateUrl: 'views/mycomments.html'
 		})
+		.when('/test', {
+			controller: 'deck',
+			templateUrl: 'views/testdeck.html'
+		})
 		.when('/community', {
 			controller: 'deck',
 			templateUrl: 'views/community.html'
@@ -114,6 +118,18 @@ themanapool.run(['$route', '$routeParams', '$rootScope', '$firebase', '$firebase
 		$rootScope.auth.logout();
 		delete $rootScope.currentUser;
 		$location.path('/');
+	}
+
+	$rootScope.upAmount = function(cardKey) {
+		userService.incrementAmount(1, cardKey, $rootScope.deckKey);
+	}
+
+	$rootScope.downAmount = function(cardKey) {
+		userService.incrementAmount(-1, cardKey, $rootScope.deckKey);
+	}
+
+	$rootScope.removeCard = function(cardKey) {
+		userService.removeFromDeck(cardKey, $rootScope.deckKey);
 	}
 
 }]);

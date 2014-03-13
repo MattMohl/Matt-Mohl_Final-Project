@@ -14,25 +14,27 @@ themanapool.controller('browser', ['$route', '$rootScope', '$scope', '$firebase'
 		$scope.currentSet = browseService.getSet($route.current.params.set);
 		$scope.setCards = browseService.getSetCards($route.current.params.set);
 		$scope.cardLimit = 20;
+		$scope.setLimit = 10;
 
 		// Advanced inits
 		if($location.path() === '/browse/advanced') {
-			$rootScope.searchParams = [];
+			$rootScope.search = {};
 			$rootScope.allSetsResults = browseService.getSetsLarge(2000);
 		}
 
 		$scope.setCurrentDeck = function(deckKey) {
 			console.log(deckKey);
 			$rootScope.deckSelected = true;
-			$rootScope.currentDeckKey = deckKey;
+			$rootScope.deckKey = deckKey;
 			$rootScope.currentDeck = userService.getDeck(deckKey);
 		}
 
-		$scope.addToCurrentDeck = function(index, card) {
-			if(angular.isDefined($scope.amount[index]) && angular.isNumber($scope.amount[index]) && $rootScope.deckSelected) {
+		$scope.addToCurrentDeck = function(card) {
+			// if(angular.isDefined($scope.amount[index]) && angular.isNumber($scope.amount[index]) && $rootScope.deckSelected) {
+			if($rootScope.deckSelected) {
 				
 				var newcard = {
-					amount: 		$scope.amount[index],
+					amount: 		1,
 					multiverseid: 	card.multiverseid,
 					name: 			card.name,
 					type: 			card.type
@@ -57,8 +59,8 @@ themanapool.controller('browser', ['$route', '$rootScope', '$scope', '$firebase'
 					newcard.power = card.power;
 				}
 				console.log(newcard);
-				userService.addAmount(newcard, $rootScope.currentDeckKey);
-				$scope.amount[index] = '';
+				userService.addAmount(newcard, $rootScope.deckKey);
+				// $scope.amount[index] = '';
 			}else {
 				console.log('bad');
 			}
