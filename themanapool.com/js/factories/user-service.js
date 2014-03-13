@@ -46,8 +46,30 @@ themanapool.factory('UserService', ['$firebase',
 			incrementAmount: function(increment, cardKey, deckKey) {
 				var cardRef = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/cards/'+cardKey);
 				cardRef.once('value', function(dataSnapshot) {
-					console.log(dataSnapshot.val().amount+increment);
-					cardRef.update({amount: dataSnapshot.val().amount+increment});
+					if(increment == 1) {
+						if(dataSnapshot.val().name=='Relentless Rats' 
+						|| dataSnapshot.val().name=='Shadowborn Apostle' 
+						|| dataSnapshot.val().name=='Swamp' 
+						|| dataSnapshot.val().name=='Island' 
+						|| dataSnapshot.val().name=='Plains' 
+						|| dataSnapshot.val().name=='Mountain' 
+						|| dataSnapshot.val().name=='Forest') {
+							console.log('let infinite increase');
+							cardRef.update({amount: dataSnapshot.val().amount+increment});
+						}else if(dataSnapshot.val().amount < 4) {
+							console.log('let increase');
+							cardRef.update({amount: dataSnapshot.val().amount+increment});
+						}
+					}else if(increment == -1
+						&& dataSnapshot.val().amount < 2) {
+						console.log('deny decrease');
+					}else if(increment == -1
+						&& dataSnapshot.val().amount > 1) {
+						console.log('let decrease');
+						cardRef.update({amount: dataSnapshot.val().amount+increment});
+					}else {
+						console.log('its not very effective');
+					}
 				});
 			},
 			addAmount: function(cardObj, deckKey) {
