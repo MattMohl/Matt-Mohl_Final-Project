@@ -25,7 +25,7 @@
 <h2 class="page-head"><a ng-href="./#/browse">Browse</a> > Sets</h2>
 
 <form>
-	<input ng-model="search" class="search" id="search" type="text" placeholder="Filter Sets">
+	<input ng-model="setSearch" class="search" id="search" type="text" placeholder="Filter Sets">
 	<div style="clear:both;"></div>
 </form>
 
@@ -34,7 +34,7 @@
 		<div class="header"><h2>All MTG Sets</h2></div>
 
 		<ul class="list-sets">
-			<li ng-repeat="set in allSets | toArray | filter:search | orderBy:'releaseDate':true" class="blue-btn">
+			<li ng-repeat="set in allSets | toArray | filter:setSearch | orderBy:'releaseDate':true" class="blue-btn">
 				<a ng-href="./#/browse/sets/{{set.code}}">
 				<div class="set-image">
 					<img ng-src="./img/sets/{{set.code}}.jpeg">

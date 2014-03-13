@@ -56,7 +56,7 @@
 		</li>
 		<li>
 			<form name="typeForm">
-				<label for="type">Type</label>
+				<label for="type">Type (Alt+Shift+'-')or(Alt+0151)</label>
 				<input ng-model="search.type" id="type" name="type" class="advanced" type="text" required>
 				<span ng-click="search.type=''"><img src="./img/no.png"</span>
 				<div style="clear:both;"></div>
@@ -114,7 +114,7 @@
 			<form name="rarityForm">
 				<label for="rarity">Rarity</label>
 				<input ng-model="search.rarity" id="rarity" name="rarity" class="advanced" type="text" required>
-				<span ng-click="search.rarity=''"><img src="./img/no.png"</span>
+				<span ng-click="search.rarity=''"><img src="./img/no.png"></span>
 				<div style="clear:both;"></div>
 			</form>
 		</li>
@@ -125,7 +125,7 @@
 
 <section class="decks">
 
-	<div class="header"><h2>Choose Deck - <a ng-href="./#/mydecks/{{currentDeckKey}}">{{currentDeck.name}}</a></h2></div>
+	<div class="header"><h2>Choose Deck - <a ng-href="./#/mydecks/{{deckKey}}">{{currentDeck.name}}</a></h2></div>
 
 	<form>
 		<input ng-model="deckSearch" class="search" id="search" type="text" placeholder="Filter Decks">
@@ -133,13 +133,11 @@
 	</form>
 
 	<ul class="list-decks">
-		<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict | limitTo:5" class="blue-btn">
-			<a ng-click="setCurrentDeck(deck.$key)">
+		<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict | limitTo:5" ng-click="setCurrentDeck(deck.$key)" class="blue-btn">
 			<div class="set-image">
 				<img ng-src="./img/{{deck.statusid}}.png">
 			</div>
 			<h3>{{deck.name}} - {{deck.status}}</h3>
-			</a>
 		</li>
 	</ul>
 </section>
@@ -157,16 +155,6 @@
 				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
 				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
 				<div class="panel">
-					<div>
-						<form name="amountForm[$index]">
-							<label style="color: #b7d5e2;">Add to {{currentDeck.name}}</label>
-							<input ng-model="amount[$index]" type="number" class="icn-card" required>
-							<input ng-click="addToCurrentDeck($index, card)" class="blue-btn" type="submit" value="Add">
-
-							<div style="clear:both;"></div>
-						</form>
-					</div>
-					<div style="clear:both;"></div>
 					<div class="card-info">
 						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
 						<h4>{{card.type}}</h4>
@@ -175,6 +163,27 @@
 						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
 						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
 					</div>
+				</div>
+
+				<div ng-show="!deckSelected">
+					<span>No Deck Selected</span>
+				</div>
+
+				<div ng-show="deckSelected" class="edit-panel">
+					<form>
+						<input ng-click="downAmount((currentDeck.cards|toArray|filter:card.multiverseid)[0].$key)" ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-disabled="(currentDeck.cards|toArray|filter:card.multiverseid)[0].amount < 2 || !(currentDeck.cards|toArray|filter:card.multiverseid).length" class="stepper left" value="<" type="submit">
+						<input ng-hide="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-disabled="true" class="stepper left" value="<">
+						<span ng-hide="(currentDeck.cards|toArray|filter:card.multiverseid).length">N/A</span>
+						<span ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length">{{(currentDeck.cards|toArray|filter:card.multiverseid)[0].amount}}</span>
+						<input ng-hide="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-click="addToCurrentDeck(card)" class="stepper right" value="Add" type="submit">
+						<input ng-click="upAmount((currentDeck.cards|toArray|filter:card.multiverseid)[0].$key)" ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-disabled="(currentDeck.cards|toArray|filter:card.multiverseid)[0].amount > 3 && card.name!='Relentless Rats' && card.name!='Shadowborn Apostle' && card.name!='Swamp' && card.name!='Island' && card.name!='Plains' && card.name!='Mountain' && card.name!='Forest'" class="stepper right" value=">" type="submit">
+
+
+
+						<button ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-click="removeCard((currentDeck.cards|toArray|filter:card.multiverseid)[0].$key)" class="delete">
+							<img src="img/cross.png">
+						</button>
+					</form>
 				</div>
 				
 			</li>
