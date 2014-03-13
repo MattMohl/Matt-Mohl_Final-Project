@@ -1,12 +1,15 @@
-themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '$location', 'UserService', 'BrowseService',
-	function($route, $rootScope, $scope, $firebase, $location, userService, browseService) {
+themanapool.controller('deck', ['$route', 'toArrayFilter', '$rootScope', '$scope', '$firebase', '$location', 'UserService', 'BrowseService',
+	function($route, toArrayFilter, $rootScope, $scope, $firebase, $location, userService, browseService) {
 
 		console.log('CONTROLLER::deck');
 
 		$rootScope.auth = new FirebaseSimpleLogin($rootScope.manapool, 
 			function(error, user) {
 			if(angular.isObject(user)) {
-
+				if($location.path() == '/test') {
+					$scope.players = [];
+					$scope.players.push($rootScope.currentUser);
+				}
 			}else {
 				console.log('not user '+user);
 				// prevent non users from editing other decks
@@ -19,37 +22,29 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 			}
 		});
 
-		// Instantiate dynamic models :/
+		// Instantiate dynamic models
+		$scope.totalCards = 0;
 		$scope.amount = {};
 		$scope.replying = {};
 		$scope.replyValue = {};
 
+		// Instantiate models for testing logic
+		if($location.path() == '/test') {
+			
+		}
+
 		// Get deck key
-		$scope.deckKey = $route.current.params.key;
-		console.log($scope.deckKey);
-		$scope.currentDeck = userService.getDeck($scope.deckKey);
-		$scope.currentCards = userService.getDeckCards($scope.deckKey);
-		$scope.currentComments = userService.getDeckComments($scope.deckKey);
-
-		$scope.changeAmount = function(index, cardKey) {
-			userService.editAmount($scope.amount[index], cardKey, $scope.deckKey);
-			$scope.amount[index] = '';
-		}
-
-		$scope.upAmount = function(index, cardKey) {
-			userService.incrementAmount(1, cardKey, $scope.deckKey);
-		}
-
-		$scope.downAmount = function(index, cardKey) {
-			userService.incrementAmount(-1, cardKey, $scope.deckKey);
-		}
-
-		$scope.removeCard = function(cardKey) {
-			userService.removeFromDeck(cardKey, $scope.deckKey);
-		}
+		$rootScope.deckKey = $route.current.params.key;
+		console.log($rootScope.deckKey);
+		$scope.currentDeck = userService.getDeck($rootScope.deckKey);
+		$scope.currentCards = userService.getDeckCards($rootScope.deckKey);
+		angular.forEach($scope.currentCards, function(value, key) {
+			console.log(value, key);
+		});
+		$scope.currentComments = userService.getDeckComments($rootScope.deckKey);
 
 		$scope.setStatus = function(statusid, status) {
-			userService.updateStatus(statusid, status, $scope.deckKey);
+			userService.updateStatus(statusid, status, $rootScope.deckKey);
 		}
 
 		$scope.addDeck = function() {
@@ -66,13 +61,13 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 		}
 
 		$scope.deleteDeck = function() {
-			userService.removeDeck($scope.deckKey);
+			userService.removeDeck($rootScope.deckKey);
 			$location.path('/mydecks');
 		}
 
 		$scope.editDeck = function(info) {
 			console.log(info.name, info.description);
-			userService.editDeck($scope.deckKey, info);
+			userService.editDeck($rootScope.deckKey, info);
 		}
 
 		$scope.addComment = function() {
@@ -83,7 +78,7 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 				username: $rootScope.currentUser.username,
 				upped: 0
 			}
-			userService.addComment(newcomment, $scope.deckKey);
+			userService.addComment(newcomment, $rootScope.deckKey);
 			$scope.title = '';
 			$scope.text = '';
 		}
@@ -95,18 +90,18 @@ themanapool.controller('deck', ['$route', '$rootScope', '$scope', '$firebase', '
 			}
 			console.log(newreply);
 			if(newreply.text) {
-				userService.addReply(newreply, $scope.deckKey, commentKey);
+				userService.addReply(newreply, $rootScope.deckKey, commentKey);
 				$scope.replyValue[commentKey] = '';
 			}
 		}
 
 		$scope.deleteComment = function(commentKey) {
 			console.log(commentKey);
-			userService.deleteComment($scope.deckKey, commentKey);
+			userService.deleteComment($rootScope.deckKey, commentKey);
 		}
 
 		$scope.upComment = function(commentKey, userid) {
 			console.log(commentKey, userid);
-			userService.giveExp($scope.deckKey, commentKey, userid);
+			userService.giveExp($rootScope.deckKey, commentKey, userid);
 		}
 }]);
