@@ -47,7 +47,7 @@
 <h2 class="page-head">My Decks</h2>
 
 <form ng-show="currentUser">
-	<input ng-model="search" class="search" id="search" type="text" placeholder="Filter Decks">
+	<input ng-model="deckSearch" class="search" id="search" type="text" placeholder="Filter Decks">
 </form>
 
 	<section ng-hide="currentUser" class="user-info">
@@ -91,7 +91,7 @@
 				</form>
 			</li>
 
-			<li ng-repeat="deck in decks | toArray | filter:search | filter:userFilter:strict">
+			<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict">
 
 				<h2><a ng-href="./#/mydecks/{{deck.$key}}">{{deck.name}}</a></h2>
 

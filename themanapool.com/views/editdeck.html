@@ -95,6 +95,19 @@
 				<button ng-show="clicked" ng-click="clicked=false" class="blue-btn deck-edit">No</button>
 				<button ng-show="clicked" ng-click="deleteDeck()" class="orange-btn deck-edit">Are you sure?</button>
 			</li>
+			<li>
+				<div class="header"><h2>Test</h2></div>
+				<ul class="list-decks">
+					<li class="blue-btn">
+						<a ng-href="./#test">
+							<div class="set-image">
+								<img src="./img/cards-icon.png">
+							</div>
+							<h3>Test this deck out</h3>
+						</a>
+					</li>
+				</ul>
+			</li>
 			<div style="clear:both;"></div>
 		</ul>
 
@@ -102,7 +115,7 @@
 
 	<section class="browse-section sets">
 
-		<div class="header"><h2>Cards <a ng-href="./#/mydecks/{{deckKey}}/comments">(View Comments)</a></h2></div>
+		<div class="header"><h2>{{}} Cards <a ng-href="./#/mydecks/{{deckKey}}/comments">(View Comments)</a></h2></div>
 
 		<ul class="card-list-icon">
 
@@ -138,9 +151,9 @@
 
 				<div class="edit-panel">
 					<form>
-						<input ng-click="downAmount($index, card.$key)" class="stepper left" ng-disabled="card.amount<2" value="<" type="submit">
+						<input ng-click="downAmount(card.$key)" class="stepper left" ng-disabled="card.amount<2" value="<" type="submit">
 						<span>{{card.amount}}</span>
-						<input ng-click="upAmount($index, card.$key)" class="stepper right" ng-disabled="card.amount>3 && card.name!='Relentless Rats' && card.name!='Shadowborn Apostle' && card.name!='Swamp' && card.name!='Island' && card.name!='Plains' && card.name!='Mountain' && card.name!='Forest'" value=">" type="submit">
+						<input ng-click="upAmount(card.$key)" class="stepper right" ng-disabled="card.amount>3 && card.name!='Relentless Rats' && card.name!='Shadowborn Apostle' && card.name!='Swamp' && card.name!='Island' && card.name!='Plains' && card.name!='Mountain' && card.name!='Forest'" value=">" type="submit">
 
 						<button ng-click="removeCard(card.$key)" class="delete">
 							<img src="img/cross.png">

@@ -47,14 +47,14 @@
 <h2 class="page-head">Community</h2>
 
 <form>
-	<input ng-model="search" class="search" id="search" type="text" placeholder="Filter decks by Name, Card, or Username">
+	<input ng-model="deckSearch" class="search" id="search" type="text" placeholder="Filter decks by Name, Card, or Username">
 </form>
 
 	<section class="decks">
 
 		<ul class="deck-list">
 
-			<li ng-repeat="deck in decks | toArray | filter:search">
+			<li ng-repeat="deck in decks | toArray | filter:deckSearch">
 
 				<h2><a ng-href="./#/community/{{deck.$key}}">{{deck.name}}</a></h2>
 
