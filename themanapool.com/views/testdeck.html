@@ -1,0 +1,125 @@
+<header>
+
+	<div>
+
+		<img src="img/logo.png">
+
+		<h1><a href="index.html">The Mana Pool</a></h1>
+
+		<nav>
+			<img src="img/menu.png">
+			<ul>
+				<li><a class="blue-btn active" href="./#/mydecks">My Decks</a></li>
+				<li><a class="blue-btn" href="./#/community">Community</a></li>
+				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
+				<li><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+</header>
+
+<section ng-hide="currentUser" class="user-info">
+
+	<div class="header"><h2>Not Signed in <a ng-href="./#/">(Sign In)</a></h2></div>
+
+	<p class="body-text">To create your own decks, you must first have an account created. <a ng-href="./#/">Create one</a>, it takes almost no time at all!</p>
+
+</section>
+
+<section ng-show="currentUser" class="main-content">
+
+<h2 class="page-head">Test a Deck</h2>
+
+	<section class="deck-opts">
+
+		<div class="header"><h2>Invite Players</h2></div>
+
+		<form>
+			<input ng-model="userSearch" class="search" id="search" type="text" placeholder="Enter a Username">
+			<div style="clear:both;"></div>
+		</form>
+
+		<ul class="list-sets errors" ng-show="userNotFound==true">
+			<li class="orange-btn">
+				<div class="set-image">
+					<img ng-src="./img/no.png">
+				</div>
+				<h3>{{lastsearch}} was not found in the database</h3>
+			</li>
+			<li class="orange-btn">
+				<div class="set-image">
+				</div>
+				<h3>Dismiss</h3>
+			</li>
+		</ul>
+
+		<div class="header"><h2>Lobby</h2></div>
+
+		<ul class="list-sets">
+			<li ng-repeat="player in players | toArray" class="blue-btn">
+				<div class="set-image">
+					<img src="./img/person.png">
+				</div>
+				<h3>{{player.name}} - {{player.level}} : {{player.exp}} of 5 exp</h3>
+			</li>
+		</ul>
+
+	</section>
+
+	<section class="browse-section sets">
+
+		<div class="header"><h2>Cards <a ng-href="./#/mydecks/{{deckKey}}/comments">(View Comments)</a></h2></div>
+
+		<ul class="card-list-icon">
+
+			<li ng-repeat="card in currentCards | toArray">
+
+				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
+
+				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
+				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
+				<div class="panel">
+					<div>
+						<!-- <form name="amount-input">
+							<label style="color: #b7d5e2;">Amount</label>
+							<input ng-model="amount[$index]" type="text" class="icn-card">
+							<input ng-click="changeAmount($index, card.$key)" class="blue-btn" type="submit" value="Change">
+
+							<div style="clear:both;"></div>
+						</form> -->
+					</div>
+					<!-- <div class="card-amount">
+						<h1 class="amount">{{card.amount}}</h1>
+					</div> -->
+					<div style="clear: both;"></div>
+					<div class="card-info">
+						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
+						<h4>{{card.type}}</h4>
+
+						<p class="rules">{{card.text}}</p>
+						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
+						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
+					</div>
+				</div>
+
+				<div class="edit-panel">
+					<form>
+						<input ng-click="downAmount($index, card.$key)" class="stepper left" ng-disabled="card.amount<2" value="<" type="submit">
+						<span>{{card.amount}}</span>
+						<input ng-click="upAmount($index, card.$key)" class="stepper right" ng-disabled="card.amount>3 && card.name!='Relentless Rats' && card.name!='Shadowborn Apostle' && card.name!='Swamp' && card.name!='Island' && card.name!='Plains' && card.name!='Mountain' && card.name!='Forest'" value=">" type="submit">
+
+						<button ng-click="removeCard(card.$key)" class="delete">
+							<img src="img/cross.png">
+						</button>
+					</form>
+				</div>
+				
+			</li>
+			<div style="clear:both;"></div>
+		</ul>
+
+	</section>
+
+</section>
