@@ -2,16 +2,15 @@
 
 	<div>
 
-		<img src="img/logo.png">
+		<img class="float" width="50" height="50" src="img/logo.png">
 
-		<h1><a href="index.html">The Mana Pool</a></h1>
+		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
 		<nav>
-			<img src="img/menu.png">
-			<ul>
-				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
-				<li><a class="blue-btn active" href="./#/community">Community</a></li>
-				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
+			<ul class="row">
+				<li><a href="./#/mydecks">My Decks</a></li>
+				<li><a class="blue-btn" href="./#/community">Community</a></li>
+				<li><a href="./#/browse">Browse</a></li>
 				<li ng-show="currentUser.username"><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
@@ -20,29 +19,15 @@
 
 </header>
 
-<section class="main-content">
+<section class="wrapper">
 
-<h2 class="page-head"><a ng-href="./#/community">Community</a> > <a ng-href="./#/community/{{deckKey}}">{{currentDeck.name}} ({{currentDeck.status}})</a> > Comments</h2>
+<h2 class="page-head"><a ng-href="./#/community">Community</a> > <a ng-href="./#/community/{{deckKey}}">{{currentDeck.name}}</a> > Comments</h2>
 
-	<section class="deck-opts">
+	<section>
 
-		<div class="header"><h2>Deck Info</h2></div>
+		<div class="basic-header"><h2>Comments <a ng-hide="currentUser.id == currentDeck.id" ng-click="adding=true" ng-href="">(Add Comment)</a></h2></div>
 
-		<ul class="deck-opts-list">
-			<li>
-				<h3>Author: <a ng-href="./#/account">{{currentDeck.username}}</a></h3>
-				<p>{{currentDeck.description}}</p>
-			</li>
-			<div style="clear:both;"></div>
-		</ul>
-
-	</section>
-
-	<section class="browse-section comments">
-
-		<div class="header"><h2>Comments <a ng-hide="currentUser.id == currentDeck.id" ng-click="adding=true" ng-href="">(Add Comment)</a></h2></div>
-
-		<ul class="card-list-icon">
+		<ul class="medium-list">
 
 			<li class="commentForm" ng-show="adding">
 				<form name="commentForm">
@@ -56,19 +41,21 @@
 						<textarea ng-model="text" class="deck" id="text" name="text" required></textarea>
 					</div>
 
-					<input ng-click="addComment(); adding=false;" ng-disabled="commentForm.$invalid" class="submit" type="submit" value="Add Comment">
+					<input ng-click="addComment(); adding=false;" ng-disabled="commentForm.$invalid" class="blue-btn" type="submit" value="Add Comment">
 				</form>
 			</li>
 
 			<li class="comment" ng-repeat="comment in currentComments | toArray">
+
+				<div class="deletion">
+					<button ng-show="comment.id==currentUser.id" ng-click="deleteComment(comment.$key)" class="orange-btn">
+						Remove Comment
+					</button>
+				</div>
 				
 				<h3>{{comment.title}}</h3>
 				<h4>By: <a href="./#/account">{{comment.username}}</a></h4>
 				<p>{{comment.text}}</p>
-
-				<button ng-show="comment.id==currentUser.id" ng-click="deleteComment(comment.$key)" class="delete">
-					<img src="img/cross.png">
-				</button>
 
 				<ul class="reply-list">
 					<li ng-repeat="reply in comment.replies">
@@ -76,7 +63,7 @@
 					</li>
 				</ul>
 
-				<form name="replyForm[comment.$key]">
+				<form class="replyForm" name="replyForm[comment.$key]">
 					<input ng-model="replyValue[comment.$key]" class="deck" type="text" placeholder="Reply" required>
 					<input ng-click="addReply(comment.$key)" ng-disabled="replyForm[comment.$key].$invalid" type="submit" value="Add Reply" class="blue-btn">
 				</form>
