@@ -2,16 +2,15 @@
 
 	<div>
 
-		<img src="img/logo.png">
+		<img class="float" width="50" height="50" src="img/logo.png">
 
-		<h1><a href="index.html">The Mana Pool</a></h1>
+		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
 		<nav>
-			<img src="img/menu.png">
-			<ul>
-				<li><a class="blue-btn active" href="./#/mydecks">My Decks</a></li>
-				<li><a class="blue-btn" href="./#/community">Community</a></li>
-				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
+			<ul class="row">
+				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
+				<li><a href="./#/community">Community</a></li>
+				<li><a href="./#/browse">Browse</a></li>
 				<li><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
@@ -20,25 +19,25 @@
 
 </header>
 
-<section ng-hide="currentDeck.id == currentUser.id" class="main-content">
+<section ng-hide="currentDeck.id == currentUser.id" class="wrapper">
 
-	<h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> > {{currentDeck.name}} ({{currentDeck.status}})</h2>
+	<h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> > {{currentDeck.name}}</h2>
 
 	<section>
 
-		<div class="header"><h2>You do not own this deck <a ng-href="./#/community/{{deckKey}}">(View in Community)</a></h2></div>
+		<div class="basic-header"><h2>You do not own this deck <a ng-href="./#/community/{{deckKey}}">(View in Community)</a></h2></div>
 
 	</section>
 
 </section>
 
-<section ng-show="currentDeck.id == currentUser.id" class="main-content">
+<section ng-show="currentDeck.id == currentUser.id" class="wrapper">
 
 <h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> >  {{currentDeck.name}} ({{currentDeck.status}})</h2>
 
 	<section class="deck-opts">
 
-		<div class="header"><h2>Deck Options</h2></div>
+		<div class="basic-header"><h2>Deck Options</h2></div>
 
 		<ul class="deck-opts-list">
 			<li>
@@ -54,52 +53,45 @@
 						<textarea ng-change="changed=true" ng-model="currentDeck.description" id="description" name="description" maxlength="300" class="deck" required></textarea>
 					</div>
 
-					<input ng-show="changed" ng-click="editDeck(currentDeck); changed=false" class="blue-btn deck-edit" type="submit" value="Save Info">
+					<input ng-show="changed" ng-click="editDeck(currentDeck); changed=false" class="blue-btn" type="submit" value="Save Info">
 				</form>
-				<!-- <div class="deck-meta-data">
-					<h3>Deck Info</h3>
-					<h4>Mana Balance: </h4>
-					<h4>Land: </h4>
-					<h4>Instants: </h4>
-					<h4>Sorceries: </h4>
-					<h4>Creatures: </h4>
-					<h4>Artifacts: </h4>
-					<h4>Enchantments: </h4>
-				</div> -->
 			</li>
 			<li style="margin-top: 20px;">
-				<div class="header"><h2>Status - ({{currentDeck.status}})</h2></div>
-				<ul class="list-decks">
+				<div class="basic-header"><h2>Status - ({{currentDeck.status}})</h2></div>
+				<ul class="small-list">
 					<li ng-click="setStatus('tuning', 'Fine-Tuning')" class="blue-btn">
-						<div class="set-image">
-							<img src="./img/tuning.png">
-						</div>
-						<h3>Fine-Tuning</h3>
+						<a href="">
+							<img class="status-image float" src="./img/tuning.png">
+							<h3 class="float">Fine-Tuning</h3>
+							<div class="clear"></div>
+						</a>
 					</li>
 					<li ng-click="setStatus('help', 'Need Help')" class="blue-btn">
-						<div class="set-image">
-							<img src="./img/help.png">
-						</div>
-						<h3>Need Help</h3>
+						<a href="">
+							<img class="status-image float" src="./img/help.png">
+							<h3 class="float">Need Help</h3>
+							<div class="clear"></div>
+						</a>
 					</li>
 					<li ng-click="setStatus('check', 'Finished')" class="blue-btn">
-						<div class="set-image">
-							<img src="./img/check.png">
-						</div>
-						<h3>Finished</h3>
+						<a href="">
+							<img class="status-image float" src="./img/check.png">
+							<h3 class="float">Finished</h3>
+							<div class="clear"></div>
+						</a>
 					</li>
 				</ul>
 			</li>
-			<li>
-				<button ng-hide="clicked" ng-click="clicked=true" class="orange-btn deck-edit">Delete Deck</button>
-				<button ng-show="clicked" ng-click="clicked=false" class="blue-btn deck-edit">No</button>
-				<button ng-show="clicked" ng-click="deleteDeck()" class="orange-btn deck-edit">Are you sure?</button>
+			<li class="deletion">
+				<button ng-hide="clicked" ng-click="clicked=true" class="orange-btn">Delete Deck</button>
+				<button ng-show="clicked" ng-click="clicked=false" class="blue-btn">No</button>
+				<button ng-show="clicked" ng-click="deleteDeck()" class="orange-btn">There's no going back!</button>
 			</li>
-			<li>
-				<div class="header"><h2>Test</h2></div>
-				<ul class="list-decks">
+			<!-- <li>
+				<div class="basic-header"><h2>Test</h2></div>
+				<ul class="small-list">
 					<li class="blue-btn">
-						<a ng-href="./#test">
+						<a ng-href="./#/test">
 							<div class="set-image">
 								<img src="./img/cards-icon.png">
 							</div>
@@ -107,60 +99,108 @@
 						</a>
 					</li>
 				</ul>
+			</li> -->
+			<div style="clear:both;"></div>
+		</ul>
+
+	</section>
+
+	<section>
+
+		<div class="basic-header"><h2>{{totalCards}} Cards</h2></div>
+
+		<ul class="card-list-icon">
+
+			<li ng-repeat="card in currentCards | toArray">
+
+				<label class="toggler-label" for="toggle-{{card.$key}}">
+					<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
+				</label>
+				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
+				<div class="panel">
+					<div class="card-info">
+						<h2><a ng-href="http://gatherer.wizards.com/Pages/Card/Discussion.aspx?multiverseid={{card.multiverseid}}" target="_blank">{{card.name}}</a> {{card.manaCost}} ({{card.cmc}})</h2>
+						<h4>{{card.type}}</h4>
+
+						<p class="rules">{{card.text}}</p>
+						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
+						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
+
+						<div class="clear"></div>
+
+						<button ng-show="card.multiverseid != currentDeck.img" ng-animate="'box'" ng-click="setDeckImage(card.multiverseid)" class="opts blue-btn">
+							Use as Deck Image
+						</button>
+
+						<button ng-click="removeCard(card.$key)" class="opts orange-btn">
+							Remove Card
+						</button>
+
+						<label for="toggle-{{card.$key}}" class="opts orange-btn">Close</label>
+					</div>
+				</div>
+
+				<div class="edit-panel">
+					<form>
+						<input ng-click="downAmount(card.$key)" class="stepper left blue-btn" ng-disabled="card.amount<2" value="<" type="submit">
+						<span>{{card.amount}}</span>
+						<input ng-click="upAmount(card.$key)" class="stepper right blue-btn" ng-disabled="card.amount>3 && card.name!='Relentless Rats' && card.name!='Shadowborn Apostle' && card.name!='Swamp' && card.name!='Island' && card.name!='Plains' && card.name!='Mountain' && card.name!='Forest'" value=">" type="submit">
+					</form>
+				</div>
+				
 			</li>
 			<div style="clear:both;"></div>
 		</ul>
 
 	</section>
 
-	<section class="browse-section sets">
+	<section>
 
-		<div class="header"><h2>{{}} Cards <a ng-href="./#/mydecks/{{deckKey}}/comments">(View Comments)</a></h2></div>
+		<div class="basic-header"><h2>{{(currentComments|toArray).length}} Comments <a ng-href="./#/mydecks/{{deckKey}}/comments">(View Only Comments)</a></h2></div>
 
-		<ul class="card-list-icon">
+		<ul class="medium-list">
 
-			<li ng-repeat="card in currentCards | toArray">
-
-				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
-
-				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
-				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
-				<div class="panel">
-					<div>
-						<!-- <form name="amount-input">
-							<label style="color: #b7d5e2;">Amount</label>
-							<input ng-model="amount[$index]" type="text" class="icn-card">
-							<input ng-click="changeAmount($index, card.$key)" class="blue-btn" type="submit" value="Change">
-
-							<div style="clear:both;"></div>
-						</form> -->
+			<li class="commentForm" ng-show="adding">
+				<form name="commentForm">
+					<div class="input-group">
+						<label for="title">Title</label>
+						<input ng-model="title" class="deck" id="title" name="title" type="text" required>
 					</div>
-					<!-- <div class="card-amount">
-						<h1 class="amount">{{card.amount}}</h1>
-					</div> -->
-					<div style="clear: both;"></div>
-					<div class="card-info">
-						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
-						<h4>{{card.type}}</h4>
 
-						<p class="rules">{{card.text}}</p>
-						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
-						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
+					<div class="input-group">
+						<label for="text">Text</label>
+						<textarea ng-model="text" class="deck" id="text" name="text" required></textarea>
 					</div>
-				</div>
 
-				<div class="edit-panel">
-					<form>
-						<input ng-click="downAmount(card.$key)" class="stepper left" ng-disabled="card.amount<2" value="<" type="submit">
-						<span>{{card.amount}}</span>
-						<input ng-click="upAmount(card.$key)" class="stepper right" ng-disabled="card.amount>3 && card.name!='Relentless Rats' && card.name!='Shadowborn Apostle' && card.name!='Swamp' && card.name!='Island' && card.name!='Plains' && card.name!='Mountain' && card.name!='Forest'" value=">" type="submit">
+					<input ng-click="addComment(); adding=false;" ng-disabled="commentForm.$invalid" class="blue-btn" type="submit" value="Add Comment">
+				</form>
+			</li>
 
-						<button ng-click="removeCard(card.$key)" class="delete">
-							<img src="img/cross.png">
-						</button>
-					</form>
-				</div>
+			<li class="comment" ng-repeat="comment in currentComments | toArray">
 				
+				<h3>{{comment.title}}</h3>
+				<h4>By: <a href="./#/account">{{comment.username}}</a></h4>
+				<p>{{comment.text}}</p>
+
+				<button ng-show="comment.id==currentUser.id" ng-click="deleteComment(comment.$key)" class="delete">
+					Remove
+				</button>
+
+				<ul class="reply-list">
+					<li ng-repeat="reply in comment.replies">
+						<p><a href="">{{reply.username}}</a>: {{reply.text}}</p>
+					</li>
+				</ul>
+
+				<form name="replyForm[comment.$key]">
+					<input ng-model="replyValue[comment.$key]" class="deck" type="text" placeholder="Reply" required>
+					<input ng-click="addReply(comment.$key)" ng-disabled="replyForm[comment.$key].$invalid" type="submit" value="Add Reply" class="blue-btn">
+				</form>
+				<div style="clear:both;"></div>
+				
+			</li>
+			<li ng-show="(currentComments|toArray).length==0">
+				<h3>No comments</h3>
 			</li>
 			<div style="clear:both;"></div>
 		</ul>
