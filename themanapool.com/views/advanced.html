@@ -2,16 +2,15 @@
 
 	<div>
 
-		<img src="img/logo.png">
+		<img class="float" width="50" height="50" src="img/logo.png">
 
-		<h1><a href="index.html">The Mana Pool</a></h1>
+		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
 		<nav>
-			<img src="img/menu.png">
-			<ul>
-				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
-				<li><a class="blue-btn" href="./#/community">Community</a></li>
-				<li><a class="blue-btn active" ng-href="./#/browse">Browse</a></li>
+			<ul class="row">
+				<li><a href="./#/mydecks">My Decks</a></li>
+				<li><a href="./#/community">Community</a></li>
+				<li><a class="blue-btn" ng-href="./#/browse">Browse</a></li>
 				<li ng-show="currentUser.username"><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
@@ -20,13 +19,13 @@
 
 </header>
 
-<section class="main-content">
+<section class="wrapper">
 
 <h2 class="page-head"><a ng-href="./#/browse">Browse</a> > Advanced</h2>
 
-	<section class="advanced-search">
+	<section class="advanced-search-left">
 
-	<label class="blue-btn header" for="criteria">Advanced Search</label>
+	<div class="basic-header"><label for="criteria">Advanced Search</label></div>
 	<input id="criteria" type="checkbox" class="toggle">
 
 		<ul class="advanced-inputs">
@@ -123,46 +122,58 @@
 
 	</section>
 
-	<section class="decks">
+	<section class="results-large">
 
-		<div class="header"><h2>Choose Deck - <a ng-href="./#/mydecks/{{deckKey}}">{{currentDeck.name}}</a></h2></div>
-
-		<form>
-			<input ng-model="deckSearch" class="search" id="search" type="text" placeholder="Filter Decks">
-			<div style="clear:both;"></div>
-		</form>
-
-		<ul class="list-decks">
-			<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict | limitTo:5" ng-click="setCurrentDeck(deck.$key)" class="blue-btn">
-				<div class="set-image">
-					<img ng-src="./img/{{deck.statusid}}.png">
-				</div>
-				<h3>{{deck.name}} - {{deck.status}}</h3>
-			</li>
-		</ul>
-	</section>
-
-	<section class="results">
-
-		<div class="header">
-			<h2>Search Results - Notice: cards may take a while to render</h2>
-		</div>
-
-		<!-- <ul>
-			<li ng-repeat="color in search.colors">
-				{{color}}
-			</li>
-		</ul> -->
+		<div class="basic-header"><h2>Search Results - Notice: cards may take a while to render <a ng-hide="expanded" ng-click="setLimit = 500; expanded = true;" href="">(Expand)</a></h2></div>
 
 		<ul class="results-list-advanced result-list" style="min-height:60px;">
-			<li ng-show="(set.cards|toArray|filter:search).length" ng-repeat="set in allSetsResults | toArray | limitTo:setLimit">
-				<div class="header"><h2>Results in {{set.name}} ({{(set.cards|toArray|filter:search).length}}) <a ng-href="./#/browse/sets/{{set.code}}">(View Set)</a></h2></div>
+			<li ng-repeat="set in initWatch(allSetsResults) | toArray | limitTo:setLimit">
 				<ul style="background: none" class="card-list-icon">
-					<li ng-repeat="card in set.cards | toArray | filter:search | limitTo:4">
+					<div class="basic-header"><h2>Results in {{set.name}} ({{(set.cards|toArray|filter:search).length}}) <a ng-href="./#/browse/sets/{{set.code}}">(View Set)</a></h2></div>
 
-						<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
+					<li ng-repeat="card in set.cards | toArray | filter:search | limitTo:6">
 
-						<label class="toggler-label blue-btn" for="toggle-{{set.$key}}-{{card.$key}}">{{card.name}} Info</label>
+						<label class="toggler-label" for="toggle-{{set.$key}}-{{card.$key}}"><img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card"></label>
+						<input id="toggle-{{set.$key}}-{{card.$key}}" class="toggle" type="checkbox">
+						<div class="panel">
+							<div class="card-info">
+								<h2><a ng-href="http://gatherer.wizards.com/Pages/Card/Discussion.aspx?multiverseid={{card.multiverseid}}" target="_blank">{{card.name}}</a> {{card.manaCost}} ({{card.cmc}})</h2>
+								<h4>{{card.type}}</h4>
+
+								<p class="rules">{{card.text}}</p>
+								<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
+								<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
+
+								<div class="clear"></div>
+
+								<label for="toggle-{{set.$key}}-{{card.$key}}" class="opts orange-btn">Close</label>
+							</div>
+						</div>
+					</li>
+					<div style="clear:both;"></div>
+				</ul>
+			</li>
+			<li ng-show="setLimit < (allSetsResults|toArray).length" ng-click="setLimit = setLimit + 10;">
+				<button class="blue-btn show-more">
+					Show {{setLimit+1}} - {{setLimit+11}} of {{(allSetsResults|toArray).length}}
+				</button>
+			</li>
+		</ul>
+
+	</section>
+
+	<!-- <section class="results-mini">
+
+		<div class="basic-header"><h2>Search Results - Notice: cards may take a while to render</h2></div>
+
+		<ul class="results-list-advanced result-list" style="min-height:60px;">
+			<li ng-repeat="set in initWatch(allSetsResults) | toArray | limitTo:setLimit">
+				<ul style="background: none" class="card-list-icon">
+					<div class="basic-header"><h2>Results in {{set.name}} ({{(set.cards|toArray|filter:search).length}}) <a ng-href="./#/browse/sets/{{set.code}}">(View Set)</a></h2></div>
+
+					<li ng-repeat="card in set.cards | toArray | filter:search | limitTo:6">
+
+						<label class="toggler-label" for="toggle-{{set.$key}}-{{card.$key}}"><img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card"></label>
 						<input id="toggle-{{set.$key}}-{{card.$key}}" class="toggle" type="checkbox">
 						<div class="panel">
 							<div class="card-info">
@@ -172,16 +183,20 @@
 								<p class="rules">{{card.text}}</p>
 								<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
 								<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
+
+								<div class="clear"></div>
+
+								<label for="toggle-{{set.$key}}-{{card.$key}}" class="opts orange-btn">Close</label>
 							</div>
 						</div>
 					</li>
 					<div style="clear:both;"></div>
 				</ul>
 			</li>
-			<li ng-show="setLimit < (allSetsResults|toArray).length" ng-click="setLimit = setLimit + 10;" class="blue-btn pagination">See 10 more of {{(allSetsResults|toArray).length}}</li>
+			<li ng-show="setLimit < (allSetsResults|toArray).length" ng-click="setLimit = setLimit + 10;" class="blue-btn pagination">Show {{setLimit}} - {{setLimit+10}} {{(allSetsResults|toArray).length}}</li>
 		</ul>
 
-	</section>
+	</section> -->
 
 	<div style="clear: both;"></div>
 
