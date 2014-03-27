@@ -2,16 +2,15 @@
 
 	<div>
 
-		<img src="img/logo.png">
+		<img class="float" width="50" height="50" src="img/logo.png">
 
-		<h1><a href="index.html">The Mana Pool</a></h1>
+		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
 		<nav>
-			<img src="img/menu.png">
-			<ul>
-				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
-				<li><a class="blue-btn" href="./#/community">Community</a></li>
-				<li><a class="blue-btn active" href="./#/browse">Browse</a></li>
+			<ul class="row">
+				<li><a href="./#/mydecks">My Decks</a></li>
+				<li><a href="./#/community">Community</a></li>
+				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
 				<li ng-show="currentUser.username"><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
@@ -20,14 +19,14 @@
 
 </header>
 
-<section class="main-content">
+<section class="wrapper">
 
 <h2 class="page-head"><a ng-href="./#/browse">Browse</a> > <a ng-href="./#/browse/sets">Sets</a> > {{currentSet.name}}</h2>
 
-<section class="advanced-search">
+<section class="advanced-search-left">
 
-<label class="blue-btn header" for="criteria">Advanced Search</label>
-<input id="criteria" type="checkbox" class="toggle">
+<div class="basic-header"><label for="criteria1">Advanced Search (+)</label></div>
+<input id="criteria1" type="checkbox" class="toggle">
 
 	<ul class="advanced-inputs">
 		<li>
@@ -123,45 +122,57 @@
 
 </section>
 
-<section class="decks">
+<section ng-show="currentUser" class="decks">
 
-	<div class="header"><h2>Choose Deck - <a ng-href="./#/mydecks/{{deckKey}}">{{currentDeck.name}}</a></h2></div>
+	<div class="basic-header"><h2>Choose Deck - <a ng-href="./#/mydecks/{{deckKey}}">{{currentDeck.name}}</a></h2></div>
 
 	<form>
 		<input ng-model="deckSearch" class="search" id="search" type="text" placeholder="Filter Decks">
 		<div style="clear:both;"></div>
 	</form>
 
-	<ul class="list-decks">
-		<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict | limitTo:5" ng-click="setCurrentDeck(deck.$key)" class="blue-btn">
-			<div class="set-image">
-				<img ng-src="./img/{{deck.statusid}}.png">
-			</div>
-			<h3>{{deck.name}} - {{deck.status}}</h3>
+	<ul class="small-list">
+		<li ng-repeat="deck in decks | toArray | filter:deckSearch | filter:userFilter:strict | limitTo:5" ng-click="setCurrentDeck(deck.$key)">
+			<a href="">
+				<img class="status-image float" ng-src="./img/{{deck.statusid}}.png">
+				<h3 class="float">{{deck.name}}</h3>
+				<div class="clear"></div>
+			</a>
 		</li>
 	</ul>
 </section>
 
 	<section class="browse-section sets">
 
-		<div class="header"><h2>{{currentSet.name}} - {{currentSet.releaseDate}} - {{(setCards|toArray|filter:search).length}} cards displayed</h2></div>
+		<div class="basic-header"><h2>{{currentSet.name}} - {{currentSet.releaseDate}} - {{(setCards|toArray|filter:search).length}} results <a ng-hide="expanded" ng-click="cardLimit = 500; expanded = true;" href="">(Expand)</a></h2></div>
 
 		<ul class="card-list-icon">
 
 			<li ng-repeat="card in setCards | toArray | filter:search | limitTo:cardLimit">
 
-				<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
-
-				<label class="toggler-label blue-btn" for="toggle-{{card.$key}}">{{card.name}} Info</label>
+				<label class="toggler-label" for="toggle-{{card.$key}}">
+					<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{card.multiverseid}}&type=card">
+				</label>
 				<input id="toggle-{{card.$key}}" class="toggle" type="checkbox">
 				<div class="panel">
 					<div class="card-info">
-						<h2>{{card.name}} {{card.manaCost}} ({{card.cmc}})</h2>
+
+						<h2><a ng-href="http://gatherer.wizards.com/Pages/Card/Discussion.aspx?multiverseid={{card.multiverseid}}" target="_blank">{{card.name}}</a> {{card.manaCost}} ({{card.cmc}})</h2>
 						<h4>{{card.type}}</h4>
 
 						<p class="rules">{{card.text}}</p>
 						<p class="flavor" ng-show="card.flavor">{{card.flavor}}</p>
 						<h2 class="pow-tuf" ng-show="card.toughness || card.power">{{card.power}}/{{card.toughness}}</h2>
+
+						<div class="clear"></div>
+
+						<button ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-click="removeCard((currentDeck.cards|toArray|filter:card.multiverseid)[0].$key)" class="opts orange-btn">
+							Remove Card
+						</button>
+
+						<label for="toggle-{{card.$key}}" class="opts orange-btn">Close</label>
+
+						<div class="clear"></div>
 					</div>
 				</div>
 
@@ -171,23 +182,29 @@
 
 				<div ng-show="deckSelected" class="edit-panel">
 					<form>
-						<input ng-click="downAmount((currentDeck.cards|toArray|filter:card.multiverseid)[0].$key)" ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-disabled="(currentDeck.cards|toArray|filter:card.multiverseid)[0].amount < 2 || !(currentDeck.cards|toArray|filter:card.multiverseid).length" class="stepper left" value="<" type="submit">
-						<input ng-hide="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-disabled="true" class="stepper left" value="<">
-						<span ng-hide="(currentDeck.cards|toArray|filter:card.multiverseid).length">N/A</span>
+						<input ng-click="downAmount((currentDeck.cards|toArray|filter:card.multiverseid)[0].$key)" ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-disabled="(currentDeck.cards|toArray|filter:card.multiverseid)[0].amount < 2 || !(currentDeck.cards|toArray|filter:card.multiverseid).length" class="stepper left blue-btn" value="<" type="submit">
+
+						<input ng-hide="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-disabled="true" class="stepper left blue-btn" value="<">
+
+						<span ng-hide="(currentDeck.cards|toArray|filter:card.multiverseid).length">-</span>
+
 						<span ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length">{{(currentDeck.cards|toArray|filter:card.multiverseid)[0].amount}}</span>
-						<input ng-hide="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-click="addToCurrentDeck(card)" class="stepper right" value="Add" type="submit">
-						<input ng-click="upAmount((currentDeck.cards|toArray|filter:card.multiverseid)[0].$key)" ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-disabled="(currentDeck.cards|toArray|filter:card.multiverseid)[0].amount > 3 && card.name!='Relentless Rats' && card.name!='Shadowborn Apostle' && card.name!='Swamp' && card.name!='Island' && card.name!='Plains' && card.name!='Mountain' && card.name!='Forest'" class="stepper right" value=">" type="submit">
 
+						<input ng-hide="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-click="addToCurrentDeck(card)" class="stepper right blue-btn" value="Add" type="submit">
 
-
-						<button ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-click="removeCard((currentDeck.cards|toArray|filter:card.multiverseid)[0].$key)" class="delete">
-							<img src="img/cross.png">
-						</button>
+						<input ng-click="upAmount((currentDeck.cards|toArray|filter:card.multiverseid)[0].$key)" ng-show="(currentDeck.cards|toArray|filter:card.multiverseid).length" ng-disabled="(currentDeck.cards|toArray|filter:card.multiverseid)[0].amount > 3 && card.name!='Relentless Rats' && card.name!='Shadowborn Apostle' && card.name!='Swamp' && card.name!='Island' && card.name!='Plains' && card.name!='Mountain' && card.name!='Forest'" class="stepper right blue-btn" value=">" type="submit">
 					</form>
 				</div>
 				
 			</li>
-			<li ng-show="cardLimit < (setCards|toArray|filter:search).length" ng-click="cardLimit = cardLimit + 20;" class="blue-btn pagination">See 20 more of {{(setCards|toArray|filter:search).length}}</li>
+			<li ng-show="cardLimit < (setCards|toArray|filter:search).length" ng-click="cardLimit = cardLimit + 20;" class="pagination">
+				<div>
+					<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=74252&type=card">
+					<button class="blue-btn">
+						Show {{cardLimit}} - {{cardLimit+20}} of {{(setCards|toArray).length}}
+					</button>
+				</div>
+			</li>
 			<div style="clear:both"></div>
 		</ul>
 

@@ -2,16 +2,15 @@
 
 	<div>
 
-		<img src="img/logo.png">
+		<img class="float" width="50" height="50" src="img/logo.png">
 
-		<h1><a href="index.html">The Mana Pool</a></h1>
+		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
 		<nav>
-			<img src="img/menu.png">
-			<ul>
-				<li><a class="blue-btn active" href="./#/mydecks">My Decks</a></li>
-				<li><a class="blue-btn" href="./#/community">Community</a></li>
-				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
+			<ul class="row">
+				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
+				<li><a href="./#/community">Community</a></li>
+				<li><a href="./#/browse">Browse</a></li>
 				<li ng-show="currentUser.username"><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
@@ -20,29 +19,7 @@
 
 </header>
 
-<!--<section class="colors">
-
-	<ul>
-		<li>
-			<button id="white" type="checkbox" checked></button>
-		</li>
-		<li>
-			<input id="blue" type="checkbox" checked>
-		</li>
-		<li>
-			<input id="black" type="checkbox" checked>
-		</li>
-		<li>
-			<input id="red" type="checkbox" checked>
-		</li>
-		<li>
-			<input id="green" type="checkbox" checked>
-		</li>
-	</ul>
-	
-</section>-->
-
-<section class="main-content">
+<section class="wrapper">
 
 <h2 class="page-head">My Decks</h2>
 
@@ -52,7 +29,7 @@
 
 	<section ng-hide="currentUser" class="user-info">
 
-		<div class="header"><h2>Not Signed in <a ng-href="./#/">(Sign In)</a></h2></div>
+		<div class="basic-header"><h2>Not Signed in <a ng-href="./#/">(Sign In)</a></h2></div>
 
 		<p class="body-text">To create your own decks, you must first have an account created. <a ng-href="./#/">Create one</a>, it takes almost no time at all!</p>
 
@@ -67,7 +44,7 @@
 				<h1>[ + ]</h1>
 			</li>
 			<li ng-show="clicked" class="deck-form">
-				<form name="deckForm">
+				<form class="deckForm" name="deckForm">
 
 					<div>
 						<h2>Create New Deck</h2>
@@ -95,22 +72,14 @@
 
 				<h2><a ng-href="./#/mydecks/{{deck.$key}}">{{deck.name}}</a></h2>
 
-				<canvas class="color-balance"></canvas>
-
 				<div class="deck-image">
-					<img ng-src="img/{{deck.img}}">
+					<img ng-src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid={{deck.img}}&type=card">
 				</div>
 
 				<div class="meta-data">
-					<img ng-src="img/{{deck.statusid}}.png">
+					<img class="float" ng-src="img/{{deck.statusid}}.png">
 
-					<h3>{{deck.status}}</h3>
-
-					<a ng-show="(deck.comments|toArray).length" href="./#/mydecks/{{deck.$key}}/comments" class="notification-cont">
-						<span class="comment-badge">{{(deck.comments|toArray).length}}</span>
-
-						<span class="comment-label">Comments</span>
-					</a>
+					<h3 class="float">{{deck.status}} <a ng-show="(deck.comments|toArray).length" ng-href="./#/mydecks/{{deck.$key}}/comments">({{(deck.comments|toArray).length}} Comments)</a></h3>
 				</div>
 
 				<div class="deck-info">

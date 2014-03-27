@@ -2,16 +2,15 @@
 
 	<div>
 
-		<img src="img/logo.png">
+		<img class="float" width="50" height="50" src="img/logo.png">
 
-		<h1><a href="index.html">The Mana Pool</a></h1>
+		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
 		<nav>
-			<img src="img/menu.png">
-			<ul>
-				<li><a class="blue-btn active" href="./#/mydecks">My Decks</a></li>
-				<li><a class="blue-btn" href="./#/community">Community</a></li>
-				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
+			<ul class="row">
+				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
+				<li><a href="./#/community">Community</a></li>
+				<li><a href="./#/browse">Browse</a></li>
 				<li><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
@@ -20,79 +19,15 @@
 
 </header>
 
-<section class="main-content">
+<section class="wrapper">
 
 <h2 class="page-head"><a ng-href="./#/mydecks">My Decks</a> > <a ng-href="./#/mydecks/{{deckKey}}">{{currentDeck.name}}</a> > Comments</h2>
 
-	<section class="deck-opts">
+	<section class="comments">
 
-		<div class="header"><h2>Deck Options</h2></div>
+		<div class="basic-header"><h2>Comments</h2></div>
 
-		<ul class="deck-opts-list">
-			<li>
-				<form name="deckForm">
-
-					<div class="input-group">
-						<label for="name">Name</label>
-						<input ng-change="changed=true" ng-model="currentDeck.name" id="name" name="name" type="text" class="deck" required>
-					</div>
-
-					<div class="input-group">
-						<label for="description">Description</label>
-						<textarea ng-change="changed=true" ng-model="currentDeck.description" id="description" name="description" maxlength="300" class="deck" required></textarea>
-					</div>
-
-					<input ng-show="changed" ng-click="editDeck(currentDeck); changed=false" class="blue-btn deck-edit" type="submit" value="Save Info">
-				</form>
-				<!-- <div class="deck-meta-data">
-					<h3>Deck Info</h3>
-					<h4>Mana Balance: </h4>
-					<h4>Land: </h4>
-					<h4>Instants: </h4>
-					<h4>Sorceries: </h4>
-					<h4>Creatures: </h4>
-					<h4>Artifacts: </h4>
-					<h4>Enchantments: </h4>
-				</div> -->
-			</li>
-			<li style="margin-top: 20px;">
-				<div class="header"><h2>Status - ({{currentDeck.status}})</h2></div>
-				<ul class="list-decks">
-					<li ng-click="setStatus('tuning', 'Fine-Tuning')" class="blue-btn">
-						<div class="set-image">
-							<img src="./img/tuning.png">
-						</div>
-						<h3>Fine-Tuning</h3>
-					</li>
-					<li ng-click="setStatus('help', 'Need Help')" class="blue-btn">
-						<div class="set-image">
-							<img src="./img/help.png">
-						</div>
-						<h3>Need Help</h3>
-					</li>
-					<li ng-click="setStatus('check', 'Finished')" class="blue-btn">
-						<div class="set-image">
-							<img src="./img/check.png">
-						</div>
-						<h3>Finished</h3>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<button ng-hide="clicked" ng-click="clicked=true" class="orange-btn deck-edit">Delete Deck</button>
-				<button ng-show="clicked" ng-click="clicked=false" class="blue-btn deck-edit">No</button>
-				<button ng-show="clicked" ng-click="deleteDeck()" class="orange-btn deck-edit">Are you sure?</button>
-			</li>
-			<div style="clear:both;"></div>
-		</ul>
-
-	</section>
-
-	<section class="browse-section comments">
-
-		<div class="header"><h2>Comments</h2></div>
-
-		<ul class="card-list-icon">
+		<ul class="medium-list">
 
 			<li class="comment" ng-repeat="comment in currentComments | toArray">
 				

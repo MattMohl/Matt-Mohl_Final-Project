@@ -2,16 +2,15 @@
 
 	<div>
 
-		<img src="img/logo.png">
+		<img class="float" width="50" height="50" src="img/logo.png">
 
-		<h1><a href="index.html">The Mana Pool</a></h1>
+		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
 		<nav>
-			<img src="img/menu.png">
-			<ul>
-				<li><a class="blue-btn" href="./#/mydecks">My Decks</a></li>
-				<li><a class="blue-btn" href="./#/community">Community</a></li>
-				<li><a class="blue-btn active" href="./#/browse">Browse</a></li>
+			<ul class="row">
+				<li><a href="./#/mydecks">My Decks</a></li>
+				<li><a href="./#/community">Community</a></li>
+				<li><a class="blue-btn" href="./#/browse">Browse</a></li>
 				<li ng-show="currentUser.username"><a class="orange-btn" href="./#/account">{{currentUser.username}}</a></li>
 			</ul>
 		</nav>
@@ -20,26 +19,25 @@
 
 </header>
 
-<section class="main-content">
+<section class="wrapper">
 
 <h2 class="page-head"><a ng-href="./#/browse">Browse</a> > Sets</h2>
 
-<form>
-	<input ng-model="setSearch" class="search" id="search" type="text" placeholder="Filter Sets">
-	<div style="clear:both;"></div>
-</form>
-
 	<section class="browse-section sets">
 
-		<div class="header"><h2>All MTG Sets</h2></div>
+		<div class="basic-header"><h2>All MTG Sets</h2></div>
 
-		<ul class="list-sets">
-			<li ng-repeat="set in allSets | toArray | filter:setSearch | orderBy:'releaseDate':true" class="blue-btn">
+		<form>
+			<input ng-model="setSearch" class="search icn-card" id="search" type="text" placeholder="Filter Sets">
+			<div style="clear:both;"></div>
+		</form>
+
+		<ul class="small-list">
+			<li ng-repeat="set in allSets | toArray | filter:setSearch | orderBy:'releaseDate':true">
 				<a ng-href="./#/browse/sets/{{set.code}}">
-				<div class="set-image">
-					<img ng-src="./img/sets/{{set.code}}.jpeg">
-				</div>
-				<h3>{{set.name}}</h3>
+					<img class="set-image float" ng-src="./img/sets/{{set.code}}.jpeg">
+					<h3 class="float">{{set.name}}</h3>
+					<div class="clear"></div>
 				</a>
 			</li>
 		</ul>
