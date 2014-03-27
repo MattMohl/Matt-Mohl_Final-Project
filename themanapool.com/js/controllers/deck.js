@@ -1,5 +1,5 @@
-themanapool.controller('deck', ['$route', 'toArrayFilter', '$rootScope', '$scope', '$firebase', '$location', 'UserService', 'BrowseService',
-	function($route, toArrayFilter, $rootScope, $scope, $firebase, $location, userService, browseService) {
+themanapool.controller('deck', ['$route', '$filter', '$rootScope', '$scope', '$firebase', '$location', 'UserService', 'BrowseService',
+	function($route, $filter, $rootScope, $scope, $firebase, $location, userService, browseService) {
 
 		console.log('CONTROLLER::deck');
 
@@ -28,20 +28,23 @@ themanapool.controller('deck', ['$route', 'toArrayFilter', '$rootScope', '$scope
 		$scope.replying = {};
 		$scope.replyValue = {};
 
-		// Instantiate models for testing logic
-		if($location.path() == '/test') {
-			
-		}
-
 		// Get deck key
 		$rootScope.deckKey = $route.current.params.key;
 		console.log($rootScope.deckKey);
 		$scope.currentDeck = userService.getDeck($rootScope.deckKey);
 		$scope.currentCards = userService.getDeckCards($rootScope.deckKey);
-		angular.forEach($scope.currentCards, function(value, key) {
-			console.log(value, key);
+		$scope.$watchCollection('currentCards', function() {
+			$scope.totalCards = $scope.countCards($filter('toArray')($scope.currentCards));
 		});
 		$scope.currentComments = userService.getDeckComments($rootScope.deckKey);
+
+		$scope.countCards = function(cards) {
+			var total = 0;
+			for (var i = cards.length - 1; i >= 0; i--) {
+				total += cards[i].amount;
+			};
+			return total;
+		}
 
 		$scope.setStatus = function(statusid, status) {
 			userService.updateStatus(statusid, status, $rootScope.deckKey);
@@ -68,6 +71,11 @@ themanapool.controller('deck', ['$route', 'toArrayFilter', '$rootScope', '$scope
 		$scope.editDeck = function(info) {
 			console.log(info.name, info.description);
 			userService.editDeck($rootScope.deckKey, info);
+		}
+
+		$scope.setDeckImage = function(multiverseid) {
+			console.log('set image');
+			userService.setImage($rootScope.deckKey, multiverseid);
 		}
 
 		$scope.addComment = function() {
