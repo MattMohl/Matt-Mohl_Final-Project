@@ -27,6 +27,11 @@ themanapool.factory('UserService', ['$firebase',
 				var comments = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/comments');
 				return $firebase(comments);
 			},
+			setImage: function(deckKey, multiverseid) {
+				console.log(deckKey, multiverseid);
+				var deck = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey);
+				deck.update({img: multiverseid});
+			},
 			addComment: function(comment, deckKey) {
 				var comments = new Firebase('https://manapool.firebaseio.com/decks/'+deckKey+'/comments');
 				comments.push(comment);
