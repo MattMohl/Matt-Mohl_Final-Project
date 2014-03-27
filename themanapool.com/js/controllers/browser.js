@@ -1,5 +1,5 @@
-themanapool.controller('browser', ['$route', '$rootScope', '$scope', '$firebase', '$location', 'UserService', 'BrowseService',
-	function($route, $rootScope, $scope, $firebase, $location, userService, browseService) {
+themanapool.controller('browser', ['$route', '$rootScope', '$scope', '$firebase', '$location', '$filter', 'UserService', 'BrowseService',
+	function($route, $rootScope, $scope, $firebase, $location, $filter, userService, browseService) {
 
 		console.log('CONTROLLER::browser');
 
@@ -21,6 +21,31 @@ themanapool.controller('browser', ['$route', '$rootScope', '$scope', '$firebase'
 			$rootScope.search = {};
 			$rootScope.allSetsResults = browseService.getSetsLarge(2000);
 		}
+
+		// $scope.$watchCollection('allSetsResults', function(newThing, oldThing) {
+  //       	// $scope.dataCount = newNames.length;
+  //       	console.log($filter('toArray')(newThing).length);
+  //       });
+
+		$scope.initWatch = function(setsRef) {
+			var len = $filter('toArray')(setsRef).length;
+			console.log(len);
+			return setsRef;
+		}
+
+		$scope.filterSets = function(sets) {
+			console.log(sets.length);
+			for (var i = sets.length - 1; i >= 0; i--) {
+				console.log($filter('toArray')(sets[i].cards).length);
+			};
+			return sets;
+		}
+
+        $scope.filterCards = function(cards) {
+        	console.log(cards.length);
+        	// angular.forEach(cards)
+        	return cards;
+        }
 
 		$scope.setCurrentDeck = function(deckKey) {
 			console.log(deckKey);
