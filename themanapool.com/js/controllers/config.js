@@ -6,6 +6,10 @@ themanapool.config(function($routeProvider) {
 			controller: 'user',
 			templateUrl: 'views/home.html'
 		})
+		.when('/resetpass', {
+			controller: 'user',
+			templateUrl: 'views/password.html'
+		})
 		.when('/mydecks', {
 			controller: 'deck',
 			templateUrl: 'views/mydecks.html'
@@ -70,6 +74,11 @@ themanapool.config(function($routeProvider) {
 		return Object.keys(obj).filter(function(key) {if(key.charAt(0) !== "$") {return key;}}).map(function(key) {
 			return Object.defineProperty(obj[key], '$key', {__proto__: null, value: key});
 		});
+	};
+}).filter('reverse', function() {
+	console.log('shit');
+	return function(items) {
+		return items.slice().reverse();
 	};
 });
 
