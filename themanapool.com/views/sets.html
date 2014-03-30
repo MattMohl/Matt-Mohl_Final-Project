@@ -6,6 +6,11 @@
 
 		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
+		<label class="toggler-label" for="menu-toggle">
+			<img ng-src="./img/menu.png">
+		</label>
+		<input id="menu-toggle" class="toggle" type="checkbox">
+
 		<nav>
 			<ul class="row">
 				<li><a href="./#/mydecks">My Decks</a></li>
@@ -27,12 +32,13 @@
 
 		<div class="basic-header"><h2>All MTG Sets</h2></div>
 
-		<form>
-			<input ng-model="setSearch" class="search icn-card" id="search" type="text" placeholder="Filter Sets">
-			<div style="clear:both;"></div>
-		</form>
-
 		<ul class="small-list">
+
+			<form>
+				<input ng-model="setSearch" class="search icn-card" id="search" type="text" placeholder="Filter Sets">
+				<div style="clear:both;"></div>
+			</form>
+
 			<li ng-repeat="set in allSets | toArray | filter:setSearch | orderBy:'releaseDate':true">
 				<a ng-href="./#/browse/sets/{{set.code}}">
 					<img class="set-image float" ng-src="./img/sets/{{set.code}}.jpeg">
