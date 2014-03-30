@@ -13,12 +13,6 @@ themanapool.controller('deck', ['$route', '$filter', '$rootScope', '$scope', '$f
 			}else {
 				console.log('not user '+user);
 				// prevent non users from editing other decks
-				console.log($route.current.params.key);
-				if($route.current.params.key) {
-					console.log('not logged in ***');
-					console.log($location.url(), $location.path());
-					$location.path('/community');
-				}
 			}
 		});
 
@@ -57,7 +51,8 @@ themanapool.controller('deck', ['$route', '$filter', '$rootScope', '$scope', '$f
 				id: $rootScope.currentUser.id,
 				status: 'Fine-Tuning',
 				statusid: 'tuning',
-				username: $scope.currentUser.username
+				username: $scope.currentUser.username,
+				img: 74284
 			}
 			userService.addDeck(newdeck);
 			// $scope.name = $scope.description = '';
