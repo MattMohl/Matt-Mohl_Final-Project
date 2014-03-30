@@ -55,4 +55,28 @@ themanapool.controller('user', ['$route', '$rootScope', '$scope', '$firebase', '
 		$location.path('/browse');
 	}
 
+	$scope.sendPassEmail = function() {
+		$rootScope.auth.sendPasswordResetEmail($scope.email, function(error, success) {
+			if (!error) {
+				console.log('Password reset email sent successfully');
+				$scope.email = '';
+				$location.path('/home');
+			}else {
+				console.log(error);
+				$scope.email = '';
+				$location.path('/');
+			}
+		});
+	}
+
+	$scope.reset = function() {
+		$rootScope.auth.changePassword($rootScope.currentUser.email, $scope.oldpass, $scope.newpass, function(error, success) {
+			if (!error) {
+				console.log('Password changed successfully');
+				$location.path('/mydecks');
+
+			}
+		});
+	}
+
 }]);
