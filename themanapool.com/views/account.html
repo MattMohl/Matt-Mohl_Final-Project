@@ -6,6 +6,11 @@
 
 		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
+		<label class="toggler-label" for="menu-toggle">
+			<img ng-src="./img/menu.png">
+		</label>
+		<input id="menu-toggle" class="toggle" type="checkbox">
+
 		<nav>
 			<ul class="row">
 				<li><a href="./#/mydecks">My Decks</a></li>
@@ -39,6 +44,32 @@
 
 			<button ng-click="logout()" class="orange-btn">Yes, sign out</button>
 
+		</div>
+
+	</section>
+
+	<section class="authentication">
+
+		<div class="reset">
+			<div class="basic-header"><h2>Reset Password</h2></div>
+
+			<form name="passForm">
+				<div class="input-group">
+					<label for="oldpass">Old Password</label>
+					<input ng-model="oldpass" id="oldpass" name="oldpass" class="icn-pass" type="password" pattern="{3}" required>
+					<span ng-show="passForm.username.$error.required && passForm.$dirty" class="form-error">* Required</span>
+				</div>
+
+				<div class="input-group">
+					<label for="newpass">New Password</label>
+					<input ng-model="newpass" id="newpass" name="newpass" class="icn-pass" type="password">
+					<span ng-show="passForm.email1.$error.required" class="form-error">* Required</span>
+				</div>
+
+				<div style="clear: both;"></div>
+
+				<input ng-disabled="passForm.$invalid" ng-click="reset()" class="submit bottom blue-btn" type="submit" value="Register">
+			</form>
 		</div>
 
 	</section>
