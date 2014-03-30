@@ -6,6 +6,11 @@
 
 		<h1 class="float"><a ng-href="./#/mydecks">The Mana Pool</a></h1>
 
+		<label class="toggler-label" for="menu-toggle">
+			<img ng-src="./img/menu.png">
+		</label>
+		<input id="menu-toggle" class="toggle" type="checkbox">
+
 		<nav>
 			<ul class="row">
 				<li><a href="./#/mydecks">My Decks</a></li>
@@ -25,7 +30,7 @@
 
 	<section class="advanced-search-left">
 
-	<div class="basic-header"><label for="criteria">Advanced Search</label></div>
+	<div class="basic-header"><label for="criteria">Advanced Search (+)</label></div>
 	<input id="criteria" type="checkbox" class="toggle">
 
 		<ul class="advanced-inputs">
@@ -33,7 +38,7 @@
 				<form name="nameForm">
 					<label for="name">Name</label>
 					<input ng-model="search.name" id="name" name="name" class="advanced" type="text" required>
-					<span ng-click="search.name=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.name=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -41,7 +46,7 @@
 				<form name="rulesForm">
 					<label for="text">Rules Text</label>
 					<input ng-model="search.text" id="text" name="text" class="advanced" type="text" required>
-					<span ng-click="search.text=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.text=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -49,15 +54,15 @@
 				<form name="colorForm">
 					<label for="colors">Colors (separate with ,)</label>
 					<input ng-model="search.colors" ng-list id="colors" name="colors" class="advanced" type="text" required>
-					<span ng-click="search.colors=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.colors=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
 			<li>
 				<form name="typeForm">
-					<label for="type">Type (Alt+Shift+'-')or(Alt+0151)</label>
+					<label for="type">Type (Alt+Shift+'-') or (Alt+0151)</label>
 					<input ng-model="search.type" id="type" name="type" class="advanced" type="text" required>
-					<span ng-click="search.type=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.type=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -65,7 +70,7 @@
 				<form name="cmcForm">
 					<label for="cmc">Converted Mana Cost</label>
 					<input ng-model="search.cmc" id="cmc" name="cmc" class="advanced" type="text" required>
-					<span ng-click="search.cmc=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.cmc=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -73,7 +78,7 @@
 				<form name="manaForm">
 					<label for="manaCost">Mana Cost (separate with {})</label>
 					<input ng-model="search.manaCost" id="manaCost" name="manaCost" class="advanced" type="text" required>
-					<span ng-click="search.manaCost=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.manaCost=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -81,7 +86,7 @@
 				<form name="powerForm">
 					<label for="power">Power</label>
 					<input ng-model="search.power" id="power" name="power" class="advanced" type="text" required>
-					<span ng-click="search.power=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.power=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -89,7 +94,7 @@
 				<form name="toughnessForm">
 					<label for="toughness">Toughness</label>
 					<input ng-model="search.toughness" id="toughness" name="toughness" class="advanced" type="text" required>
-					<span ng-click="search.toughness=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.toughness=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -97,7 +102,7 @@
 				<form name="flavorForm">
 					<label for="flavor">Flavor Text</label>
 					<input ng-model="search.flavor" id="flavor" name="flavor" class="advanced" type="text" required>
-					<span ng-click="search.flavor=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.flavor=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -105,7 +110,7 @@
 				<form name="artistForm">
 					<label for="artist">Artist</label>
 					<input ng-model="search.artist" id="artist" name="artist" class="advanced" type="text" required>
-					<span ng-click="search.artist=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.artist=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
@@ -113,11 +118,14 @@
 				<form name="rarityForm">
 					<label for="rarity">Rarity</label>
 					<input ng-model="search.rarity" id="rarity" name="rarity" class="advanced" type="text" required>
-					<span ng-click="search.rarity=''"><img src="./img/no.png"></span>
+					<!-- <span ng-click="search.rarity=''"><img src="./img/no.png"></span> -->
 					<div style="clear:both;"></div>
 				</form>
 			</li>
+
 			<div style="clear:both;"></div>
+
+			<label for="criteria" class="opts orange-btn">Close</label>
 		</ul>
 
 	</section>
